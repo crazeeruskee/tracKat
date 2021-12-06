@@ -38,7 +38,7 @@ void GPIO_reservations(void)
     i.e. to reserve P0_1 as Generic Purpose I/O:
     RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
-	
+#if defined(CUSTOM_TAG)
 	RESERVE_GPIO(LOAD_CELL_DATA, LC_DO_PORT, LC_DO_PIN, PID_GPIO);
 	RESERVE_GPIO(LOAD_CELL_CLK, LC_CLK_PORT, LC_CLK_PIN, PID_GPIO);
 	
@@ -48,7 +48,13 @@ void GPIO_reservations(void)
 	RESERVE_GPIO(ACCEL_INT, ACCEL_INT_PORT, ACCEL_INT_PIN, PID_GPIO);
 
 	RESERVE_GPIO(BTN, BTN_PORT, BTN_PIN, PID_GPIO);
-
+#else
+	RESERVE_GPIO(LOAD_CELL_DATA, LC_DO_PORT, LC_DO_PIN, PID_GPIO);
+	RESERVE_GPIO(LOAD_CELL_CLK, LC_CLK_PORT, LC_CLK_PIN, PID_GPIO);
+	
+	RESERVE_GPIO(LED, LED_PORT, LED_PIN, PID_GPIO);
+	RESERVE_GPIO(BTN, BTN_PORT, BTN_PIN, PID_GPIO);
+#endif
 
 #if defined (CFG_PRINTF_UART2)
     RESERVE_GPIO(UART2_TX, UART2_TX_PORT, UART2_TX_PIN, PID_UART2_TX);
@@ -63,10 +69,9 @@ void set_pad_functions(void)
     i.e. to set P0_1 as Generic purpose Output:
     GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
-
+#if defined(CUSTOM_TAG)
 		GPIO_ConfigurePin(LC_DO_PORT, LC_DO_PIN, INPUT_PULLUP, PID_GPIO, false);
 		GPIO_ConfigurePin(LC_CLK_PORT, LC_CLK_PIN, OUTPUT, PID_GPIO, false);
-	
 	
 		//GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
 		GPIO_ConfigurePin(SCL_PORT, SCL_PIN, OUTPUT, PID_GPIO, false);
@@ -74,7 +79,13 @@ void set_pad_functions(void)
 		GPIO_ConfigurePin(ACCEL_INT_PORT, ACCEL_INT_PIN, INPUT, PID_GPIO, false);
 		
 		GPIO_ConfigurePin(BTN_PORT, BTN_PIN, INPUT_PULLDOWN, PID_GPIO, false);
-
+#else
+		GPIO_ConfigurePin(LC_DO_PORT, LC_DO_PIN, INPUT_PULLUP, PID_GPIO, false);
+		GPIO_ConfigurePin(LC_CLK_PORT, LC_CLK_PIN, OUTPUT, PID_GPIO, false);
+	
+		GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
+		GPIO_ConfigurePin(BTN_PORT, BTN_PIN, INPUT_PULLUP, PID_GPIO, false);
+#endif
 
 #if defined (__DA14586__)
     // Disallow spontaneous DA14586 SPI Flash wake-up

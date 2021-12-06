@@ -183,158 +183,157 @@ ARM Macro Assembler    Page 3
   369 00000006 4700            BX               R0
   370 00000008                 ENDP
   371 00000008         
-  372 00000008         
-  373 00000008         ; Dummy Exception Handlers (infinite loops which can be 
+  372 00000008         ; Dummy Exception Handlers (infinite loops which can be 
                        modified)
-  374 00000008                 IMPORT           NMI_HandlerC
-  376 00000008         NMI_Handler
+  373 00000008                 IMPORT           NMI_HandlerC
+  375 00000008         NMI_Handler
                                PROC
-  377 00000008 2004            movs             r0, #4
-  378 0000000A 4671            mov              r1, lr
-  379 0000000C 4208            tst              r0, r1
-  380 0000000E D003            beq              NMI_stacking_used_MSP
+  376 00000008 2004            movs             r0, #4
+  377 0000000A 4671            mov              r1, lr
+  378 0000000C 4208            tst              r0, r1
+  379 0000000E D003            beq              NMI_stacking_used_MSP
+  380 00000010 F3EF 8009       mrs              r0, psp
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-  381 00000010 F3EF 8009       mrs              r0, psp
-  382 00000014 490C            ldr              r1,=NMI_HandlerC
-  383 00000016 4708            bx               r1
-  384 00000018         NMI_stacking_used_MSP
-  385 00000018 F3EF 8008       mrs              r0, msp
-  386 0000001C 490A            ldr              r1,=NMI_HandlerC
-  387 0000001E 4708            bx               r1
-  388 00000020                 ENDP
-  389 00000020         
-  390 00000020                 IMPORT           HardFault_HandlerC
-  392 00000020         HardFault_Handler
+  381 00000014 490C            ldr              r1,=NMI_HandlerC
+  382 00000016 4708            bx               r1
+  383 00000018         NMI_stacking_used_MSP
+  384 00000018 F3EF 8008       mrs              r0, msp
+  385 0000001C 490A            ldr              r1,=NMI_HandlerC
+  386 0000001E 4708            bx               r1
+  387 00000020                 ENDP
+  388 00000020         
+  389 00000020                 IMPORT           HardFault_HandlerC
+  391 00000020         HardFault_Handler
                                PROC
-  393 00000020 2004            movs             r0, #4
-  394 00000022 4671            mov              r1, lr
-  395 00000024 4208            tst              r0, r1
-  396 00000026 D003            beq              HardFault_stacking_used_MSP
-  397 00000028 F3EF 8009       mrs              r0, psp
-  398 0000002C 4907            ldr              r1,=HardFault_HandlerC
-  399 0000002E 4708            bx               r1
-  400 00000030         HardFault_stacking_used_MSP
-  401 00000030 F3EF 8008       mrs              r0, msp
-  402 00000034 4905            ldr              r1,=HardFault_HandlerC
-  403 00000036 4708            bx               r1
-  404 00000038                 ENDP
-  405 00000038         
-  407 00000038         SVC_Handler
+  392 00000020 2004            movs             r0, #4
+  393 00000022 4671            mov              r1, lr
+  394 00000024 4208            tst              r0, r1
+  395 00000026 D003            beq              HardFault_stacking_used_MSP
+  396 00000028 F3EF 8009       mrs              r0, psp
+  397 0000002C 4907            ldr              r1,=HardFault_HandlerC
+  398 0000002E 4708            bx               r1
+  399 00000030         HardFault_stacking_used_MSP
+  400 00000030 F3EF 8008       mrs              r0, msp
+  401 00000034 4905            ldr              r1,=HardFault_HandlerC
+  402 00000036 4708            bx               r1
+  403 00000038                 ENDP
+  404 00000038         
+  406 00000038         SVC_Handler
                                PROC
-  408 00000038                 EXPORT           SVC_Handler            [WEAK]
-  409 00000038 E7FE            B                .
-  410 0000003A                 ENDP
-  411 0000003A         
-  413 0000003A         PendSV_Handler
+  407 00000038                 EXPORT           SVC_Handler            [WEAK]
+  408 00000038 E7FE            B                .
+  409 0000003A                 ENDP
+  410 0000003A         
+  412 0000003A         PendSV_Handler
                                PROC
-  414 0000003A                 EXPORT           PendSV_Handler         [WEAK]
-  415 0000003A E7FE            B                .
-  416 0000003C                 ENDP
-  417 0000003C         
-  419 0000003C         SysTick_Handler
+  413 0000003A                 EXPORT           PendSV_Handler         [WEAK]
+  414 0000003A E7FE            B                .
+  415 0000003C                 ENDP
+  416 0000003C         
+  418 0000003C         SysTick_Handler
                                PROC
-  420 0000003C                 EXPORT           SysTick_Handler        [WEAK]
-  421 0000003C E7FE            B                .
-  422 0000003E                 ENDP
-  423 0000003E         
-  424 0000003E         Default_Handler
+  419 0000003C                 EXPORT           SysTick_Handler        [WEAK]
+  420 0000003C E7FE            B                .
+  421 0000003E                 ENDP
+  422 0000003E         
+  423 0000003E         Default_Handler
                                PROC
-  425 0000003E                 EXPORT           BLE_WAKEUP_LP_Handler   [WEAK]
-  426 0000003E                 EXPORT           rwble_isr               [WEAK]
-  427 0000003E                 EXPORT           UART_Handler            [WEAK]
-  428 0000003E                 EXPORT           UART2_Handler           [WEAK]
-  429 0000003E                 EXPORT           I2C_Handler             [WEAK]
-  430 0000003E                 EXPORT           SPI_Handler             [WEAK]
-  431 0000003E                 EXPORT           ADC_Handler             [WEAK]
-  432 0000003E                 EXPORT           KEYBRD_Handler          [WEAK]
-  433 0000003E                 EXPORT           BLE_RF_DIAG_Handler     [WEAK]
-  434 0000003E                 EXPORT           RFCAL_Handler           [WEAK]
-  435 0000003E                 EXPORT           GPIO0_Handler           [WEAK]
-  436 0000003E                 EXPORT           GPIO1_Handler           [WEAK]
-  437 0000003E                 EXPORT           GPIO2_Handler           [WEAK]
-  438 0000003E                 EXPORT           GPIO3_Handler           [WEAK]
+  424 0000003E                 EXPORT           BLE_WAKEUP_LP_Handler   [WEAK]
+  425 0000003E                 EXPORT           rwble_isr               [WEAK]
+  426 0000003E                 EXPORT           UART_Handler            [WEAK]
+  427 0000003E                 EXPORT           UART2_Handler           [WEAK]
+  428 0000003E                 EXPORT           I2C_Handler             [WEAK]
+  429 0000003E                 EXPORT           SPI_Handler             [WEAK]
+  430 0000003E                 EXPORT           ADC_Handler             [WEAK]
+  431 0000003E                 EXPORT           KEYBRD_Handler          [WEAK]
+  432 0000003E                 EXPORT           BLE_RF_DIAG_Handler     [WEAK]
+  433 0000003E                 EXPORT           RFCAL_Handler           [WEAK]
+  434 0000003E                 EXPORT           GPIO0_Handler           [WEAK]
+  435 0000003E                 EXPORT           GPIO1_Handler           [WEAK]
+  436 0000003E                 EXPORT           GPIO2_Handler           [WEAK]
+  437 0000003E                 EXPORT           GPIO3_Handler           [WEAK]
+  438 0000003E                 EXPORT           GPIO4_Handler           [WEAK]
 
 
 
 ARM Macro Assembler    Page 5 
 
 
-  439 0000003E                 EXPORT           GPIO4_Handler           [WEAK]
-  440 0000003E                 EXPORT           SWTIM_Handler           [WEAK]
-  441 0000003E                 EXPORT           WKUP_QUADEC_Handler     [WEAK]
-  442 0000003E                 EXPORT           SWTIM1_Handler          [WEAK]
-  443 0000003E                 EXPORT           RTC_Handler             [WEAK]
-  444 0000003E                 EXPORT           DMA_Handler             [WEAK]
-  445 0000003E                 EXPORT           XTAL32M_RDY_Handler     [WEAK]
-  446 0000003E                 EXPORT           RESERVED21_Handler      [WEAK]
-  447 0000003E                 EXPORT           RESERVED22_Handler      [WEAK]
-  448 0000003E                 EXPORT           RESERVED23_Handler      [WEAK]
-  449 0000003E         
-  450 0000003E         BLE_WAKEUP_LP_Handler
-  451 0000003E         rwble_isr
-  452 0000003E         UART_Handler
-  453 0000003E         UART2_Handler
-  454 0000003E         I2C_Handler
-  455 0000003E         SPI_Handler
-  456 0000003E         ADC_Handler
-  457 0000003E         KEYBRD_Handler
-  458 0000003E         BLE_RF_DIAG_Handler
-  459 0000003E         RFCAL_Handler
-  460 0000003E         GPIO0_Handler
-  461 0000003E         GPIO1_Handler
-  462 0000003E         GPIO2_Handler
-  463 0000003E         GPIO3_Handler
-  464 0000003E         GPIO4_Handler
-  465 0000003E         SWTIM_Handler
-  466 0000003E         WKUP_QUADEC_Handler
-  467 0000003E         SWTIM1_Handler
-  468 0000003E         RTC_Handler
-  469 0000003E         DMA_Handler
-  470 0000003E         XTAL32M_RDY_Handler
-  471 0000003E         RESERVED21_Handler
-  472 0000003E         RESERVED22_Handler
-  473 0000003E         RESERVED23_Handler
-  474 0000003E E7FE            B                .
-  475 00000040                 ENDP
-  476 00000040         
-  477 00000040                 ALIGN
+  439 0000003E                 EXPORT           SWTIM_Handler           [WEAK]
+  440 0000003E                 EXPORT           WKUP_QUADEC_Handler     [WEAK]
+  441 0000003E                 EXPORT           SWTIM1_Handler          [WEAK]
+  442 0000003E                 EXPORT           RTC_Handler             [WEAK]
+  443 0000003E                 EXPORT           DMA_Handler             [WEAK]
+  444 0000003E                 EXPORT           XTAL32M_RDY_Handler     [WEAK]
+  445 0000003E                 EXPORT           RESERVED21_Handler      [WEAK]
+  446 0000003E                 EXPORT           RESERVED22_Handler      [WEAK]
+  447 0000003E                 EXPORT           RESERVED23_Handler      [WEAK]
+  448 0000003E         
+  449 0000003E         BLE_WAKEUP_LP_Handler
+  450 0000003E         rwble_isr
+  451 0000003E         UART_Handler
+  452 0000003E         UART2_Handler
+  453 0000003E         I2C_Handler
+  454 0000003E         SPI_Handler
+  455 0000003E         ADC_Handler
+  456 0000003E         KEYBRD_Handler
+  457 0000003E         BLE_RF_DIAG_Handler
+  458 0000003E         RFCAL_Handler
+  459 0000003E         GPIO0_Handler
+  460 0000003E         GPIO1_Handler
+  461 0000003E         GPIO2_Handler
+  462 0000003E         GPIO3_Handler
+  463 0000003E         GPIO4_Handler
+  464 0000003E         SWTIM_Handler
+  465 0000003E         WKUP_QUADEC_Handler
+  466 0000003E         SWTIM1_Handler
+  467 0000003E         RTC_Handler
+  468 0000003E         DMA_Handler
+  469 0000003E         XTAL32M_RDY_Handler
+  470 0000003E         RESERVED21_Handler
+  471 0000003E         RESERVED22_Handler
+  472 0000003E         RESERVED23_Handler
+  473 0000003E E7FE            B                .
+  474 00000040                 ENDP
+  475 00000040         
+  476 00000040                 ALIGN
+  477 00000040         
   478 00000040         
-  479 00000040         
-  480 00000040         ; User Initial Stack & Heap
-  481 00000040         
-  482 00000040                 IF               :DEF:__MICROLIB
-  483 00000040         
-  484 00000040                 EXPORT           __initial_sp
-  485 00000040                 EXPORT           __heap_base
-  486 00000040                 EXPORT           __heap_limit
-  487 00000040         
-  488 00000040                 ELSE
-  503                          ENDIF
+  479 00000040         ; User Initial Stack & Heap
+  480 00000040         
+  481 00000040                 IF               :DEF:__MICROLIB
+  482 00000040         
+  483 00000040                 EXPORT           __initial_sp
+  484 00000040                 EXPORT           __heap_base
+  485 00000040                 EXPORT           __heap_limit
+  486 00000040         
+  487 00000040                 ELSE
+  502                          ENDIF
+  503 00000040         
   504 00000040         
-  505 00000040         
-  506 00000040                 END
+  505 00000040                 END
               00000000 
               00000000 
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
+work --depend=.\out_da14531\objects\startup_da14531.d -o.\out_da14531\objects\s
 
 
 
 ARM Macro Assembler    Page 6 
 
 
-work --depend=.\out_da14531\objects\startup_da14531.d -o.\out_da14531\objects\s
-tartup_da14531.o -IC:\Users\Lucas\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\Devic
-e\ARM\ARMCM0plus\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SE
-TA 1" --predefine="__UVISION_VERSION SETA 536" --predefine="ARMCM0P SETA 1" --l
-ist=.\out_da14531\listings\startup_da14531.lst ..\..\..\..\..\sdk\platform\arch
-\boot\ARM\startup_DA14531.s
+tartup_da14531.o -I"C:\Users\Lucas Moiseyev\AppData\Local\Arm\Packs\ARM\CMSIS\5
+.8.0\Device\ARM\ARMCM0plus\Include" --predefine="__EVAL SETA 1" --predefine="__
+MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 536" --predefine="ARMCM0P 
+SETA 1" --list=.\out_da14531\listings\startup_da14531.lst ..\..\..\..\..\sdk\pl
+atform\arch\boot\ARM\startup_DA14531.s
 
 
 
@@ -368,7 +367,7 @@ Symbol: __initial_sp
    Uses
       At line 89 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA14
 531.s
-      At line 484 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 483 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 3 symbols
@@ -403,7 +402,7 @@ Symbol: __heap_base
       At line 55 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA14
 531.s
    Uses
-      At line 485 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 484 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 Comment: __heap_base used once
 __heap_limit 00000100
@@ -413,7 +412,7 @@ Symbol: __heap_limit
       At line 57 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA14
 531.s
    Uses
-      At line 486 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 485 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 Comment: __heap_limit used once
 4 symbols
@@ -476,48 +475,48 @@ ADC_Handler 0000003E
 
 Symbol: ADC_Handler
    Definitions
-      At line 456 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 455 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 113 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 431 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 430 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 BLE_RF_DIAG_Handler 0000003E
 
 Symbol: BLE_RF_DIAG_Handler
    Definitions
-      At line 458 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 457 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 115 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 433 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 432 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 BLE_WAKEUP_LP_Handler 0000003E
 
 Symbol: BLE_WAKEUP_LP_Handler
    Definitions
-      At line 450 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 449 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 107 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 425 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 424 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 DMA_Handler 0000003E
 
 Symbol: DMA_Handler
    Definitions
-      At line 469 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 468 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 126 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 444 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 443 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 Default_Handler 0000003E
@@ -530,7 +529,7 @@ Relocatable symbols
 
 Symbol: Default_Handler
    Definitions
-      At line 424 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 423 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       None
@@ -539,48 +538,48 @@ GPIO0_Handler 0000003E
 
 Symbol: GPIO0_Handler
    Definitions
-      At line 460 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 459 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 117 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 435 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 434 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 GPIO1_Handler 0000003E
 
 Symbol: GPIO1_Handler
    Definitions
-      At line 461 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 460 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 118 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 436 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 435 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 GPIO2_Handler 0000003E
 
 Symbol: GPIO2_Handler
    Definitions
-      At line 462 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 461 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 119 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 437 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 436 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 GPIO3_Handler 0000003E
 
 Symbol: GPIO3_Handler
    Definitions
-      At line 463 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 462 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 120 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 438 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 437 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 GPIO4_Handler 0000003E
@@ -593,19 +592,19 @@ Symbol: GPIO4_Handler
 ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 464 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 463 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 121 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 439 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 438 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 HardFault_Handler 00000020
 
 Symbol: HardFault_Handler
    Definitions
-      At line 392 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 391 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 92 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA14
@@ -615,41 +614,41 @@ HardFault_stacking_used_MSP 00000030
 
 Symbol: HardFault_stacking_used_MSP
    Definitions
-      At line 400 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 399 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
-      At line 396 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 395 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 Comment: HardFault_stacking_used_MSP used once
 I2C_Handler 0000003E
 
 Symbol: I2C_Handler
    Definitions
-      At line 454 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 453 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 111 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 429 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 428 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 KEYBRD_Handler 0000003E
 
 Symbol: KEYBRD_Handler
    Definitions
-      At line 457 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 456 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 114 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 432 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 431 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 NMI_Handler 00000008
 
 Symbol: NMI_Handler
    Definitions
-      At line 376 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 375 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
 
@@ -665,58 +664,58 @@ NMI_stacking_used_MSP 00000018
 
 Symbol: NMI_stacking_used_MSP
    Definitions
-      At line 384 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 383 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
-      At line 380 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 379 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 Comment: NMI_stacking_used_MSP used once
 PendSV_Handler 0000003A
 
 Symbol: PendSV_Handler
    Definitions
-      At line 413 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 412 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 103 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 414 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 413 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 RESERVED21_Handler 0000003E
 
 Symbol: RESERVED21_Handler
    Definitions
-      At line 471 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 470 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 128 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 446 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 445 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 RESERVED22_Handler 0000003E
 
 Symbol: RESERVED22_Handler
    Definitions
-      At line 472 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 471 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 129 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 447 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 446 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 RESERVED23_Handler 0000003E
 
 Symbol: RESERVED23_Handler
    Definitions
-      At line 473 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 472 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 130 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 448 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 447 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 
 
 
@@ -729,24 +728,24 @@ RFCAL_Handler 0000003E
 
 Symbol: RFCAL_Handler
    Definitions
-      At line 459 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 458 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 116 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 434 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 433 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 RTC_Handler 0000003E
 
 Symbol: RTC_Handler
    Definitions
-      At line 468 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 467 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 125 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 443 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 442 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 Reset_Handler 00000000
@@ -765,19 +764,19 @@ SPI_Handler 0000003E
 
 Symbol: SPI_Handler
    Definitions
-      At line 455 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 454 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 112 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 430 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 429 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 SVC_Handler 00000038
 
 Symbol: SVC_Handler
    Definitions
-      At line 407 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 406 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 100 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
@@ -788,62 +787,62 @@ Symbol: SVC_Handler
 ARM Macro Assembler    Page 6 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 408 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 407 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 SWTIM1_Handler 0000003E
 
 Symbol: SWTIM1_Handler
    Definitions
-      At line 467 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 466 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 124 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 442 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 441 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 SWTIM_Handler 0000003E
 
 Symbol: SWTIM_Handler
    Definitions
-      At line 465 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 464 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 122 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 440 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 439 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 SysTick_Handler 0000003C
 
 Symbol: SysTick_Handler
    Definitions
-      At line 419 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 418 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 104 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 420 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 419 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 UART2_Handler 0000003E
 
 Symbol: UART2_Handler
    Definitions
-      At line 453 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 452 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 110 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 428 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 427 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 UART_Handler 0000003E
 
 Symbol: UART_Handler
    Definitions
-      At line 452 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 451 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 109 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
@@ -854,43 +853,43 @@ ARM Macro Assembler    Page 7 Alphabetic symbol ordering
 Relocatable symbols
 
 4531.s
-      At line 427 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 426 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 WKUP_QUADEC_Handler 0000003E
 
 Symbol: WKUP_QUADEC_Handler
    Definitions
-      At line 466 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 465 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 123 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 441 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 440 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 XTAL32M_RDY_Handler 0000003E
 
 Symbol: XTAL32M_RDY_Handler
    Definitions
-      At line 470 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 469 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 127 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 445 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 444 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 rwble_isr 0000003E
 
 Symbol: rwble_isr
    Definitions
-      At line 451 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 450 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
       At line 108 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 426 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 425 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 34 symbols
@@ -941,24 +940,24 @@ HardFault_HandlerC 00000000
 
 Symbol: HardFault_HandlerC
    Definitions
-      At line 390 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 389 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
-      At line 398 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 397 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 402 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 401 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 NMI_HandlerC 00000000
 
 Symbol: NMI_HandlerC
    Definitions
-      At line 374 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 373 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
    Uses
-      At line 382 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 381 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
-      At line 386 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
+      At line 385 in file ..\..\..\..\..\sdk\platform\arch\boot\ARM\startup_DA1
 4531.s
 
 SystemInit 00000000

@@ -131,5 +131,3 @@
 .\out_da14531\objects\jump_table.o: .\..\..\..\..\..\sdk\ble_stack\profiles\custom\custom_common.h
 .\out_da14531\objects\jump_table.o: .\..\..\..\..\..\sdk\app_modules\api\app_entry_point.h
 .\out_da14531\objects\jump_table.o: .\..\..\..\..\..\sdk\app_modules\api\app_prf_perm_types.h
-.\out_da14531\objects\jump_table.o: .\..\..\..\..\..\sdk\platform\core_modules\arch_console\arch_console.h
-.\out_da14531\objects\jump_table.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

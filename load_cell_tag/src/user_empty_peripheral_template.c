@@ -34,6 +34,7 @@
 #include "user_custs1_impl.h"
 #include "user_custs1_def.h"
 #include "co_bt.h"
+#include "systick.h"
 
 #define SYSTICK_PERIOD_US   			20       // period for systick timer in us, so 1000000ticks = 1second
 #define SYSTICK_EXCEPTION   			1        // generate systick exceptions
@@ -58,6 +59,7 @@ int load = 0;
 int load_array[100];
 int num_vals = 0;
 bool val_ready = false;
+bool systick_initialized = false;
 
 
 /*
@@ -66,24 +68,34 @@ bool val_ready = false;
 */
 void control_LED(bool state)
 {
+	#if !defined(CUSTOM_TAG)
     if(state == true){
-      //  GPIO_SetActive(LED_PORT,LED_PIN);
-				//arch_puts("Turning the LED on!\n\r");
+        GPIO_SetActive(LED_PORT,LED_PIN);
+				#if defined(CFG_PRINTF_UART2)
+					arch_puts("Turning the LED on!\n\r");
+				#endif
 		}
     else{
-      //  GPIO_SetInactive(LED_PORT,LED_PIN);
-				//arch_puts("Turning the LED off!\n\r");
+        GPIO_SetInactive(LED_PORT,LED_PIN);
+				#if defined(CFG_PRINTF_UART2)
+					arch_puts("Turning the LED off!\n\r");
+				#endif
 		}
+	#endif	
 }
 
 void clear_array(uint32_t* array, uint32_t size){
-		for(int i = 0; i < size; i++) array[i] = 1;
+		for(int i = 0; i < size; i++) array[i] = 0;
 }
 
 void my_timer_cb()
 {
-		//arch_puts("Turning the LED off after 10 seconds\n\r");
+	#if !defined(CUSTOM_TAG)
+		#if defined(CFG_PRINTF_UART2)
+			arch_puts("Turning the LED off after 10 seconds\n\r");
+		#endif
 		control_LED(false);
+	#endif
 }
 
 /**
@@ -127,8 +139,10 @@ static void systick_isr(void)
 					//app_lc_val_handler(&load);
 					temp_load = 0;
 					clock_count = 0;
-					if(/*(uint32_t)(*load_p)*/ load > WEIGHT_LED_THRESHOLD) control_LED(true);
-					else control_LED(false);
+					#if !defined(CUSTOM_TAG)
+						if(/*(uint32_t)(*load_p)*/ load > WEIGHT_LED_THRESHOLD) control_LED(true);
+						else control_LED(false);
+					#endif
 					num_reads++;
 				}	
 			} else {
@@ -160,7 +174,10 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 		//app_easy_timer(1000, my_timer_cb);
 		//if(GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
 			GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
+		if(!systick_initialized){
 			systick_register_callback(systick_isr);
+			systick_initialized = true;
+		}
 			systick_start(SYSTICK_PERIOD_US, SYSTICK_EXCEPTION);
 	//	}
 		//load_p = malloc(sizeof(uint32_t));
@@ -169,8 +186,11 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 
 void user_on_disconnect( struct gapc_disconnect_ind const *param )
 {
-		control_LED(false);
+		#if !defined(CUSTOM_TAG)
+			control_LED(false);
+		#endif
 		//free(load_p);
+		systick_stop();
 		default_app_on_disconnect(param);
 }
 

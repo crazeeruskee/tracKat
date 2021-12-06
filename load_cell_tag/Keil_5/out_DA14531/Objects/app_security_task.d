@@ -115,5 +115,3 @@
 .\out_da14531\objects\app_security_task.o: .\..\..\..\..\..\sdk\platform\driver\uart\uart.h
 .\out_da14531\objects\app_security_task.o: .\..\..\..\..\..\sdk\platform\driver\dma\dma.h
 .\out_da14531\objects\app_security_task.o: .\..\src\user_empty_peripheral_template.h
-.\out_da14531\objects\app_security_task.o: .\..\..\..\..\..\sdk\platform\core_modules\arch_console\arch_console.h
-.\out_da14531\objects\app_security_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
