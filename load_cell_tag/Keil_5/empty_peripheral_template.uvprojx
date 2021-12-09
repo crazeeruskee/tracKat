@@ -10,7 +10,7 @@
       <TargetName>DA14585</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -1556,6 +1556,16 @@
               <FileType>5</FileType>
               <FilePath>..\src\user_empty_peripheral_template.h</FilePath>
             </File>
+            <File>
+              <FileName>user_custs1_impl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_custs1_impl.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_hx711.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_hx711.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1597,19 +1607,9 @@
               <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
             <File>
-              <FileName>user_i2c_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user_i2c_utils.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_accelerometer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user_accelerometer.c</FilePath>
-            </File>
-            <File>
               <FileName>user_hx711.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user_hx711.c</FilePath>
+              <FilePath>..\src\user_hx711.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1619,7 +1619,7 @@
       <TargetName>DA14586</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -3165,6 +3165,16 @@
               <FileType>5</FileType>
               <FilePath>..\src\user_empty_peripheral_template.h</FilePath>
             </File>
+            <File>
+              <FileName>user_custs1_impl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_custs1_impl.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_hx711.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_hx711.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3206,19 +3216,9 @@
               <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
             <File>
-              <FileName>user_i2c_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user_i2c_utils.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_accelerometer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user_accelerometer.c</FilePath>
-            </File>
-            <File>
               <FileName>user_hx711.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user_hx711.c</FilePath>
+              <FilePath>..\src\user_hx711.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4672,6 +4672,16 @@
               <FileType>5</FileType>
               <FilePath>..\src\user_empty_peripheral_template.h</FilePath>
             </File>
+            <File>
+              <FileName>user_custs1_impl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_custs1_impl.h</FilePath>
+            </File>
+            <File>
+              <FileName>user_hx711.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\user_hx711.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4713,19 +4723,9 @@
               <FilePath>..\src\user_custs1_impl.c</FilePath>
             </File>
             <File>
-              <FileName>user_i2c_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user_i2c_utils.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_accelerometer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user_accelerometer.c</FilePath>
-            </File>
-            <File>
               <FileName>user_hx711.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user_hx711.c</FilePath>
+              <FilePath>..\src\user_hx711.c</FilePath>
             </File>
           </Files>
         </Group>

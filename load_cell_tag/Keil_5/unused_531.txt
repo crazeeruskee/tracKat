@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Mon Dec 06 14:25:03 2021
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Tue Dec 07 01:03:31 2021
 ;VERSION 0.2
 ;FILE adc_531.o
 adc_correct_sample <= USED 0
@@ -295,21 +295,12 @@ uart_wait_tx_finish <= USED 0
 uart_write_buffer <= USED 0
 uart_write_byte <= USED 0
 ;FILE user_custs1_impl.o
-app_adcval1_timer_cb_handler <= USED 0
-user_svc1_adc_val_1_cfg_ind_handler <= USED 0
-user_svc1_adc_val_1_ntf_cfm_handler <= USED 0
-user_svc1_button_ntf_cfm_handler <= USED 0
-user_svc1_indicateable_cfg_ind_handler <= USED 0
-user_svc1_indicateable_ind_cfm_handler <= USED 0
-user_svc1_led_wr_ind_handler <= USED 0
-user_svc1_long_val_att_info_req_handler <= USED 0
-user_svc1_long_val_ntf_cfm_handler <= USED 0
-user_svc1_long_val_wr_ind_handler <= USED 0
-user_svc1_rest_att_info_req_handler <= USED 0
-user_svc3_read_non_db_val_handler <= USED 0
 ;FILE user_empty_peripheral_template.o
-control_LED <= USED 0
+clear_array <= USED 0
 my_timer_cb <= USED 0
+;FILE user_hx711.o
+free_load_cell <= USED 0
+read_load_cell <= USED 0
 ;FILE user_periph_setup.o
 ;FILE wkupct_quadec.o
 quad_decoder_clear_irq <= USED 0

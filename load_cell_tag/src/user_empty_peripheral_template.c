@@ -35,32 +35,18 @@
 #include "user_custs1_def.h"
 #include "co_bt.h"
 #include "systick.h"
+#include "user_hx711.h"
 
 #define SYSTICK_PERIOD_US   			20       // period for systick timer in us, so 1000000ticks = 1second
 #define SYSTICK_EXCEPTION   			1        // generate systick exceptions
 
-#define LOAD_THRESHOLD 						500
-#define PREP_READ_TICKS						20
-#define MAX_READS 								1
-#define WAIT_TICKS								2000
 
 #define WEIGHT_LED_THRESHOLD 	    1750000  //16777100 //3500000
-#define WEIGHT_UPDATE_THRESHOLD 	50000   //Minimum difference between load values to add value to weights array
 
-#define LOAD_VALS_ARR_SIZE    		100
+int new_load = 0;
 
-int clock_count = 0;
-int prep_count = 0;
-int wait_count = 0;
-int num_reads = 0;
-int temp_load = 0;
-//uint32_t* load_p;
-int load = 0;
-int load_array[100];
-int num_vals = 0;
-bool val_ready = false;
 bool systick_initialized = false;
-
+extern load_cell* load_cell_2kg_p;
 
 /*
  * FUNCTION DEFINITIONS
@@ -103,62 +89,80 @@ void my_timer_cb()
  * @brief SysTick ISR routine
  ****************************************************************************************
  */
+uint32_t load_array_test[100];
+
 static void systick_isr(void)
 {
-		/*if(prep_count < PREP_READ_TICKS){
+			/*if(prep_count < PREP_READ_TICKS){
 			GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
 			prep_count++;
 		} else{	*/
+
+		if(!(load_cell_2kg_p->val_ready) && !GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN)) load_cell_2kg_p->val_ready = true;
+		if(load_cell_2kg_p->val_ready){
 	
-		if(!val_ready && !GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN)) val_ready = true;
-		if(val_ready){
-			if(num_reads < MAX_READS){
-				if (clock_count < 50) {
-					if(clock_count % 2 == 0){
+			if(!(load_cell_2kg_p->calibrated)){
+				
+			}
+		
+			if(load_cell_2kg_p->reads_count < load_cell_2kg_p->max_num_reads){
+				if (load_cell_2kg_p->clock_count < 50) {
+					if(load_cell_2kg_p->clock_count % 2 == 0){
 						GPIO_SetActive(LC_CLK_PORT,LC_CLK_PIN);
-						if(clock_count < 47) temp_load = temp_load << 1;
+						if(load_cell_2kg_p->clock_count < 47) load_cell_2kg_p->temp_load = (load_cell_2kg_p->temp_load) << 1;
 					} else{
 						GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
-						if(clock_count < 49) temp_load += GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN);
+						if(load_cell_2kg_p->clock_count < 49) (load_cell_2kg_p->temp_load) += GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN);
 					}
-					clock_count++;
+					(load_cell_2kg_p->clock_count)++;
 				} else {
-					//(*load_p) = (uint32_t)temp_load;
-					load = temp_load;//0xDEADBEEF;//
+					load_cell_2kg_p->load = load_cell_2kg_p->temp_load;
 					
-					if(num_vals >= 99){
-						clear_array((uint32_t *)load_array, LOAD_VALS_ARR_SIZE);
-						num_vals = 0;
+					if(load_cell_2kg_p->num_vals >= load_cell_2kg_p->max_num_vals){
+//						clear_array(load_cell_2kg_p->load_array, load_cell_2kg_p->max_num_vals);
+						load_cell_2kg_p->num_vals = 0;
 					}
 					
-					if((abs((uint32_t)load - (uint32_t)load_array[num_vals])) > WEIGHT_UPDATE_THRESHOLD){
-						load_array[num_vals + 1] = load;
-						num_vals++;
+/*					if((abs((load_cell_2kg_p->load) - load_cell_2kg_p->load_array[load_cell_2kg_p->num_vals])) > load_cell_2kg_p->val_update_threshold){
+						load_cell_2kg_p->new_load = load_cell_2kg_p->load;
+	//					load_cell_2kg_p->load_array[load_cell_2kg_p->num_vals + 1] = load_cell_2kg_p->load;
+						(load_cell_2kg_p->num_vals)++;
+					}
+*/
+					if((abs((load_cell_2kg_p->load) - load_array_test[load_cell_2kg_p->num_vals])) > load_cell_2kg_p->val_update_threshold){
+						load_cell_2kg_p->new_load = load_cell_2kg_p->load;
+						load_array_test[load_cell_2kg_p->num_vals + 1] = load_cell_2kg_p->load;
+						(load_cell_2kg_p->num_vals)++;
 					}
 					
-					//app_lc_val_handler(&load);
-					temp_load = 0;
-					clock_count = 0;
+					load_cell_2kg_p->temp_load = 0;
+					load_cell_2kg_p->clock_count = 0;
 					#if !defined(CUSTOM_TAG)
-						if(/*(uint32_t)(*load_p)*/ load > WEIGHT_LED_THRESHOLD) control_LED(true);
+						if(load_cell_2kg_p->new_load > WEIGHT_LED_THRESHOLD) control_LED(true);
 						else control_LED(false);
 					#endif
-					num_reads++;
+					(load_cell_2kg_p->reads_count)++;
 				}	
 			} else {
-				if(wait_count < WAIT_TICKS){
+				if(load_cell_2kg_p->wait_count < WAIT_TICKS){
 					GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
-					wait_count++;
+					(load_cell_2kg_p->wait_count)++;
 				} else {
-					val_ready = false;
-					wait_count = 0;
-					num_reads = 0;
-					prep_count = 0;
+					load_cell_2kg_p->val_ready = false;
+					load_cell_2kg_p->wait_count = 0;
+					load_cell_2kg_p->reads_count = 0;
+					//load_cell_2kg_p->prep_count = 0;
 				}
 			}
 		}
 //	}
 }
+//int count = 0;
+//static void systick_isr(void)
+//{
+//	count++;
+//	if(count >= 1000000) count = 0;
+//}
 
 /*
 void systick_test(void)
@@ -171,16 +175,18 @@ void systick_test(void)
 
 void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind const *param)
 {
-		//app_easy_timer(1000, my_timer_cb);
-		//if(GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
-			GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
-		if(!systick_initialized){
-			systick_register_callback(systick_isr);
-			systick_initialized = true;
+		if(load_cell_2kg_p == NULL){
+			load_cell_2kg_p = new_load_cell(2000);
+			set_calibrate_lc(load_cell_2kg_p, CALIBRATION_READS);
 		}
-			systick_start(SYSTICK_PERIOD_US, SYSTICK_EXCEPTION);
-	//	}
-		//load_p = malloc(sizeof(uint32_t));
+		
+		//if(!systick_initialized){
+			systick_register_callback(systick_isr);
+	//		systick_initialized = true;
+//		}
+		
+		systick_start(SYSTICK_PERIOD_US, SYSTICK_EXCEPTION);
+		
     default_app_on_connection(connection_idx, param);
 }
 
@@ -188,8 +194,8 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
 {
 		#if !defined(CUSTOM_TAG)
 			control_LED(false);
-		#endif
-		//free(load_p);
+		#endif 
+		//free(load_cell_2kg_p);
 		systick_stop();
 		default_app_on_disconnect(param);
 }
@@ -235,105 +241,6 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 {
     switch(msgid)
     {
-        case CUSTS1_VAL_WRITE_IND:
-        {
-            struct custs1_val_write_ind const *msg_param = (struct custs1_val_write_ind const *)(param);
-
-            switch (msg_param->handle)
-            {
-							
-							 case SVC1_IDX_LC_VAL_NTF_CFG:
-                    user_svc1_lc_val_wr_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-							
-                case SVC1_IDX_CONTROL_POINT_VAL:
-                    user_svc1_ctrl_wr_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-								
-                case SVC1_IDX_BUTTON_STATE_NTF_CFG:
-                    user_svc1_button_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-/*
-                case SVC1_IDX_LED_STATE_VAL:
-                    user_svc1_led_wr_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-
-                case SVC1_IDX_ADC_VAL_1_NTF_CFG:
-                    user_svc1_adc_val_1_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-
-
-
-                case SVC1_IDX_INDICATEABLE_IND_CFG:
-                    user_svc1_long_val_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-
-                case SVC1_IDX_LONG_VALUE_NTF_CFG:
-                    user_svc1_long_val_cfg_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-
-                case SVC1_IDX_LONG_VALUE_VAL:
-                    user_svc1_long_val_wr_ind_handler(msgid, msg_param, dest_id, src_id);
-                    break;
-*/
-                default:
-                    break;
-            }
-        } break;
-
-        case CUSTS1_VAL_NTF_CFM:
-        {
-            struct custs1_val_ntf_cfm const *msg_param = (struct custs1_val_ntf_cfm const *)(param);
-
-            switch (msg_param->handle)
-            {
-							  case SVC1_IDX_BUTTON_STATE_VAL:
-                    break;
-	/*						
-                case SVC1_IDX_ADC_VAL_1_VAL:
-                    break;
-
-
-
-                case SVC1_IDX_LONG_VALUE_VAL:
-                    break;
-*/
-                default:
-                    break;
-            }
-        } break;
-
-        case CUSTS1_VAL_IND_CFM:
-        {
-            struct custs1_val_ind_cfm const *msg_param = (struct custs1_val_ind_cfm const *)(param);
-
-            switch (msg_param->handle)
-            {
-//                case SVC1_IDX_INDICATEABLE_VAL:
-//                    break;
-
-                default:
-                    break;
-             }
-        } break;
-
-        case CUSTS1_ATT_INFO_REQ:
-        {
-            struct custs1_att_info_req const *msg_param = (struct custs1_att_info_req const *)param;
-
-            switch (msg_param->att_idx)
-            {
-//                case SVC1_IDX_LONG_VALUE_VAL:
-//                    user_svc1_long_val_att_info_req_handler(msgid, msg_param, dest_id, src_id);
-//                    break;
-
-//                default:
-//                    user_svc1_rest_att_info_req_handler(msgid, msg_param, dest_id, src_id);
-//                   break;
-						
-             }
-        } break;
-
         case GAPC_PARAM_UPDATED_IND:
         {
             // Cast the "param" pointer to the appropriate message structure
@@ -354,11 +261,11 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 
             switch (msg_param->att_idx)
             {
-//                case SVC3_IDX_READ_4_VAL:
-//                {
-//                    user_svc3_read_non_db_val_handler(msgid, msg_param, dest_id, src_id);
-//                } break;
-
+								case SVC1_IDX_LC_VAL_VAL:
+                {
+									user_svc1_read_lc_val_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
+                } break;
+								
                 default:
                 {
                     // Send Error message

@@ -113,6 +113,8 @@
 .\out_da14531\objects\user_custs1_impl.o: .\..\src\custom_profile\user_custs1_def.h
 .\out_da14531\objects\user_custs1_impl.o: .\..\src\user_empty_peripheral_template.h
 .\out_da14531\objects\user_custs1_impl.o: ..\src\user_custs1_impl.h
+.\out_da14531\objects\user_custs1_impl.o: ..\src\user_hx711.h
+.\out_da14531\objects\user_custs1_impl.o: .\..\..\..\..\..\sdk\platform\driver\systick\systick.h
 .\out_da14531\objects\user_custs1_impl.o: .\..\src\config\user_periph_setup.h
 .\out_da14531\objects\user_custs1_impl.o: .\..\..\..\..\..\sdk\platform\driver\uart\uart.h
 .\out_da14531\objects\user_custs1_impl.o: .\..\..\..\..\..\sdk\platform\driver\dma\dma.h

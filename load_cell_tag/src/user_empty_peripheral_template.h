@@ -75,7 +75,7 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
                           void const *param,
                           ke_task_id_t const dest_id,
                           ke_task_id_t const src_id);
-
+													
 /// @} APP
 
 #endif // _USER_EMPTY_PERIPHERAL_TEMPLATE_H_

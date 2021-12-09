@@ -1,4 +1,4 @@
-.\out_da14531\objects\user_hx711.o: user_hx711.c
+.\out_da14531\objects\user_hx711.o: ..\src\user_hx711.c
 .\out_da14531\objects\user_hx711.o: .\..\src\config\da1458x_config_basic.h
 .\out_da14531\objects\user_hx711.o: .\..\..\..\..\..\sdk\common_project_files\da1458x_stack_config.h
 .\out_da14531\objects\user_hx711.o: .\..\src\config\user_profiles_config.h
@@ -86,3 +86,6 @@
 .\out_da14531\objects\user_hx711.o: .\..\..\..\..\..\sdk\ble_stack\profiles\prf.h
 .\out_da14531\objects\user_hx711.o: .\..\..\..\..\..\sdk\app_modules\api\app_security.h
 .\out_da14531\objects\user_hx711.o: .\..\..\..\..\..\sdk\app_modules\api\app_adv_data.h
+.\out_da14531\objects\user_hx711.o: ..\src\user_hx711.h
+.\out_da14531\objects\user_hx711.o: .\..\..\..\..\..\sdk\app_modules\api\app_task.h
+.\out_da14531\objects\user_hx711.o: .\..\..\..\..\..\sdk\platform\driver\systick\systick.h

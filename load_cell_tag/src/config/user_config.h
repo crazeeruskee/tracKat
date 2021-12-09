@@ -32,8 +32,8 @@
  */
 
 //Using USB Dev Board if CUSTOM_TAG !defined, changes GPIO accordingly
-//#undef CUSTOM_TAG
-#define CUSTOM_TAG
+#undef CUSTOM_TAG
+//#define CUSTOM_TAG
 
 /*
  ****************************************************************************************

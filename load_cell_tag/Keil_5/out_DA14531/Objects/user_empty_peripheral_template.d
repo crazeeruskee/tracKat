@@ -112,5 +112,6 @@
 .\out_da14531\objects\user_empty_peripheral_template.o: .\..\..\..\..\..\sdk\ble_stack\profiles\custom\custs\api\custs1_task.h
 .\out_da14531\objects\user_empty_peripheral_template.o: .\..\..\..\..\..\sdk\platform\arch\compiler\compiler.h
 .\out_da14531\objects\user_empty_peripheral_template.o: .\..\..\..\..\..\sdk\ble_stack\host\att\attm\attm_db_128.h
-.\out_da14531\objects\user_empty_peripheral_template.o: .\..\src\custom_profile\user_custs1_def.h
+.\out_da14531\objects\user_empty_peripheral_template.o: ..\src\user_hx711.h
 .\out_da14531\objects\user_empty_peripheral_template.o: .\..\..\..\..\..\sdk\platform\driver\systick\systick.h
+.\out_da14531\objects\user_empty_peripheral_template.o: .\..\src\custom_profile\user_custs1_def.h
