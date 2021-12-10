@@ -46,7 +46,101 @@
 int new_load = 0;
 
 bool systick_initialized = false;
-extern load_cell* load_cell_2kg_p;
+load_cell* load_cell_2kg_p;
+
+//=====OLD===============
+
+int clock_count = 0;
+int prep_count = 0;
+int wait_count = 0;
+int num_reads = 0;
+int temp_load = 0;
+//uint32_t* load_p;
+int load = 0;
+int new_load;
+int load_array[100];
+int num_vals = 0;
+bool val_ready = false;
+bool btn_released = true;
+
+
+int usec_timestamp_counter = 0;
+int usec_timestamp = 0;
+
+static void systick_isr(void)
+{
+		/*if(prep_count < PREP_READ_TICKS){
+			GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
+			prep_count++;
+		} else{	*/
+
+		usec_timestamp_counter++;
+		if(usec_timestamp_counter >= 2000000000) usec_timestamp_counter = 0;
+		
+		if(!btn_released && !GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
+			btn_released = true;
+		}
+			
+		if(btn_released && GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
+			new_load = new_load + 5;
+			usec_timestamp = usec_timestamp_counter;
+			usec_timestamp_counter = 0;
+			num_vals++;
+			btn_released = false;
+		}
+	
+		if(!val_ready && !GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN)) val_ready = true;
+		if(val_ready){
+			if(num_reads < MAX_READS){
+				if (clock_count < 50) {
+					if(clock_count % 2 == 0){
+						GPIO_SetActive(LC_CLK_PORT,LC_CLK_PIN);
+						if(clock_count < 47) temp_load = temp_load << 1;
+					} else{
+						GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
+						if(clock_count < 49) temp_load += GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN);
+					}
+					clock_count++;
+				} else {
+					//(*load_p) = (uint32_t)temp_load;
+					load = temp_load;//0xDEADBEEF;//
+
+					if(num_vals >= 99){
+						//clear_array((uint32_t *)load_array, LOAD_VALS_ARR_SIZE);
+						num_vals = 0;
+					}
+
+					if((abs((uint32_t)load - (uint32_t)load_array[num_vals])) > WEIGHT_UPDATE_THRESHOLD){
+						load_array[num_vals + 1] = load;
+						new_load = load;
+						usec_timestamp = usec_timestamp_counter;
+						usec_timestamp_counter = 0;
+						num_vals++;
+					}
+
+					//app_lc_val_handler(&load);
+					temp_load = 0;
+					clock_count = 0;
+				//	if(/*(uint32_t)(*load_p)*/ load > WEIGHT_LED_THRESHOLD) control_LED(true);
+					//else control_LED(false);
+					num_reads++;
+				}	
+			} else {
+				if(wait_count < WAIT_TICKS){
+					GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
+					wait_count++;
+				} else {
+					val_ready = false;
+					wait_count = 0;
+					num_reads = 0;
+					prep_count = 0;
+				}
+			}
+		}
+//	}
+}
+
+//========================
 
 /*
  * FUNCTION DEFINITIONS
@@ -91,7 +185,7 @@ void my_timer_cb()
  */
 uint32_t load_array_test[100];
 
-static void systick_isr(void)
+static void systick_isr_new(void)
 {
 			/*if(prep_count < PREP_READ_TICKS){
 			GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
@@ -123,17 +217,17 @@ static void systick_isr(void)
 						load_cell_2kg_p->num_vals = 0;
 					}
 					
-/*					if((abs((load_cell_2kg_p->load) - load_cell_2kg_p->load_array[load_cell_2kg_p->num_vals])) > load_cell_2kg_p->val_update_threshold){
+					if((abs((load_cell_2kg_p->load) - load_cell_2kg_p->load_array[load_cell_2kg_p->num_vals])) > load_cell_2kg_p->val_update_threshold){
 						load_cell_2kg_p->new_load = load_cell_2kg_p->load;
 	//					load_cell_2kg_p->load_array[load_cell_2kg_p->num_vals + 1] = load_cell_2kg_p->load;
 						(load_cell_2kg_p->num_vals)++;
 					}
-*/
-					if((abs((load_cell_2kg_p->load) - load_array_test[load_cell_2kg_p->num_vals])) > load_cell_2kg_p->val_update_threshold){
-						load_cell_2kg_p->new_load = load_cell_2kg_p->load;
-						load_array_test[load_cell_2kg_p->num_vals + 1] = load_cell_2kg_p->load;
-						(load_cell_2kg_p->num_vals)++;
-					}
+
+//					if((abs((load_cell_2kg_p->load) - load_array_test[load_cell_2kg_p->num_vals])) > load_cell_2kg_p->val_update_threshold){
+//						load_cell_2kg_p->new_load = load_cell_2kg_p->load;
+//						load_array_test[load_cell_2kg_p->num_vals + 1] = load_cell_2kg_p->load;
+//						(load_cell_2kg_p->num_vals)++;
+//					}
 					
 					load_cell_2kg_p->temp_load = 0;
 					load_cell_2kg_p->clock_count = 0;
@@ -264,6 +358,16 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 								case SVC1_IDX_LC_VAL_VAL:
                 {
 									user_svc1_read_lc_val_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
+                } break;
+								
+								case SVC1_IDX_LC_NUM_VALS_VAL:
+                {
+									user_svc1_read_lc_num_vals_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
+                } break;
+								
+								case SVC1_IDX_LC_TS_VAL:
+                {
+									user_svc1_read_lc_ts_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
                 } break;
 								
                 default:

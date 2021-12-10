@@ -62,6 +62,18 @@ void user_svc1_read_lc_val_handler(load_cell *lc_p,
                               struct custs1_value_req_ind const *param,
                               ke_task_id_t const dest_id,
                               ke_task_id_t const src_id);
+															
+void user_svc1_read_lc_num_vals_handler(load_cell *lc_p,
+																			ke_msg_id_t const msgid,
+																			struct custs1_value_req_ind const *param,
+																			ke_task_id_t const dest_id,
+																			ke_task_id_t const src_id);
+																				
+void user_svc1_read_lc_ts_handler(load_cell *lc_p,
+																	ke_msg_id_t const msgid,
+																	struct custs1_value_req_ind const *param,
+																	ke_task_id_t const dest_id,
+																	ke_task_id_t const src_id);
 
 /// @} APP
 

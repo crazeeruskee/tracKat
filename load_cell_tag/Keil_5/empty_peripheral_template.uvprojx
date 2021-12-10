@@ -1557,11 +1557,6 @@
               <FilePath>..\src\user_empty_peripheral_template.h</FilePath>
             </File>
             <File>
-              <FileName>user_custs1_impl.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\user_custs1_impl.h</FilePath>
-            </File>
-            <File>
               <FileName>user_hx711.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\src\user_hx711.h</FilePath>
@@ -3166,11 +3161,6 @@
               <FilePath>..\src\user_empty_peripheral_template.h</FilePath>
             </File>
             <File>
-              <FileName>user_custs1_impl.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\user_custs1_impl.h</FilePath>
-            </File>
-            <File>
               <FileName>user_hx711.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\src\user_hx711.h</FilePath>
@@ -4671,11 +4661,6 @@
               <FileName>user_empty_peripheral_template.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\src\user_empty_peripheral_template.h</FilePath>
-            </File>
-            <File>
-              <FileName>user_custs1_impl.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\user_custs1_impl.h</FilePath>
             </File>
             <File>
               <FileName>user_hx711.h</FileName>

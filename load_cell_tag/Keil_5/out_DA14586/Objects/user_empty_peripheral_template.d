@@ -114,4 +114,3 @@
 .\out_da14586\objects\user_empty_peripheral_template.o: ..\src\user_hx711.h
 .\out_da14586\objects\user_empty_peripheral_template.o: .\..\..\..\..\..\sdk\platform\driver\systick\systick.h
 .\out_da14586\objects\user_empty_peripheral_template.o: .\..\src\custom_profile\user_custs1_def.h
-.\out_da14586\objects\user_empty_peripheral_template.o: ..\src\user_hx711.h

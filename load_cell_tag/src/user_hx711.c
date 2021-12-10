@@ -30,7 +30,7 @@ load_cell* new_load_cell(uint32_t lc_grams)
 	lc_p->val_ready = false;
 	lc_p->temp_load = 0;
 	lc_p->load = 0;
-	lc_p->new_load = 0x00ABCDEF;
+	lc_p->new_load = 0;//0x00ABCDEF;
 	lc_p->clock_count = 0;
 	lc_p->wait_count = 0;
 	lc_p->max_num_reads = MAX_READS;

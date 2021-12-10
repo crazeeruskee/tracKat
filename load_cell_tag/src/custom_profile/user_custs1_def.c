@@ -42,28 +42,11 @@
 static const att_svc_desc128_t custs1_svc1                      = DEF_SVC1_UUID_128;
 
 static const uint8_t SVC1_LC_VAL_UUID_128[ATT_UUID_128_LEN]           = DEF_SVC1_LC_VAL_UUID_128;
+static const uint8_t SVC1_LC_NUM_VALS_UUID_128[ATT_UUID_128_LEN]      = DEF_SVC1_LC_NUM_VALS_UUID_128;
+static const uint8_t SVC1_LC_TS_UUID_128[ATT_UUID_128_LEN]      		  = DEF_SVC1_LC_TS_UUID_128;
 static const uint8_t SVC1_CTRL_POINT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_CTRL_POINT_UUID_128;
 static const uint8_t SVC1_BUTTON_STATE_UUID_128[ATT_UUID_128_LEN]     = DEF_SVC1_BUTTON_STATE_UUID_128;
-/*
-static const uint8_t SVC1_LED_STATE_UUID_128[ATT_UUID_128_LEN]        = DEF_SVC1_LED_STATE_UUID_128;
-static const uint8_t SVC1_ADC_VAL_1_UUID_128[ATT_UUID_128_LEN]        = DEF_SVC1_ADC_VAL_1_UUID_128;
-static const uint8_t SVC1_ADC_VAL_2_UUID_128[ATT_UUID_128_LEN]        = DEF_SVC1_ADC_VAL_2_UUID_128;
-static const uint8_t SVC1_INDICATEABLE_UUID_128[ATT_UUID_128_LEN]     = DEF_SVC1_INDICATEABLE_UUID_128;
-static const uint8_t SVC1_LONG_VALUE_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_LONG_VALUE_UUID_128;
 
-// Service 2 of the custom server 1
-static const att_svc_desc128_t custs1_svc2                      = DEF_SVC2_UUID_128;
-
-static const uint8_t SVC2_WRITE_VAL_1_UUID_128[ATT_UUID_128_LEN]      = DEF_SVC2_WRITE_VAL_1_UUID_128;
-static const uint8_t SVC2_WRITE_VAL_2_UUID_128[ATT_UUID_128_LEN]      = DEF_SVC2_WRITE_VAL_2_UUID_128;
-
-// Service 3 of the custom server 1
-static const att_svc_desc128_t custs1_svc3                      = DEF_SVC3_UUID_128;
-
-static const uint8_t SVC3_READ_VAL_1_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC3_READ_VAL_1_UUID_128;
-static const uint8_t SVC3_READ_VAL_2_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC3_READ_VAL_2_UUID_128;
-static const uint8_t SVC3_READ_VAL_3_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC3_READ_VAL_3_UUID_128;
-*/
 // Attribute specifications
 static const uint16_t att_decl_svc       = ATT_DECL_PRIMARY_SERVICE;
 static const uint16_t att_decl_char      = ATT_DECL_CHARACTERISTIC;
@@ -75,11 +58,9 @@ static const uint16_t att_desc_user_desc = ATT_DESC_CHAR_USER_DESCRIPTION;
  ****************************************************************************************
  */
 
-const uint8_t custs1_services[]  = {SVC1_IDX_SVC,/* SVC2_IDX_SVC, SVC3_IDX_SVC,*/ CUSTS1_IDX_NB};
+const uint8_t custs1_services[]  = {SVC1_IDX_SVC, CUSTS1_IDX_NB};
 const uint8_t custs1_services_size = ARRAY_LEN(custs1_services) - 1;
 const uint16_t custs1_att_max_nb = CUSTS1_IDX_NB;
-
-//extern uint32_t* load;
 	
 /// Full CUSTS1 Database Description - Used to add attributes into the database
 const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
@@ -94,17 +75,43 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
                                             sizeof(custs1_svc1), sizeof(custs1_svc1), (uint8_t*)&custs1_svc1},
 		
 		// Load Cell Value Characteristic Declaration
-    [SVC1_IDX_LC_VAL_CHAR]          = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+    [SVC1_IDX_LC_VAL_CHAR]          	 = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             0, 0, NULL},
 
     // Load Cell Value Characteristic Value
-    [SVC1_IDX_LC_VAL_VAL]           = {SVC1_LC_VAL_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE), 
+    [SVC1_IDX_LC_VAL_VAL]          		 = {SVC1_LC_VAL_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE), 
 																					(PERM(RI, ENABLE) | DEF_SVC1_LC_VAL_CHAR_LEN), 0, NULL},
 					
 		// Load Cell Value Characteristic User Description
-    [SVC1_IDX_LC_VAL_USER_DESC]     = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+    [SVC1_IDX_LC_VAL_USER_DESC]   	   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             sizeof(DEF_SVC1_LC_VAL_USER_DESC) - 1, sizeof(DEF_SVC1_LC_VAL_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_LC_VAL_USER_DESC},																		
+                                            (uint8_t *) DEF_SVC1_LC_VAL_USER_DESC},		
+
+		// Load Cell Timestamp Characteristic Declaration
+    [SVC1_IDX_LC_TS_CHAR]          		 = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            0, 0, NULL},
+
+    // Load Cell Timestamp Characteristic Value
+    [SVC1_IDX_LC_TS_VAL]           		 = {SVC1_LC_TS_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE), 
+																					(PERM(RI, ENABLE) | DEF_SVC1_LC_TS_CHAR_LEN), 0, NULL},
+					
+		// Load Cell Timestamp Characteristic User Description
+    [SVC1_IDX_LC_TS_USER_DESC]    	   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_LC_TS_USER_DESC) - 1, sizeof(DEF_SVC1_LC_TS_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_LC_TS_USER_DESC},	
+
+		// Number of Load Cell Values Characteristic Declaration
+    [SVC1_IDX_LC_NUM_VALS_CHAR]        = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            0, 0, NULL},
+
+    // Number of Load Cell Values Characteristic Value
+    [SVC1_IDX_LC_NUM_VALS_VAL]         = {SVC1_LC_NUM_VALS_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE), 
+																					(PERM(RI, ENABLE) | DEF_SVC1_LC_NUM_VALS_CHAR_LEN), 0, NULL},
+					
+		// Number of Load Cell Values Characteristic User Description
+    [SVC1_IDX_LC_NUM_VALS_USER_DESC]   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_LC_NUM_VALS_USER_DESC) - 1, sizeof(DEF_SVC1_LC_NUM_VALS_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_LC_NUM_VALS_USER_DESC},																							
 
     // Control Point Characteristic Declaration
     [SVC1_IDX_CONTROL_POINT_CHAR]      = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),

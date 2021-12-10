@@ -41,9 +41,12 @@ uint16_t non_db_val_counter __SECTION_ZERO("retention_mem_area0"); //@RETENTION 
 /*
 extern int load;
 extern int load_array[100];
-extern int num_vals;
 */
+
 extern int new_load;
+extern int num_vals;
+extern int usec_timestamp;
+
 extern uint32_t load_array_test[100];
 
 /*
@@ -58,24 +61,11 @@ void user_svc1_read_lc_val_handler(load_cell *lc_p,
                                    ke_task_id_t const src_id)
 {
 	
-	int nv;
-	load_array_test[0] = 0xAAAAAAAA;
-	load_array_test[1] = 0xBBBBBBBB;
-	load_array_test[2] = 0xCCCCCCCC;
-	
-		//Catch null Load Cell
-		if(lc_p == NULL ){//|| lc_p->num_vals == 0){
-			//return;
-			nv = 1;
-		} else{
-			nv++; //lc_p->num_vals;
-		}
-	
     struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC_DYN(CUSTS1_VALUE_REQ_RSP,
                                                         prf_get_task_from_id(TASK_ID_CUSTS1),
                                                         TASK_APP,
                                                         custs1_value_req_rsp,
-																											  /*(lc_p->num_vals)*/nv*DEF_SVC1_LC_VAL_CHAR_LEN);
+																											  /*(lc_p->num_vals)*/DEF_SVC1_LC_VAL_CHAR_LEN);
 		
 		//(*lc_p).load_array[nv] = lc_p->new_load;
 		//load_array_test[lc_p->num_vals] = lc_p->new_load;
@@ -87,17 +77,78 @@ void user_svc1_read_lc_val_handler(load_cell *lc_p,
     // Provide the attribute index.
     rsp->att_idx = param->att_idx;
     // Force current length to zero.
-    rsp->length  = /*(lc_p->num_vals)*/nv * DEF_SVC1_LC_VAL_CHAR_LEN;
+    rsp->length  = /*(lc_p->num_vals) */ DEF_SVC1_LC_VAL_CHAR_LEN;
     // Provide the ATT error code.
     rsp->status  = ATT_ERR_NO_ERROR;
     // Copy value
    // memcpy(&rsp->value, &(lc_p->load_array), /*DEF_SVC1_LC_VAL_CHAR_LEN*/rsp->length);
-    memcpy(&rsp->value, &(load_array_test), rsp->length);
-    //memcpy(&rsp->value, &(lc_p->new_load), DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
+    //memcpy(&rsp->value, &(load_array_test), rsp->length);
+   // memcpy(&rsp->value, &(lc_p->new_load), DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
 
-		//    memcpy(&rsp->value, &new_load, DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
+		memcpy(&rsp->value, &new_load, DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
 
    // memcpy(&(rsp->value), (void *)(&(load_array[num_vals])), num_vals * DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
+    // Send message
+    ke_msg_send(rsp);
+}
+
+void user_svc1_read_lc_num_vals_handler(load_cell *lc_p,
+																			ke_msg_id_t const msgid,
+																			struct custs1_value_req_ind const *param,
+																			ke_task_id_t const dest_id,
+																			ke_task_id_t const src_id)
+{
+	
+    struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC_DYN(CUSTS1_VALUE_REQ_RSP,
+                                                        prf_get_task_from_id(TASK_ID_CUSTS1),
+                                                        TASK_APP,
+                                                        custs1_value_req_rsp,
+																											  DEF_SVC1_LC_NUM_VALS_CHAR_LEN);
+		
+    // Provide the connection index.
+    rsp->conidx  = app_env[param->conidx].conidx;
+    // Provide the attribute index.
+    rsp->att_idx = param->att_idx;
+    // Force current length to zero.
+    rsp->length  = DEF_SVC1_LC_NUM_VALS_CHAR_LEN;
+    // Provide the ATT error code.
+    rsp->status  = ATT_ERR_NO_ERROR;
+    // Copy value
+
+		// memcpy(&rsp->value, &(lc_p->new_load), DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
+
+		memcpy(&rsp->value, &num_vals, DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
+
+    // Send message
+    ke_msg_send(rsp);
+}
+
+void user_svc1_read_lc_ts_handler(load_cell *lc_p,
+																	ke_msg_id_t const msgid,
+																	struct custs1_value_req_ind const *param,
+																	ke_task_id_t const dest_id,
+																	ke_task_id_t const src_id)
+{
+	
+    struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC_DYN(CUSTS1_VALUE_REQ_RSP,
+                                                        prf_get_task_from_id(TASK_ID_CUSTS1),
+                                                        TASK_APP,
+                                                        custs1_value_req_rsp,
+																											  DEF_SVC1_LC_TS_CHAR_LEN);
+		
+    // Provide the connection index.
+    rsp->conidx  = app_env[param->conidx].conidx;
+    // Provide the attribute index.
+    rsp->att_idx = param->att_idx;
+    // Force current length to zero.
+    rsp->length  = DEF_SVC1_LC_TS_CHAR_LEN;
+    // Provide the ATT error code.
+    rsp->status  = ATT_ERR_NO_ERROR;
+    // Copy value
+
+		// memcpy(&rsp->value, &(lc_p->usec_timestamp), DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
+		memcpy(&rsp->value, &usec_timestamp, DEF_SVC1_LC_TS_CHAR_LEN/*rsp->length*/);
+
     // Send message
     ke_msg_send(rsp);
 }
