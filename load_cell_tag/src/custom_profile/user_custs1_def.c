@@ -46,6 +46,7 @@ static const uint8_t SVC1_LC_MAX_VAL_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1
 static const uint8_t SVC1_LC_BASE_UUID_128[ATT_UUID_128_LEN]          = DEF_SVC1_LC_BASE_UUID_128;
 static const uint8_t SVC1_LC_NUM_VALS_UUID_128[ATT_UUID_128_LEN]      = DEF_SVC1_LC_NUM_VALS_UUID_128;
 static const uint8_t SVC1_LC_TS_UUID_128[ATT_UUID_128_LEN]      		  = DEF_SVC1_LC_TS_UUID_128;
+static const uint8_t SVC1_RFID_UUID_128[ATT_UUID_128_LEN]      		    = DEF_SVC1_RFID_UUID_128;
 static const uint8_t SVC1_CTRL_POINT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_CTRL_POINT_UUID_128;
 static const uint8_t SVC1_BUTTON_STATE_UUID_128[ATT_UUID_128_LEN]     = DEF_SVC1_BUTTON_STATE_UUID_128;
 
@@ -141,7 +142,18 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
                                             sizeof(DEF_SVC1_LC_NUM_VALS_USER_DESC) - 1, sizeof(DEF_SVC1_LC_NUM_VALS_USER_DESC) - 1,
                                             (uint8_t *) DEF_SVC1_LC_NUM_VALS_USER_DESC},																							
 
-																						
+		// Microchip RFID Characteristic Declaration
+    [SVC1_IDX_RFID_CHAR]          	 = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            0, 0, NULL},
+
+    // Microchip RFID Characteristic Value
+    [SVC1_IDX_RFID_VAL]          		 = {SVC1_RFID_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE), 
+																					(PERM(RI, ENABLE) | DEF_SVC1_RFID_CHAR_LEN), 0, NULL},
+					
+		// Microchip RFID Characteristic User Description
+    [SVC1_IDX_RFID_USER_DESC]   	   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_RFID_USER_DESC) - 1, sizeof(DEF_SVC1_RFID_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_RFID_USER_DESC},					
 																						
     // Control Point Characteristic Declaration
     [SVC1_IDX_CONTROL_POINT_CHAR]      = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),

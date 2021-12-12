@@ -43,6 +43,10 @@
 
 #define WEIGHT_LED_THRESHOLD 	    1750000  //16777100 //3500000
 
+
+#define CAT1_RFID									0xDEAD
+#define CAT2_RFID									0xBEEF
+
 bool systick_initialized = false;
 load_cell* load_cell_2kg_p;
 
@@ -61,13 +65,16 @@ uint32_t new_load;
 uint32_t new_max_val;
 uint32_t new_max_val_read_count = 0;
 
-uint32_t load_array[50];
-uint32_t timestamp_array[50];
+uint32_t load_array[LOAD_VALS_ARR_SIZE];
+uint32_t timestamp_array[LOAD_VALS_ARR_SIZE];
+uint32_t rfid_array[LOAD_VALS_ARR_SIZE];
+
+uint32_t num_vals_lc = 0;
+uint32_t num_vals_ts = 0;
+uint32_t num_vals_rfid = 0;
 
 uint32_t baseline = 3158440; //0x003031A8
 bool baseline_set = false;
-uint32_t num_vals_lc = 0;
-uint32_t num_vals_ts = 0;
 
 bool val_ready = false;
 bool btn_released = true;
@@ -75,7 +82,7 @@ bool btn_released = true;
 uint32_t usec_update_counter = 0;
 uint32_t sec_timestamp_counter = 0;
 uint32_t sec_timestamp = 0;
-//bool new_timestamp = false;
+
 
 static void systick_isr(void)
 {
@@ -90,6 +97,7 @@ static void systick_isr(void)
 			GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
 			prep_count++;
 		} else{
+			
 //			if(!btn_released && !GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
 //				btn_released = true;
 //			}
@@ -117,14 +125,16 @@ static void systick_isr(void)
 						} else {
 							load = temp_load;
 
-							if(num_vals_lc >= 48){
-								//clear_array((uint32_t *)load_array, LOAD_VALS_ARR_SIZE);
+							if(num_vals_lc >= (LOAD_VALS_ARR_SIZE - 1)){
 								num_vals_lc = 0;
 							}
 							
-							if(num_vals_ts >= 48){
-								//clear_array((uint32_t *)load_array, LOAD_VALS_ARR_SIZE);
+							if(num_vals_ts >= (LOAD_VALS_ARR_SIZE - 1)){
 								num_vals_ts = 0;
+							}
+							
+							if(num_vals_rfid >= (LOAD_VALS_ARR_SIZE - 1)){
+								num_vals_rfid = 0;
 							}
 
 							if(!baseline_set){
@@ -142,9 +152,12 @@ static void systick_isr(void)
 								
 								num_vals_lc++;
 								num_vals_ts++;
+								num_vals_rfid++;
 								
 								load_array[num_vals_lc] = load;
 								timestamp_array[num_vals_ts] = sec_timestamp;
+								if(GPIO_GetPinStatus(BTN_PORT, BTN_PIN)) rfid_array[num_vals_rfid] = CAT1_RFID;
+								else rfid_array[num_vals_rfid] = CAT2_RFID;
 								
 							} else if (load >= new_max_val){
 								new_max_val_read_count++;
@@ -415,6 +428,11 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 								case SVC1_IDX_LC_TS_VAL:
                 {
 									user_svc1_read_lc_ts_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
+                } break;
+								
+								case SVC1_IDX_RFID_VAL:
+                {
+									user_svc1_read_rfid_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
                 } break;
 								
                 default:

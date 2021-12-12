@@ -84,13 +84,13 @@ void set_pad_functions(void)
 		GPIO_ConfigurePin(LC_CLK_PORT, LC_CLK_PIN, OUTPUT, PID_GPIO, false);
 	
 		GPIO_ConfigurePin(LED_PORT, LED_PIN, OUTPUT, PID_GPIO, false);
-		GPIO_ConfigurePin(BTN_PORT, BTN_PIN, INPUT_PULLUP, PID_GPIO, false);
+		GPIO_ConfigurePin(BTN_PORT, BTN_PIN, INPUT, PID_GPIO, false);
 #endif
 
 #if defined (__DA14586__)
     // Disallow spontaneous DA14586 SPI Flash wake-up
     GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_3, OUTPUT, PID_GPIO, true);
-#endif
+		#endif
 
 #if defined (CFG_PRINTF_UART2)
     // Configure UART2 TX Pad

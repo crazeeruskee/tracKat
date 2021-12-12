@@ -48,10 +48,12 @@ extern uint32_t baseline;
 extern uint32_t new_max_val;
 extern uint32_t num_vals_lc;
 extern uint32_t num_vals_ts;
+extern uint32_t num_vals_rfid;
 
 extern uint32_t sec_timestamp;
-extern uint32_t load_array[50];
-extern uint32_t timestamp_array[50];
+extern uint32_t load_array[LOAD_VALS_ARR_SIZE];
+extern uint32_t timestamp_array[LOAD_VALS_ARR_SIZE];
+extern uint32_t rfid_array[LOAD_VALS_ARR_SIZE];
 
 
 
@@ -225,3 +227,37 @@ void user_svc1_read_lc_ts_handler(load_cell *lc_p,
     // Send message
     ke_msg_send(rsp);
 }
+
+void user_svc1_read_rfid_handler(load_cell *lc_p,
+																	ke_msg_id_t const msgid,
+																	struct custs1_value_req_ind const *param,
+																	ke_task_id_t const dest_id,
+																	ke_task_id_t const src_id)
+{
+	
+    struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC_DYN(CUSTS1_VALUE_REQ_RSP,
+                                                        prf_get_task_from_id(TASK_ID_CUSTS1),
+                                                        TASK_APP,
+                                                        custs1_value_req_rsp,
+																											  num_vals_rfid * DEF_SVC1_RFID_CHAR_LEN);
+		
+    // Provide the connection index.
+    rsp->conidx  = app_env[param->conidx].conidx;
+    // Provide the attribute index.
+    rsp->att_idx = param->att_idx;
+    // Force current length to zero.
+    rsp->length  = num_vals_rfid * DEF_SVC1_RFID_CHAR_LEN;
+    // Provide the ATT error code.
+    rsp->status  = ATT_ERR_NO_ERROR;
+    // Copy value
+
+		// memcpy(&rsp->value, &(lc_p->sec_timestamp), DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
+		//memcpy(&rsp->value, &sec_timestamp, DEF_SVC1_LC_TS_CHAR_LEN/*rsp->length*/);
+		memcpy(&rsp->value, &(rfid_array), num_vals_rfid * DEF_SVC1_LC_BASE_CHAR_LEN/*rsp->length*/);
+
+		num_vals_rfid = 1;
+
+    // Send message
+    ke_msg_send(rsp);
+}
+

@@ -55,22 +55,30 @@ Section Cross References
     arch_system.o(.text) refers to adc_531.o(.text) for adc_init
     arch_system.o(.text) refers to ble_arp.o(.text) for rf_recalibration
     arch_system.o(.text) refers to gpio.o(.text) for GPIO_init
+    arch_system.o(.text) refers to hw_otpc_531.o(.text) for hw_otpc_init
+    arch_system.o(.text) refers to otp_hdr.o(.text) for otp_hdr_get_bd_address
     arch_system.o(.text) refers to arch_system.o(retention_mem_area0) for retention_mem_area0
     arch_system.o(.text) refers to arch_system.o(.bss) for .bss
     arch_system.o(.text) refers to arch_system.o(.constdata) for .constdata
-    arch_system.o(.text) refers to arch_system.o(.data) for .data
-    arch_system.o(.text) refers to hw_otpc_531.o(.text) for hw_otpc_init
-    arch_system.o(.text) refers to otp_hdr.o(.text) for otp_hdr_get_bd_address
     arch_system.o(.text) refers to arch_rom.o(.text) for arch_rom_init
     arch_system.o(.text) refers to user_periph_setup.o(.text) for periph_init
     arch_system.o(.text) refers to trng.o(.text) for init_rand_seed_from_trng
     arch_system.o(.text) refers to arch_sleep.o(.text) for arch_disable_sleep
     arch_system.o(.text) refers to app.o(.text) for app_init
     arch_system.o(.text) refers to app_default_handlers.o(.text) for default_app_on_init
+    arch_system.o(.text) refers to arch_system.o(retention_mem_area0) for retention_mem_area0
+    arch_system.o(.text) refers to arch_system.o(.data) for .data
+    arch_system.o(.text) refers to arch_system.o(retention_mem_area0) for retention_mem_area0
     arch_system.o(.constdata) refers to app_default_handlers.o(.text) for default_app_on_init
+    arch_hibernation.o(.text) refers to arch_hibernation.o(.text) for set_ldo_ret_trim
+    arch_hibernation.o(.text) refers to otp_cs.o(otp_cs_booter) for booter_val
     arch_hibernation.o(.text) refers to rwip.o(.text) for patched_ble_regs_push
+    arch_hibernation.o(.text) refers to arch_hibernation.o(.text) for set_ldo_ret_trim
+    arch_hibernation.o(.text) refers to arch_hibernation.o(retention_mem_area0) for retention_mem_area0
+    arch_hibernation.o(.text) refers to otp_cs.o(otp_cs_booter) for booter_val
     arch_hibernation.o(.text) refers to arch_system.o(.text) for set_xtal32m_trim_value
     arch_hibernation.o(.text) refers to user_periph_setup.o(.text) for periph_init
+    arch_hibernation.o(.text) refers to rwip.o(.text) for patched_ble_regs_pop
     arch_hibernation.o(.text) refers to otp_cs.o(otp_cs_booter) for booter_val
     arch_hibernation.o(.text) refers to arch_hibernation.o(retention_mem_area0) for retention_mem_area0
     arch_hibernation.o(.text) refers to arch_system.o(retention_mem_area0) for last_temp
@@ -92,6 +100,11 @@ Section Cross References
     gpio.o(.text) refers to user_periph_setup.o(.text) for GPIO_reservations
     gpio.o(.text) refers to gpio.o(retention_mem_area0) for retention_mem_area0
     gpio.o(.text) refers to gpio.o(.constdata) for .constdata
+    gpio.o(.text) refers to gpio.o(retention_mem_area0) for retention_mem_area0
+    gpio.o(.text) refers to gpio.o(.text) for gpioshift16
+    gpio.o(.text) refers to gpio.o(retention_mem_area0) for retention_mem_area0
+    gpio.o(.text) refers to gpio.o(.text) for gpioshift16
+    gpio.o(.text) refers to gpio.o(retention_mem_area0) for retention_mem_area0
     wkupct_quadec.o(.text) refers to syscntl.o(.text) for syscntl_use_highest_amba_clocks
     wkupct_quadec.o(.text) refers to wkupct_quadec.o(retention_mem_area0) for retention_mem_area0
     battery.o(.text) refers to adc_531.o(.text) for adc_offset_calibrate
@@ -155,20 +168,59 @@ Section Cross References
     app_default_handlers.o(.text) refers to app.o(.text) for app_easy_gap_undirected_advertise_start
     app_default_handlers.o(.text) refers to app_diss.o(.text) for app_dis_init
     app_default_handlers.o(.text) refers to arch_sleep.o(.text) for arch_set_sleep_mode
+    app_default_handlers.o(.text) refers to app.o(.text) for app_prf_enable
     app_default_handlers.o(.text) refers to user_empty_peripheral_template.o(.text) for user_advertise_operation
-    app_default_handlers.o(.text) refers to hw_otpc_531.o(.text) for hw_otpc_init
-    app_default_handlers.o(.text) refers to otp_cs.o(.text) for otp_cs_get_adc_single_offset
-    app_default_handlers.o(.text) refers to hash.o(.text) for hash
     app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_send_pairing_rsp
     app_default_handlers.o(.text) refers to app_security.o(.text) for app_sec_gen_ltk
     app_default_handlers.o(.text) refers to app.o(retention_mem_area0) for app_env
+    app_default_handlers.o(.text) refers to hw_otpc_531.o(.text) for hw_otpc_init
+    app_default_handlers.o(.text) refers to otp_cs.o(.text) for otp_cs_get_adc_single_offset
+    app_default_handlers.o(.text) refers to hash.o(.text) for hash
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_csrk_exch
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_bdb_search_entry
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_accept_encryption
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_reject_encryption
     app_default_handlers.o(.text) refers to app_security.o(retention_mem_area0) for app_sec_env
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_bdb_add_entry
+    app_default_handlers.o(.text) refers to app_security.o(retention_mem_area0) for app_sec_env
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_bdb_search_entry
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_accept_encryption
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_reject_encryption
+    app_default_handlers.o(.text) refers to app_security.o(retention_mem_area0) for app_sec_env
+    app_default_handlers.o(.text) refers to app_easy_security.o(.text) for app_easy_security_reject_encryption
     app_default_handlers.o(.constdata) refers to user_empty_peripheral_template.o(.text) for user_advertise_operation
     app.o(.text) refers to user_empty_peripheral_template.o(.text) for user_get_bdaddr
     app.o(.text) refers to app.o(.constdata) for .constdata
     app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
     app.o(.text) refers to user_custs_config.o(.constdata) for cust_prf_funcs
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.constdata) for .constdata
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.text) for app_easy_gap_undirected_advertise_start_create_msg
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.text) for app_easy_gap_directed_advertise_start_create_msg
+    app.o(.text) refers to app.o(.text) for app_easy_gap_directed_advertise_start_create_msg
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.text) for app_easy_gap_non_connectable_advertise_start_create_msg
+    app.o(.text) refers to app.o(.text) for app_easy_gap_non_connectable_advertise_start_create_msg
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
     app.o(.text) refers to app_easy_timer.o(.text) for app_easy_timer_cancel
+    app.o(.text) refers to app.o(.text) for app_easy_gap_undirected_advertise_start
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.text) for app_easy_gap_advertise_stop_handler
+    app.o(.text) refers to app_easy_timer.o(.text) for app_easy_timer_cancel
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.text) for app_easy_gap_param_update_msg_create
+    app.o(.text) refers to app.o(.text) for app_easy_gap_param_update_msg_create
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.text) for app_easy_gap_start_connection_to_msg_create
+    app.o(.text) refers to app.o(.text) for app_easy_gap_start_connection_to_msg_create
+    app.o(.text) refers to app.o(.text) for app_easy_gap_start_connection_to_msg_create
+    app.o(.text) refers to app.o(retention_mem_area0) for retention_mem_area0
+    app.o(.text) refers to app.o(.text) for app_easy_gap_dev_config_create_msg
     app.o(.constdata) refers to app_diss.o(.text) for app_diss_create_db
     app.o(.constdata) refers to app_task.o(retention_mem_area0) for app_state
     app.o(.constdata) refers to user_empty_peripheral_template.o(.text) for user_on_connection
@@ -211,14 +263,47 @@ Section Cross References
     app_entry_point.o(.constdata) refers to app.o(retention_mem_area0) for app_prf_srv_perm
     app_msg_utils.o(.text) refers to arch_sleep.o(.text) for arch_ble_force_wakeup
     app_easy_msg_utils.o(.text) refers to app_easy_msg_utils.o(retention_mem_area0) for retention_mem_area0
-    app_easy_security.o(.text) refers to app_security.o(.text) for app_sec_gen_csrk
     app_easy_security.o(.text) refers to app_easy_security.o(retention_mem_area0) for retention_mem_area0
     app_easy_security.o(.text) refers to app_easy_security.o(.constdata) for .constdata
     app_easy_security.o(.text) refers to app_security.o(retention_mem_area0) for app_sec_env
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for pairing_rsp_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for tk_exch_create_msg
+    app_easy_security.o(.text) refers to app_security.o(.text) for app_sec_gen_csrk
+    app_easy_security.o(.text) refers to app_easy_security.o(retention_mem_area0) for retention_mem_area0
+    app_easy_security.o(.text) refers to app_security.o(retention_mem_area0) for app_sec_env
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for csrk_exch_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for csrk_exch_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(retention_mem_area0) for retention_mem_area0
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for ltk_exch_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for ltk_exch_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(retention_mem_area0) for retention_mem_area0
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for encrypt_cfm_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(retention_mem_area0) for retention_mem_area0
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for encrypt_cfm_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for encrypt_cfm_create_msg
+    app_easy_security.o(.text) refers to app_security.o(retention_mem_area0) for app_sec_env
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for encrypt_cfm_create_msg
+    app_easy_security.o(.text) refers to app_easy_security.o(retention_mem_area0) for retention_mem_area0
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for app_easy_security_request_get_active
+    app_easy_security.o(.text) refers to app_easy_security.o(retention_mem_area0) for retention_mem_area0
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for app_easy_security_set_encrypt_req_valid
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for app_easy_security_encrypt_cfm
+    app_easy_security.o(.text) refers to app_security.o(retention_mem_area0) for app_sec_env
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for app_easy_security_set_encrypt_req_invalid
+    app_easy_security.o(.text) refers to app_easy_security.o(.text) for app_easy_security_encrypt_cfm
     app_easy_timer.o(.text) refers to app_msg_utils.o(.text) for app_check_BLE_active
     app_easy_timer.o(.text) refers to arch_sleep.o(.text) for arch_ble_force_wakeup
     app_easy_timer.o(.text) refers to app_easy_timer.o(retention_mem_area0) for retention_mem_area0
     app_customs.o(.text) refers to user_custs_config.o(.constdata) for cust_prf_funcs
+    app_bond_db.o(.text) refers to app_bond_db.o(.text) for bond_db_clear
+    app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
+    app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
+    app_bond_db.o(.text) refers to app_bond_db.o(.text) for bond_db_clear
+    app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
+    app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
+    app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
+    app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
+    app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
     app_bond_db.o(.text) refers to app_bond_db.o(retention_mem_area0) for retention_mem_area0
     user_custs_config.o(.constdata) refers to user_custs1_def.o(.constdata) for custs1_att_db
     user_custs_config.o(.constdata) refers to app_customs.o(.text) for app_custs1_create_db
@@ -232,6 +317,7 @@ Section Cross References
     user_custs1_def.o(.constdata) refers to user_custs1_def.o(.constdata) for SVC1_LC_MAX_VAL_UUID_128
     user_custs1_def.o(.constdata) refers to user_custs1_def.o(.constdata) for SVC1_LC_NUM_VALS_UUID_128
     user_custs1_def.o(.constdata) refers to user_custs1_def.o(.constdata) for SVC1_LC_TS_UUID_128
+    user_custs1_def.o(.constdata) refers to user_custs1_def.o(.constdata) for SVC1_RFID_UUID_128
     user_custs1_def.o(.constdata) refers to user_custs1_def.o(.constdata) for SVC1_CTRL_POINT_UUID_128
     user_custs1_def.o(.constdata) refers to user_custs1_def.o(.constdata) for SVC1_BUTTON_STATE_UUID_128
     user_custs1_def.o(.constdata) refers to user_custs1_def.o(.constdata) for att_desc_cfg
@@ -311,7 +397,11 @@ Section Cross References
 Removing Unused input sections from the image.
 
     Removing arch_main.o(.constdata), (28 bytes).
+    Removing arch_system.o(.text), (60 bytes).
+    Removing arch_system.o(.text), (56 bytes).
+    Removing arch_system.o(.text), (44 bytes).
     Removing arch_system.o(.constdata), (28 bytes).
+    Removing arch_system.o(.data), (4 bytes).
     Removing arch_system.o(retention_mem_area0), (1 bytes).
     Removing arch_system.o(retention_mem_area0), (2 bytes).
     Removing arch_system.o(retention_mem_area0), (2 bytes).
@@ -319,8 +409,23 @@ Removing Unused input sections from the image.
     Removing arch_system.o(retention_mem_area0), (8 bytes).
     Removing arch_system.o(retention_mem_area0), (8 bytes).
     Removing arch_system.o(retention_mem_area0), (8 bytes).
-    Removing arch_hibernation.o(.text), (1132 bytes).
+    Removing arch_hibernation.o(.text), (332 bytes).
+    Removing arch_hibernation.o(.text), (364 bytes).
+    Removing arch_hibernation.o(.text), (448 bytes).
+    Removing arch_hibernation.o(.text), (40 bytes).
     Removing arch_hibernation.o(retention_mem_area0), (8 bytes).
+    Removing hash.o(.text), (76 bytes).
+    Removing gpio.o(.text), (24 bytes).
+    Removing gpio.o(.text), (68 bytes).
+    Removing gpio.o(.text), (32 bytes).
+    Removing gpio.o(.text), (288 bytes).
+    Removing gpio.o(.text), (144 bytes).
+    Removing gpio.o(.text), (36 bytes).
+    Removing gpio.o(.text), (24 bytes).
+    Removing gpio.o(.text), (56 bytes).
+    Removing gpio.o(.text), (12 bytes).
+    Removing gpio.o(.text), (16 bytes).
+    Removing gpio.o(.text), (16 bytes).
     Removing battery.o(.text), (260 bytes).
     Removing battery.o(.constdata), (32 bytes).
     Removing spi_531.o(.text), (1040 bytes).
@@ -332,16 +437,79 @@ Removing Unused input sections from the image.
     Removing i2c_eeprom.o(retention_mem_area0), (24 bytes).
     Removing rwble.o(retention_mem_area0), (1 bytes).
     Removing ble_arp.o(.constdata), (4 bytes).
+    Removing app_default_handlers.o(.text), (8 bytes).
+    Removing app_default_handlers.o(.text), (48 bytes).
+    Removing app_default_handlers.o(.text), (132 bytes).
+    Removing app_default_handlers.o(.text), (8 bytes).
+    Removing app_default_handlers.o(.text), (52 bytes).
+    Removing app_default_handlers.o(.text), (28 bytes).
+    Removing app_default_handlers.o(.text), (52 bytes).
+    Removing app_default_handlers.o(.text), (8 bytes).
+    Removing app_default_handlers.o(.text), (16 bytes).
     Removing app_default_handlers.o(.constdata), (12 bytes).
     Removing app_default_handlers.o(.constdata), (4 bytes).
+    Removing app.o(.text), (72 bytes).
+    Removing app.o(.text), (96 bytes).
+    Removing app.o(.text), (72 bytes).
+    Removing app.o(.text), (80 bytes).
+    Removing app.o(.text), (28 bytes).
+    Removing app.o(.text), (32 bytes).
+    Removing app.o(.text), (8 bytes).
+    Removing app.o(.text), (32 bytes).
+    Removing app.o(.text), (8 bytes).
+    Removing app.o(.text), (40 bytes).
+    Removing app.o(.text), (48 bytes).
+    Removing app.o(.text), (28 bytes).
+    Removing app.o(.text), (8 bytes).
+    Removing app.o(.text), (28 bytes).
+    Removing app.o(.text), (8 bytes).
+    Removing app.o(.text), (38 bytes).
+    Removing app.o(.text), (24 bytes).
+    Removing app.o(.text), (8 bytes).
+    Removing app.o(.text), (32 bytes).
     Removing app.o(.constdata), (12 bytes).
     Removing app.o(.constdata), (74 bytes).
     Removing app.o(.constdata), (140 bytes).
     Removing app_task.o(.constdata), (140 bytes).
     Removing app_security_task.o(.constdata), (140 bytes).
+    Removing app_easy_security.o(.text), (8 bytes).
+    Removing app_easy_security.o(.text), (8 bytes).
+    Removing app_easy_security.o(.text), (80 bytes).
+    Removing app_easy_security.o(.text), (8 bytes).
+    Removing app_easy_security.o(.text), (28 bytes).
+    Removing app_easy_security.o(.text), (8 bytes).
+    Removing app_easy_security.o(.text), (44 bytes).
+    Removing app_easy_security.o(.text), (44 bytes).
+    Removing app_easy_security.o(.text), (28 bytes).
+    Removing app_easy_security.o(.text), (8 bytes).
+    Removing app_easy_security.o(.text), (40 bytes).
+    Removing app_easy_security.o(.text), (12 bytes).
+    Removing app_easy_security.o(.text), (52 bytes).
+    Removing app_easy_security.o(.text), (28 bytes).
+    Removing app_easy_security.o(.text), (44 bytes).
+    Removing app_easy_security.o(.text), (22 bytes).
+    Removing app_easy_security.o(.text), (4 bytes).
+    Removing app_easy_security.o(.text), (4 bytes).
+    Removing app_easy_security.o(.text), (4 bytes).
+    Removing app_easy_security.o(.text), (66 bytes).
+    Removing app_easy_security.o(.text), (2 bytes).
+    Removing app_easy_security.o(.text), (4 bytes).
+    Removing app_easy_security.o(.text), (2 bytes).
+    Removing app_easy_security.o(.text), (2 bytes).
+    Removing app_easy_security.o(.text), (4 bytes).
+    Removing app_easy_security.o(.text), (4 bytes).
+    Removing app_easy_security.o(.text), (2 bytes).
     Removing app_easy_security.o(.constdata), (32 bytes).
     Removing app_customs_common.o(.text), (4 bytes).
-    Removing app_bond_db.o(.text), (712 bytes).
+    Removing app_bond_db.o(.text), (48 bytes).
+    Removing app_bond_db.o(.text), (4 bytes).
+    Removing app_bond_db.o(.text), (172 bytes).
+    Removing app_bond_db.o(.text), (212 bytes).
+    Removing app_bond_db.o(.text), (116 bytes).
+    Removing app_bond_db.o(.text), (40 bytes).
+    Removing app_bond_db.o(.text), (56 bytes).
+    Removing app_bond_db.o(.text), (72 bytes).
+    Removing app_bond_db.o(.text), (44 bytes).
     Removing app_bond_db.o(retention_mem_area0), (644 bytes).
     Removing app_easy_whitelist.o(.text), (68 bytes).
     Removing user_custs1_def.o(.constdata), (2 bytes).
@@ -357,7 +525,7 @@ Removing Unused input sections from the image.
     Removing user_hx711.o(.text), (8 bytes).
     Removing otp_cs.o(i.__ARM_common_switch8), (26 bytes).
 
-46 unused section(s) (total 7621 bytes) removed from the image.
+128 unused section(s) (total 10283 bytes) removed from the image.
 
 ==============================================================================
 
@@ -367,25 +535,25 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
     ../clib/microlib/malloc/mvars.c          0x00000000   Number         0  mvars.o ABSOLUTE
     ..\..\..\..\..\sdk\app_modules\src\app_bass\app_bass.c 0x00000000   Number         0  app_bass.o ABSOLUTE
     ..\..\..\..\..\sdk\app_modules\src\app_bass\app_bass_task.c 0x00000000   Number         0  app_bass_task.o ABSOLUTE
@@ -565,214 +733,207 @@ Image Symbol Table
     .text                                    0x07fc0674   Section        0  jump_table.o(.text)
     .text                                    0x07fc06c8   Section        0  arch_sleep.o(.text)
     .text                                    0x07fc0914   Section        0  arch_system.o(.text)
-    .text                                    0x07fc0e88   Section        0  arch_rom.o(.text)
-    .text                                    0x07fc0fe4   Section        0  hash.o(.text)
-    .text                                    0x07fc1030   Section        0  otp_cs.o(.text)
-    calc_adc_ge                              0x07fc1331   Thumb Code    16  otp_cs.o(.text)
-    calc_adc_offset                          0x07fc1341   Thumb Code    12  otp_cs.o(.text)
-    .text                                    0x07fc137c   Section        0  otp_hdr.o(.text)
-    .text                                    0x07fc138c   Section        0  syscntl.o(.text)
-    dcdc_cfg                                 0x07fc1405   Thumb Code    58  syscntl.o(.text)
-    .text                                    0x07fc154c   Section        0  gpio.o(.text)
-    gpioshift16                              0x07fc1a35   Thumb Code    32  gpio.o(.text)
-    .text                                    0x07fc1a64   Section        0  wkupct_quadec.o(.text)
-    __NVIC_SetPriority                       0x07fc1a65   Thumb Code    60  wkupct_quadec.o(.text)
-    wkupct_quad_disable_IRQ                  0x07fc1aa1   Thumb Code    48  wkupct_quadec.o(.text)
-    __NVIC_EnableIRQ                         0x07fc1ce3   Thumb Code    20  wkupct_quadec.o(.text)
-    .text                                    0x07fc1d18   Section        0  adc_531.o(.text)
-    adc_configure                            0x07fc1d5b   Thumb Code   252  adc_531.o(.text)
-    __NVIC_DisableIRQ                        0x07fc2169   Thumb Code    26  adc_531.o(.text)
-    adc_correction_apply                     0x07fc2183   Thumb Code   106  adc_531.o(.text)
-    .text                                    0x07fc2204   Section        0  trng.o(.text)
-    .text                                    0x07fc2288   Section        0  systick.o(.text)
-    .text                                    0x07fc2314   Section        0  uart.o(.text)
-    __NVIC_SetPriority                       0x07fc2315   Thumb Code    60  uart.o(.text)
-    uart_rx_isr                              0x07fc2351   Thumb Code    72  uart.o(.text)
-    __NVIC_EnableIRQ                         0x07fc26eb   Thumb Code    18  uart.o(.text)
-    __NVIC_DisableIRQ                        0x07fc26fd   Thumb Code    52  uart.o(.text)
-    uart_intr_hndl                           0x07fc2731   Thumb Code   156  uart.o(.text)
-    uart_tx_isr                              0x07fc27cd   Thumb Code   100  uart.o(.text)
-    .text                                    0x07fc2838   Section        0  hw_otpc_531.o(.text)
-    dcdc_cfg                                 0x07fc2839   Thumb Code    46  hw_otpc_531.o(.text)
-    hw_otpc_read_verif                       0x07fc2a09   Thumb Code    64  hw_otpc_531.o(.text)
-    .text                                    0x07fc2b58   Section        0  i2c.o(.text)
-    tx_reply                                 0x07fc2dbb   Thumb Code    30  i2c.o(.text)
-    intr_master_transmit_buffer_handler      0x07fc2dd9   Thumb Code   142  i2c.o(.text)
-    rx_reply                                 0x07fc2e9d   Thumb Code    30  i2c.o(.text)
-    intr_master_receive_buffer_handler       0x07fc2ebb   Thumb Code   150  i2c.o(.text)
-    intr_slave_receive_buffer_handler        0x07fc2fef   Thumb Code    84  i2c.o(.text)
-    intr_slave_transmit_buffer_handler       0x07fc305d   Thumb Code   132  i2c.o(.text)
-    __NVIC_ClearPendingIRQ                   0x07fc311d   Thumb Code    18  i2c.o(.text)
-    .text                                    0x07fc3150   Section        0  rwble.o(.text)
-    .text                                    0x07fc332c   Section        0  rwip.o(.text)
-    get_max_sleep_duration                   0x07fc34c7   Thumb Code     8  rwip.o(.text)
-    .text                                    0x07fc350c   Section        0  ble_arp.o(.text)
-    rf_reset                                 0x07fc3513   Thumb Code     2  ble_arp.o(.text)
-    rf_rssi_convert                          0x07fc3515   Thumb Code    36  ble_arp.o(.text)
-    RADIOCNTL_Handler                        0x07fc3539   Thumb Code     2  ble_arp.o(.text)
-    rf_force_agc_enable                      0x07fc353b   Thumb Code     2  ble_arp.o(.text)
-    rf_txpwr_dbm_get                         0x07fc353d   Thumb Code    36  ble_arp.o(.text)
-    rf_sleep                                 0x07fc3561   Thumb Code    24  ble_arp.o(.text)
-    rf_regs                                  0x07fc3579   Thumb Code    52  ble_arp.o(.text)
-    update_radiopwrupdn_pref_setting         0x07fc36e7   Thumb Code    32  ble_arp.o(.text)
-    ble_update_arp_adpll_div_val             0x07fc3707   Thumb Code    32  ble_arp.o(.text)
-    ble_update_arp_adpll_calib_vals          0x07fc3727   Thumb Code    34  ble_arp.o(.text)
-    ble_update_arp                           0x07fc3749   Thumb Code    86  ble_arp.o(.text)
-    .text                                    0x07fc37dc   Section        0  rf_531.o(.text)
-    .text                                    0x07fc4018   Section        0  custs1_task.o(.text)
-    gattc_write_req_ind_handler              0x07fc4019   Thumb Code   288  custs1_task.o(.text)
-    .text                                    0x07fc4144   Section        0  prf.o(.text)
-    .text                                    0x07fc41e4   Section        0  app_default_handlers.o(.text)
-    .text                                    0x07fc4458   Section        0  app.o(.text)
-    app_task_in_user_app                     0x07fc4459   Thumb Code    32  app.o(.text)
-    app_easy_gap_non_connectable_advertise_start_create_msg 0x07fc45a5   Thumb Code    58  app.o(.text)
-    app_easy_gap_undirected_advertise_start_create_msg 0x07fc45df   Thumb Code    58  app.o(.text)
-    app_easy_gap_directed_advertise_start_create_msg 0x07fc4619   Thumb Code    82  app.o(.text)
-    app_easy_gap_param_update_msg_create     0x07fc466b   Thumb Code    66  app.o(.text)
-    app_easy_gap_start_connection_to_msg_create 0x07fc46ad   Thumb Code    74  app.o(.text)
-    app_easy_gap_dev_config_create_msg       0x07fc46f7   Thumb Code   172  app.o(.text)
-    app_easy_gap_advertise_stop_handler      0x07fc47a3   Thumb Code    24  app.o(.text)
-    .text                                    0x07fc4978   Section        0  app_task.o(.text)
-    gapm_device_ready_ind_handler            0x07fc4979   Thumb Code    40  app_task.o(.text)
-    gapm_cmp_evt_handler                     0x07fc49a1   Thumb Code    88  app_task.o(.text)
-    gapc_connection_req_ind_handler          0x07fc49f9   Thumb Code   108  app_task.o(.text)
-    gapc_cmp_evt_handler                     0x07fc4a65   Thumb Code    24  app_task.o(.text)
-    gapc_disconnect_ind_handler              0x07fc4a7d   Thumb Code    48  app_task.o(.text)
-    gapc_get_dev_info_req_ind_handler        0x07fc4aad   Thumb Code   162  app_task.o(.text)
-    .text                                    0x07fc4b7c   Section        0  app_security.o(.text)
-    .text                                    0x07fc4bf0   Section        0  app_security_task.o(.text)
-    gapc_bond_req_ind_handler                0x07fc4bf1   Thumb Code    68  app_security_task.o(.text)
-    gapc_bond_ind_handler                    0x07fc4c35   Thumb Code   168  app_security_task.o(.text)
-    gapc_encrypt_req_ind_handler             0x07fc4cdd   Thumb Code     4  app_security_task.o(.text)
-    gapc_encrypt_ind_handler                 0x07fc4ce1   Thumb Code    20  app_security_task.o(.text)
-    gapm_addr_solved_ind_handler             0x07fc4cf5   Thumb Code     4  app_security_task.o(.text)
-    gapm_ral_size_ind_handler                0x07fc4cf9   Thumb Code     4  app_security_task.o(.text)
-    gapm_ral_addr_ind_handler                0x07fc4cfd   Thumb Code     4  app_security_task.o(.text)
-    .text                                    0x07fc4d24   Section        0  app_diss.o(.text)
-    .text                                    0x07fc4d60   Section        0  app_diss_task.o(.text)
-    diss_value_req_ind_handler               0x07fc4d61   Thumb Code   116  app_diss_task.o(.text)
-    .text                                    0x07fc4e40   Section        0  app_msg_utils.o(.text)
-    .text                                    0x07fc4e80   Section        0  app_easy_msg_utils.o(.text)
-    app_easy_msg_find_idx                    0x07fc4f5d   Thumb Code    20  app_easy_msg_utils.o(.text)
-    .text                                    0x07fc4f7c   Section        0  app_easy_security.o(.text)
-    pairing_rsp_create_msg                   0x07fc4f7d   Thumb Code    54  app_easy_security.o(.text)
-    tk_exch_create_msg                       0x07fc4fcb   Thumb Code    40  app_easy_security.o(.text)
-    csrk_exch_create_msg                     0x07fc502f   Thumb Code    70  app_easy_security.o(.text)
-    ltk_exch_create_msg                      0x07fc508f   Thumb Code    44  app_easy_security.o(.text)
-    encrypt_cfm_create_msg                   0x07fc5133   Thumb Code    38  app_easy_security.o(.text)
-    .text                                    0x07fc5298   Section        0  app_easy_timer.o(.text)
-    timer_canceled_handler                   0x07fc5299   Thumb Code     2  app_easy_timer.o(.text)
-    timer_modified_handler                   0x07fc529b   Thumb Code     2  app_easy_timer.o(.text)
-    create_timer                             0x07fc529d   Thumb Code    56  app_easy_timer.o(.text)
-    cancel_timer_handler                     0x07fc548f   Thumb Code    82  app_easy_timer.o(.text)
-    .text                                    0x07fc54f8   Section        0  app_customs.o(.text)
-    .text                                    0x07fc555c   Section        0  app_customs_task.o(.text)
-    .text                                    0x07fc5574   Section        0  app_utils.o(.text)
-    .text                                    0x07fc5594   Section        0  user_periph_setup.o(.text)
-    .text                                    0x07fc569c   Section        0  user_empty_peripheral_template.o(.text)
-    systick_isr                              0x07fc569d   Thumb Code   316  user_empty_peripheral_template.o(.text)
-    .text                                    0x07fc5990   Section        0  user_custs1_impl.o(.text)
-    .text                                    0x07fc5b1c   Section        0  user_hx711.o(.text)
-    .text                                    0x07fc5b6c   Section        0  patch.o(.text)
-    PATCHED_smpc_recv_pair_rand_pdu          0x07fc6285   Thumb Code   272  patch.o(.text)
-    .text                                    0x07fc673c   Section       36  init.o(.text)
-    i.__ARM_common_ll_muluu                  0x07fc6760   Section        0  arch_system.o(i.__ARM_common_ll_muluu)
-    i.__scatterload_copy                     0x07fc6790   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x07fc679e   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x07fc67a0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.malloc                                 0x07fc67b0   Section        0  malloc.o(i.malloc)
-    .constdata                               0x07fc681c   Section       14  nvds.o(.constdata)
-    nvds_data_storage                        0x07fc681c   Data          14  nvds.o(.constdata)
-    .constdata                               0x07fc682c   Section        8  nvds.o(.constdata)
-    .constdata                               0x07fc6834   Section      380  jump_table.o(.constdata)
-    .constdata                               0x07fc69b0   Section      236  jump_table.o(.constdata)
-    .constdata                               0x07fc6a9c   Section        8  arch_system.o(.constdata)
-    .constdata                               0x07fc6aa4   Section      112  arch_rom.o(.constdata)
-    .constdata                               0x07fc6b14   Section        2  gpio.o(.constdata)
-    p_mask                                   0x07fc6b14   Data           2  gpio.o(.constdata)
-    .constdata                               0x07fc6b18   Section       28  hw_otpc_531.o(.constdata)
-    tim1                                     0x07fc6b18   Data          28  hw_otpc_531.o(.constdata)
-    .constdata                               0x07fc6b34   Section      112  ble_arp.o(.constdata)
-    .constdata                               0x07fc6ba4   Section       16  custs1.o(.constdata)
-    .constdata                               0x07fc6bb4   Section       72  custs1_task.o(.constdata)
-    .constdata                               0x07fc6bfc   Section        8  custs1_task.o(.constdata)
-    .constdata                               0x07fc6c04   Section       24  prf.o(.constdata)
-    .constdata                               0x07fc6c1c   Section       12  prf.o(.constdata)
-    .constdata                               0x07fc6c28   Section      124  app.o(.constdata)
-    user_adv_conf                            0x07fc6c28   Data          16  app.o(.constdata)
-    user_gapm_conf                           0x07fc6c38   Data          42  app.o(.constdata)
-    user_prf_funcs                           0x07fc6c64   Data          12  app.o(.constdata)
-    TASK_DESC_APP                            0x07fc6c88   Data          16  app.o(.constdata)
-    <Data1>                                  0x07fc6c98   Data          12  app.o(.constdata)
-    .constdata                               0x07fc6ca4   Section      112  app_task.o(.constdata)
-    app_gap_process_handlers                 0x07fc6ca4   Data         112  app_task.o(.constdata)
-    .constdata                               0x07fc6d14   Section       56  app_security_task.o(.constdata)
-    app_sec_process_handlers                 0x07fc6d14   Data          56  app_security_task.o(.constdata)
-    .constdata                               0x07fc6d4c   Section        8  app_diss_task.o(.constdata)
-    app_diss_process_handlers                0x07fc6d4c   Data           8  app_diss_task.o(.constdata)
-    .constdata                               0x07fc6d54   Section      140  app_entry_point.o(.constdata)
-    user_app_callbacks                       0x07fc6d54   Data         140  app_entry_point.o(.constdata)
-    .constdata                               0x07fc6de0   Section       28  app_entry_point.o(.constdata)
-    .constdata                               0x07fc6dfc   Section       32  app_entry_point.o(.constdata)
-    .constdata                               0x07fc6e1c   Section        7  app_easy_security.o(.constdata)
-    user_security_conf                       0x07fc6e1c   Data           7  app_easy_security.o(.constdata)
-    .constdata                               0x07fc6e24   Section       56  user_custs_config.o(.constdata)
-    .constdata                               0x07fc6e5c   Section       16  user_custs1_def.o(.constdata)
-    custs1_svc1                              0x07fc6e5c   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6e6c   Section       16  user_custs1_def.o(.constdata)
-    SVC1_LC_VAL_UUID_128                     0x07fc6e6c   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6e7c   Section       16  user_custs1_def.o(.constdata)
-    SVC1_LC_MAX_VAL_UUID_128                 0x07fc6e7c   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6e8c   Section       16  user_custs1_def.o(.constdata)
-    SVC1_LC_BASE_UUID_128                    0x07fc6e8c   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6e9c   Section       16  user_custs1_def.o(.constdata)
-    SVC1_LC_NUM_VALS_UUID_128                0x07fc6e9c   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6eac   Section       16  user_custs1_def.o(.constdata)
-    SVC1_LC_TS_UUID_128                      0x07fc6eac   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ebc   Section       16  user_custs1_def.o(.constdata)
-    SVC1_CTRL_POINT_UUID_128                 0x07fc6ebc   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ecc   Section       16  user_custs1_def.o(.constdata)
-    SVC1_BUTTON_STATE_UUID_128               0x07fc6ecc   Data          16  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6edc   Section        2  user_custs1_def.o(.constdata)
-    att_decl_svc                             0x07fc6edc   Data           2  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ede   Section        2  user_custs1_def.o(.constdata)
-    att_decl_char                            0x07fc6ede   Data           2  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ee0   Section        2  user_custs1_def.o(.constdata)
-    att_desc_cfg                             0x07fc6ee0   Data           2  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ee2   Section        2  user_custs1_def.o(.constdata)
-    att_desc_user_desc                       0x07fc6ee2   Data           2  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ee4   Section        2  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ee6   Section        1  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc6ee8   Section      460  user_custs1_def.o(.constdata)
-    .constdata                               0x07fc70b4   Section        6  user_empty_peripheral_template.o(.constdata)
-    .constdata                               0x07fc70bc   Section       36  patch.o(.constdata)
-    patch_new_table                          0x07fc70bc   Data          12  patch.o(.constdata)
-    patch_orig_table                         0x07fc70c8   Data          24  patch.o(.constdata)
-    .conststring                             0x07fc70e0   Section      162  user_custs1_def.o(.conststring)
-    .data                                    0x07fc71a4   Section        4  system_da14531.o(.data)
-    .data                                    0x07fc71a8   Section        4  arch_system.o(.data)
-    .data                                    0x07fc71ac   Section        1  rf_531.o(.data)
-    .data                                    0x07fc71b0   Section        4  user_empty_peripheral_template.o(.data)
-    .data                                    0x07fc71b4   Section        4  mvars.o(.data)
-    .data                                    0x07fc71b8   Section        4  mvars.o(.data)
-    .bss                                     0x07fc71c0   Section       12  arch_system.o(.bss)
-    .bss                                     0x07fc71cc   Section        4  otp_cs.o(.bss)
-    txdiv_trim                               0x07fc71cc   Data           4  otp_cs.o(.bss)
-    .bss                                     0x07fc71d0   Section        2  syscntl.o(.bss)
-    .bss                                     0x07fc71d2   Section        2  adc_531.o(.bss)
-    cal_val                                  0x07fc71d2   Data           2  adc_531.o(.bss)
-    .bss                                     0x07fc71d4   Section       20  trng.o(.bss)
-    extra_samples                            0x07fc71d4   Data           4  trng.o(.bss)
-    trng_bits                                0x07fc71d8   Data          16  trng.o(.bss)
-    .bss                                     0x07fc71e8   Section       48  i2c.o(.bss)
-    i2c_env                                  0x07fc71e8   Data          48  i2c.o(.bss)
-    .bss                                     0x07fc7218   Section        4  rwip.o(.bss)
-    .bss                                     0x07fc721c   Section       46  rf_531.o(.bss)
-    fsm_ctrl_reg                             0x07fc721c   Data           4  rf_531.o(.bss)
-    .bss                                     0x07fc724c   Section      464  user_empty_peripheral_template.o(.bss)
-    HEAP                                     0x07fc7420   Section      256  startup_da14531.o(HEAP)
-    STACK                                    0x07fc7520   Section     1536  startup_da14531.o(STACK)
-    heap_mem_area_not_ret                    0x07fc7b20   Section     1036  jump_table.o(heap_mem_area_not_ret)
+    .text                                    0x07fc0dfc   Section        0  arch_rom.o(.text)
+    .text                                    0x07fc0f58   Section        0  otp_cs.o(.text)
+    calc_adc_ge                              0x07fc1259   Thumb Code    16  otp_cs.o(.text)
+    calc_adc_offset                          0x07fc1269   Thumb Code    12  otp_cs.o(.text)
+    .text                                    0x07fc12a4   Section        0  otp_hdr.o(.text)
+    .text                                    0x07fc12b4   Section        0  syscntl.o(.text)
+    dcdc_cfg                                 0x07fc132d   Thumb Code    58  syscntl.o(.text)
+    .text                                    0x07fc1474   Section        0  gpio.o(.text)
+    gpioshift16                              0x07fc16b7   Thumb Code    32  gpio.o(.text)
+    .text                                    0x07fc16ec   Section        0  wkupct_quadec.o(.text)
+    __NVIC_SetPriority                       0x07fc16ed   Thumb Code    60  wkupct_quadec.o(.text)
+    wkupct_quad_disable_IRQ                  0x07fc1729   Thumb Code    48  wkupct_quadec.o(.text)
+    __NVIC_EnableIRQ                         0x07fc196b   Thumb Code    20  wkupct_quadec.o(.text)
+    .text                                    0x07fc19a0   Section        0  adc_531.o(.text)
+    adc_configure                            0x07fc19e3   Thumb Code   252  adc_531.o(.text)
+    __NVIC_DisableIRQ                        0x07fc1df1   Thumb Code    26  adc_531.o(.text)
+    adc_correction_apply                     0x07fc1e0b   Thumb Code   106  adc_531.o(.text)
+    .text                                    0x07fc1e8c   Section        0  trng.o(.text)
+    .text                                    0x07fc1f10   Section        0  systick.o(.text)
+    .text                                    0x07fc1f9c   Section        0  uart.o(.text)
+    __NVIC_SetPriority                       0x07fc1f9d   Thumb Code    60  uart.o(.text)
+    uart_rx_isr                              0x07fc1fd9   Thumb Code    72  uart.o(.text)
+    __NVIC_EnableIRQ                         0x07fc2373   Thumb Code    18  uart.o(.text)
+    __NVIC_DisableIRQ                        0x07fc2385   Thumb Code    52  uart.o(.text)
+    uart_intr_hndl                           0x07fc23b9   Thumb Code   156  uart.o(.text)
+    uart_tx_isr                              0x07fc2455   Thumb Code   100  uart.o(.text)
+    .text                                    0x07fc24c0   Section        0  hw_otpc_531.o(.text)
+    dcdc_cfg                                 0x07fc24c1   Thumb Code    46  hw_otpc_531.o(.text)
+    hw_otpc_read_verif                       0x07fc2691   Thumb Code    64  hw_otpc_531.o(.text)
+    .text                                    0x07fc27e0   Section        0  i2c.o(.text)
+    tx_reply                                 0x07fc2a43   Thumb Code    30  i2c.o(.text)
+    intr_master_transmit_buffer_handler      0x07fc2a61   Thumb Code   142  i2c.o(.text)
+    rx_reply                                 0x07fc2b25   Thumb Code    30  i2c.o(.text)
+    intr_master_receive_buffer_handler       0x07fc2b43   Thumb Code   150  i2c.o(.text)
+    intr_slave_receive_buffer_handler        0x07fc2c77   Thumb Code    84  i2c.o(.text)
+    intr_slave_transmit_buffer_handler       0x07fc2ce5   Thumb Code   132  i2c.o(.text)
+    __NVIC_ClearPendingIRQ                   0x07fc2da5   Thumb Code    18  i2c.o(.text)
+    .text                                    0x07fc2dd8   Section        0  rwble.o(.text)
+    .text                                    0x07fc2fb4   Section        0  rwip.o(.text)
+    get_max_sleep_duration                   0x07fc314f   Thumb Code     8  rwip.o(.text)
+    .text                                    0x07fc3194   Section        0  ble_arp.o(.text)
+    rf_reset                                 0x07fc319b   Thumb Code     2  ble_arp.o(.text)
+    rf_rssi_convert                          0x07fc319d   Thumb Code    36  ble_arp.o(.text)
+    RADIOCNTL_Handler                        0x07fc31c1   Thumb Code     2  ble_arp.o(.text)
+    rf_force_agc_enable                      0x07fc31c3   Thumb Code     2  ble_arp.o(.text)
+    rf_txpwr_dbm_get                         0x07fc31c5   Thumb Code    36  ble_arp.o(.text)
+    rf_sleep                                 0x07fc31e9   Thumb Code    24  ble_arp.o(.text)
+    rf_regs                                  0x07fc3201   Thumb Code    52  ble_arp.o(.text)
+    update_radiopwrupdn_pref_setting         0x07fc336f   Thumb Code    32  ble_arp.o(.text)
+    ble_update_arp_adpll_div_val             0x07fc338f   Thumb Code    32  ble_arp.o(.text)
+    ble_update_arp_adpll_calib_vals          0x07fc33af   Thumb Code    34  ble_arp.o(.text)
+    ble_update_arp                           0x07fc33d1   Thumb Code    86  ble_arp.o(.text)
+    .text                                    0x07fc3464   Section        0  rf_531.o(.text)
+    .text                                    0x07fc3ca0   Section        0  custs1_task.o(.text)
+    gattc_write_req_ind_handler              0x07fc3ca1   Thumb Code   288  custs1_task.o(.text)
+    .text                                    0x07fc3dcc   Section        0  prf.o(.text)
+    .text                                    0x07fc3e6c   Section        0  app_default_handlers.o(.text)
+    .text                                    0x07fc3f8c   Section        0  app.o(.text)
+    app_task_in_user_app                     0x07fc3f8d   Thumb Code    32  app.o(.text)
+    app_easy_gap_undirected_advertise_start_create_msg 0x07fc40d9   Thumb Code    58  app.o(.text)
+    app_easy_gap_dev_config_create_msg       0x07fc4113   Thumb Code   172  app.o(.text)
+    .text                                    0x07fc4260   Section        0  app_task.o(.text)
+    gapm_device_ready_ind_handler            0x07fc4261   Thumb Code    40  app_task.o(.text)
+    gapm_cmp_evt_handler                     0x07fc4289   Thumb Code    88  app_task.o(.text)
+    gapc_connection_req_ind_handler          0x07fc42e1   Thumb Code   108  app_task.o(.text)
+    gapc_cmp_evt_handler                     0x07fc434d   Thumb Code    24  app_task.o(.text)
+    gapc_disconnect_ind_handler              0x07fc4365   Thumb Code    48  app_task.o(.text)
+    gapc_get_dev_info_req_ind_handler        0x07fc4395   Thumb Code   162  app_task.o(.text)
+    .text                                    0x07fc4464   Section        0  app_security.o(.text)
+    .text                                    0x07fc44d8   Section        0  app_security_task.o(.text)
+    gapc_bond_req_ind_handler                0x07fc44d9   Thumb Code    68  app_security_task.o(.text)
+    gapc_bond_ind_handler                    0x07fc451d   Thumb Code   168  app_security_task.o(.text)
+    gapc_encrypt_req_ind_handler             0x07fc45c5   Thumb Code     4  app_security_task.o(.text)
+    gapc_encrypt_ind_handler                 0x07fc45c9   Thumb Code    20  app_security_task.o(.text)
+    gapm_addr_solved_ind_handler             0x07fc45dd   Thumb Code     4  app_security_task.o(.text)
+    gapm_ral_size_ind_handler                0x07fc45e1   Thumb Code     4  app_security_task.o(.text)
+    gapm_ral_addr_ind_handler                0x07fc45e5   Thumb Code     4  app_security_task.o(.text)
+    .text                                    0x07fc460c   Section        0  app_diss.o(.text)
+    .text                                    0x07fc4648   Section        0  app_diss_task.o(.text)
+    diss_value_req_ind_handler               0x07fc4649   Thumb Code   116  app_diss_task.o(.text)
+    .text                                    0x07fc4728   Section        0  app_msg_utils.o(.text)
+    .text                                    0x07fc4768   Section        0  app_easy_msg_utils.o(.text)
+    app_easy_msg_find_idx                    0x07fc4845   Thumb Code    20  app_easy_msg_utils.o(.text)
+    .text                                    0x07fc4864   Section        0  app_easy_security.o(.text)
+    pairing_rsp_create_msg                   0x07fc4865   Thumb Code    54  app_easy_security.o(.text)
+    tk_exch_create_msg                       0x07fc48b1   Thumb Code    40  app_easy_security.o(.text)
+    ltk_exch_create_msg                      0x07fc4913   Thumb Code    44  app_easy_security.o(.text)
+    .text                                    0x07fc499c   Section        0  app_easy_timer.o(.text)
+    timer_canceled_handler                   0x07fc499d   Thumb Code     2  app_easy_timer.o(.text)
+    timer_modified_handler                   0x07fc499f   Thumb Code     2  app_easy_timer.o(.text)
+    create_timer                             0x07fc49a1   Thumb Code    56  app_easy_timer.o(.text)
+    cancel_timer_handler                     0x07fc4b93   Thumb Code    82  app_easy_timer.o(.text)
+    .text                                    0x07fc4bfc   Section        0  app_customs.o(.text)
+    .text                                    0x07fc4c60   Section        0  app_customs_task.o(.text)
+    .text                                    0x07fc4c78   Section        0  app_utils.o(.text)
+    .text                                    0x07fc4c98   Section        0  user_periph_setup.o(.text)
+    .text                                    0x07fc4da0   Section        0  user_empty_peripheral_template.o(.text)
+    systick_isr                              0x07fc4da1   Thumb Code   362  user_empty_peripheral_template.o(.text)
+    .text                                    0x07fc50e4   Section        0  user_custs1_impl.o(.text)
+    .text                                    0x07fc52c8   Section        0  user_hx711.o(.text)
+    .text                                    0x07fc5318   Section        0  patch.o(.text)
+    PATCHED_smpc_recv_pair_rand_pdu          0x07fc5a31   Thumb Code   272  patch.o(.text)
+    .text                                    0x07fc5ee8   Section       36  init.o(.text)
+    i.__ARM_common_ll_muluu                  0x07fc5f0c   Section        0  arch_system.o(i.__ARM_common_ll_muluu)
+    i.__scatterload_copy                     0x07fc5f3c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x07fc5f4a   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x07fc5f4c   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.malloc                                 0x07fc5f5c   Section        0  malloc.o(i.malloc)
+    .constdata                               0x07fc5fc8   Section       14  nvds.o(.constdata)
+    nvds_data_storage                        0x07fc5fc8   Data          14  nvds.o(.constdata)
+    .constdata                               0x07fc5fd8   Section        8  nvds.o(.constdata)
+    .constdata                               0x07fc5fe0   Section      380  jump_table.o(.constdata)
+    .constdata                               0x07fc615c   Section      236  jump_table.o(.constdata)
+    .constdata                               0x07fc6248   Section        8  arch_system.o(.constdata)
+    .constdata                               0x07fc6250   Section      112  arch_rom.o(.constdata)
+    .constdata                               0x07fc62c0   Section        2  gpio.o(.constdata)
+    p_mask                                   0x07fc62c0   Data           2  gpio.o(.constdata)
+    .constdata                               0x07fc62c4   Section       28  hw_otpc_531.o(.constdata)
+    tim1                                     0x07fc62c4   Data          28  hw_otpc_531.o(.constdata)
+    .constdata                               0x07fc62e0   Section      112  ble_arp.o(.constdata)
+    .constdata                               0x07fc6350   Section       16  custs1.o(.constdata)
+    .constdata                               0x07fc6360   Section       72  custs1_task.o(.constdata)
+    .constdata                               0x07fc63a8   Section        8  custs1_task.o(.constdata)
+    .constdata                               0x07fc63b0   Section       24  prf.o(.constdata)
+    .constdata                               0x07fc63c8   Section       12  prf.o(.constdata)
+    .constdata                               0x07fc63d4   Section      124  app.o(.constdata)
+    user_adv_conf                            0x07fc63d4   Data          16  app.o(.constdata)
+    user_gapm_conf                           0x07fc63e4   Data          42  app.o(.constdata)
+    user_prf_funcs                           0x07fc6410   Data          12  app.o(.constdata)
+    TASK_DESC_APP                            0x07fc6434   Data          16  app.o(.constdata)
+    <Data1>                                  0x07fc6444   Data          12  app.o(.constdata)
+    .constdata                               0x07fc6450   Section      112  app_task.o(.constdata)
+    app_gap_process_handlers                 0x07fc6450   Data         112  app_task.o(.constdata)
+    .constdata                               0x07fc64c0   Section       56  app_security_task.o(.constdata)
+    app_sec_process_handlers                 0x07fc64c0   Data          56  app_security_task.o(.constdata)
+    .constdata                               0x07fc64f8   Section        8  app_diss_task.o(.constdata)
+    app_diss_process_handlers                0x07fc64f8   Data           8  app_diss_task.o(.constdata)
+    .constdata                               0x07fc6500   Section      140  app_entry_point.o(.constdata)
+    user_app_callbacks                       0x07fc6500   Data         140  app_entry_point.o(.constdata)
+    .constdata                               0x07fc658c   Section       28  app_entry_point.o(.constdata)
+    .constdata                               0x07fc65a8   Section       32  app_entry_point.o(.constdata)
+    .constdata                               0x07fc65c8   Section        7  app_easy_security.o(.constdata)
+    user_security_conf                       0x07fc65c8   Data           7  app_easy_security.o(.constdata)
+    .constdata                               0x07fc65d0   Section       56  user_custs_config.o(.constdata)
+    .constdata                               0x07fc6608   Section       16  user_custs1_def.o(.constdata)
+    custs1_svc1                              0x07fc6608   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6618   Section       16  user_custs1_def.o(.constdata)
+    SVC1_LC_VAL_UUID_128                     0x07fc6618   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6628   Section       16  user_custs1_def.o(.constdata)
+    SVC1_LC_MAX_VAL_UUID_128                 0x07fc6628   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6638   Section       16  user_custs1_def.o(.constdata)
+    SVC1_LC_BASE_UUID_128                    0x07fc6638   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6648   Section       16  user_custs1_def.o(.constdata)
+    SVC1_LC_NUM_VALS_UUID_128                0x07fc6648   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6658   Section       16  user_custs1_def.o(.constdata)
+    SVC1_LC_TS_UUID_128                      0x07fc6658   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6668   Section       16  user_custs1_def.o(.constdata)
+    SVC1_RFID_UUID_128                       0x07fc6668   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6678   Section       16  user_custs1_def.o(.constdata)
+    SVC1_CTRL_POINT_UUID_128                 0x07fc6678   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6688   Section       16  user_custs1_def.o(.constdata)
+    SVC1_BUTTON_STATE_UUID_128               0x07fc6688   Data          16  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc6698   Section        2  user_custs1_def.o(.constdata)
+    att_decl_svc                             0x07fc6698   Data           2  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc669a   Section        2  user_custs1_def.o(.constdata)
+    att_decl_char                            0x07fc669a   Data           2  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc669c   Section        2  user_custs1_def.o(.constdata)
+    att_desc_cfg                             0x07fc669c   Data           2  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc669e   Section        2  user_custs1_def.o(.constdata)
+    att_desc_user_desc                       0x07fc669e   Data           2  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc66a0   Section        2  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc66a2   Section        1  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc66a4   Section      520  user_custs1_def.o(.constdata)
+    .constdata                               0x07fc68ac   Section        6  user_empty_peripheral_template.o(.constdata)
+    .constdata                               0x07fc68b4   Section       36  patch.o(.constdata)
+    patch_new_table                          0x07fc68b4   Data          12  patch.o(.constdata)
+    patch_orig_table                         0x07fc68c0   Data          24  patch.o(.constdata)
+    .conststring                             0x07fc68d8   Section      186  user_custs1_def.o(.conststring)
+    .data                                    0x07fc69b4   Section        4  system_da14531.o(.data)
+    .data                                    0x07fc69b8   Section        1  rf_531.o(.data)
+    .data                                    0x07fc69bc   Section        4  user_empty_peripheral_template.o(.data)
+    .data                                    0x07fc69c0   Section        4  mvars.o(.data)
+    .data                                    0x07fc69c4   Section        4  mvars.o(.data)
+    .bss                                     0x07fc69c8   Section       12  arch_system.o(.bss)
+    .bss                                     0x07fc69d4   Section        4  otp_cs.o(.bss)
+    txdiv_trim                               0x07fc69d4   Data           4  otp_cs.o(.bss)
+    .bss                                     0x07fc69d8   Section        2  syscntl.o(.bss)
+    .bss                                     0x07fc69da   Section        2  adc_531.o(.bss)
+    cal_val                                  0x07fc69da   Data           2  adc_531.o(.bss)
+    .bss                                     0x07fc69dc   Section       20  trng.o(.bss)
+    extra_samples                            0x07fc69dc   Data           4  trng.o(.bss)
+    trng_bits                                0x07fc69e0   Data          16  trng.o(.bss)
+    .bss                                     0x07fc69f0   Section       48  i2c.o(.bss)
+    i2c_env                                  0x07fc69f0   Data          48  i2c.o(.bss)
+    .bss                                     0x07fc6a20   Section        4  rwip.o(.bss)
+    .bss                                     0x07fc6a24   Section       46  rf_531.o(.bss)
+    fsm_ctrl_reg                             0x07fc6a24   Data           4  rf_531.o(.bss)
+    .bss                                     0x07fc6a54   Section      668  user_empty_peripheral_template.o(.bss)
+    HEAP                                     0x07fc6cf0   Section      256  startup_da14531.o(HEAP)
+    STACK                                    0x07fc6df0   Section     1536  startup_da14531.o(STACK)
+    heap_mem_area_not_ret                    0x07fc73f0   Section     1036  jump_table.o(heap_mem_area_not_ret)
     retention_mem_area0                      0x07fc8bc0   Section        8  arch_main.o(retention_mem_area0)
     ret_mode_for_non_ret_heap                0x07fc8bc0   Data           1  arch_main.o(retention_mem_area0)
     ret_mode                                 0x07fc8bc1   Data           1  arch_main.o(retention_mem_area0)
@@ -861,7 +1022,7 @@ Image Symbol Table
     sb_set_debugger_mode                      - Undefined Weak Reference
     __Vectors_Size                           0x000000a0   Number         0  startup_da14531.o ABSOLUTE
     heap_mem_area_not_ret$$Length            0x0000040c   Number         0  anon$$obj.o ABSOLUTE
-    Image$$ER_IROM3$$Length                  0x000070ac   Number         0  anon$$obj.o ABSOLUTE
+    Image$$ER_IROM3$$Length                  0x000068b8   Number         0  anon$$obj.o ABSOLUTE
     uECC_vli_add                             0x07f02001   Thumb Code     0  da14531_symbols.txt ABSOLUTE
     uECC_vli_sub                             0x07f02019   Thumb Code     0  da14531_symbols.txt ABSOLUTE
     uECC_vli_mult                            0x07f02035   Thumb Code     0  da14531_symbols.txt ABSOLUTE
@@ -1806,381 +1967,320 @@ Image Symbol Table
     lld_sleep_us_2_lpcycles_sel_func         0x07fc0a57   Thumb Code     2  arch_system.o(.text)
     set_sleep_delay                          0x07fc0a59   Thumb Code    66  arch_system.o(.text)
     conditionally_run_radio_cals             0x07fc0a9b   Thumb Code   134  arch_system.o(.text)
-    check_sys_startup_period                 0x07fc0b21   Thumb Code    46  arch_system.o(.text)
-    app_use_lower_clocks_check               0x07fc0b4f   Thumb Code     4  arch_system.o(.text)
-    lld_sleep_init_func                      0x07fc0b53   Thumb Code    26  arch_system.o(.text)
-    arch_wkupct_tweak_deb_time               0x07fc0b6d   Thumb Code    48  arch_system.o(.text)
-    arch_set_pxact_gpio                      0x07fc0b9d   Thumb Code    40  arch_system.o(.text)
-    set_xtal32m_trim_value                   0x07fc0bc5   Thumb Code    82  arch_system.o(.text)
-    system_init                              0x07fc0c17   Thumb Code   590  arch_system.o(.text)
-    arch_rom_init                            0x07fc0e89   Thumb Code   212  arch_rom.o(.text)
-    hash                                     0x07fc0fe5   Thumb Code    50  hash.o(.text)
-    otp_cs_store                             0x07fc1031   Thumb Code   524  otp_cs.o(.text)
-    otp_cs_load_pd_rad                       0x07fc123d   Thumb Code    94  otp_cs.o(.text)
-    otp_cs_load_pd_adpll                     0x07fc129b   Thumb Code    70  otp_cs.o(.text)
-    otp_cs_get_low_power_clock               0x07fc12e1   Thumb Code     8  otp_cs.o(.text)
-    otp_cs_get_adc_single_ge                 0x07fc12e9   Thumb Code     8  otp_cs.o(.text)
-    otp_cs_get_adc_single_offset             0x07fc12f1   Thumb Code     8  otp_cs.o(.text)
-    otp_cs_get_adc_diff_ge                   0x07fc12f9   Thumb Code     8  otp_cs.o(.text)
-    otp_cs_get_adc_diff_offset               0x07fc1301   Thumb Code     8  otp_cs.o(.text)
-    otp_cs_get_adc_trim_val                  0x07fc1309   Thumb Code     6  otp_cs.o(.text)
-    otp_cs_get_adc_offsh_ge                  0x07fc130f   Thumb Code     8  otp_cs.o(.text)
-    otp_cs_get_adc_offsh_offset              0x07fc1317   Thumb Code     8  otp_cs.o(.text)
-    otp_cs_get_adc_25_cal                    0x07fc131f   Thumb Code     6  otp_cs.o(.text)
-    otp_cs_get_xtal32m_trim_value            0x07fc1325   Thumb Code     6  otp_cs.o(.text)
-    otp_cs_get_xtal_wait_trim                0x07fc132b   Thumb Code     6  otp_cs.o(.text)
-    otp_hdr_get_bd_address                   0x07fc137d   Thumb Code    12  otp_hdr.o(.text)
-    syscntl_use_lowest_amba_clocks           0x07fc138d   Thumb Code    22  syscntl.o(.text)
-    syscntl_use_highest_amba_clocks          0x07fc13a3   Thumb Code    22  syscntl.o(.text)
-    syscntl_cfg_xtal32m_amp_reg              0x07fc13b9   Thumb Code    18  syscntl.o(.text)
-    syscntl_por_vbat_high_cfg                0x07fc13cb   Thumb Code    28  syscntl.o(.text)
-    syscntl_por_vbat_low_cfg                 0x07fc13e7   Thumb Code    30  syscntl.o(.text)
-    syscntl_dcdc_get_level                   0x07fc143f   Thumb Code    20  syscntl.o(.text)
-    syscntl_dcdc_set_level                   0x07fc1453   Thumb Code    36  syscntl.o(.text)
-    syscntl_dcdc_turn_off                    0x07fc1477   Thumb Code    74  syscntl.o(.text)
-    syscntl_dcdc_turn_on_in_boost            0x07fc14c1   Thumb Code    86  syscntl.o(.text)
-    syscntl_dcdc_turn_on_in_buck             0x07fc1517   Thumb Code    38  syscntl.o(.text)
-    GPIO_init                                0x07fc154d   Thumb Code   166  gpio.o(.text)
-    GPIO_SetPinFunction                      0x07fc15f3   Thumb Code    60  gpio.o(.text)
-    GPIO_GetPinFunction                      0x07fc162f   Thumb Code    18  gpio.o(.text)
-    GPIO_SetInactive                         0x07fc1641   Thumb Code    54  gpio.o(.text)
-    GPIO_SetActive                           0x07fc1677   Thumb Code    54  gpio.o(.text)
-    GPIO_ConfigurePin                        0x07fc16ad   Thumb Code    78  gpio.o(.text)
-    GPIO_ConfigurePinPower                   0x07fc16fb   Thumb Code    60  gpio.o(.text)
-    GPIO_GetPinStatus                        0x07fc1737   Thumb Code    60  gpio.o(.text)
-    GPIO_is_valid                            0x07fc1773   Thumb Code    28  gpio.o(.text)
-    GPIO_EnableIRQ                           0x07fc178f   Thumb Code   266  gpio.o(.text)
-    GPIO_GetIRQInputLevel                    0x07fc1899   Thumb Code   140  gpio.o(.text)
-    GPIO_SetIRQInputLevel                    0x07fc1925   Thumb Code    68  gpio.o(.text)
-    GPIO_ResetIRQ                            0x07fc1969   Thumb Code    32  gpio.o(.text)
-    GPIO_RegisterCallback                    0x07fc1989   Thumb Code    20  gpio.o(.text)
-    GPIOn_Handler                            0x07fc199d   Thumb Code    52  gpio.o(.text)
-    GPIO0_Handler                            0x07fc19d1   Thumb Code     4  gpio.o(.text)
-    GPIO1_Handler                            0x07fc19d5   Thumb Code     4  gpio.o(.text)
-    GPIO2_Handler                            0x07fc19d9   Thumb Code     4  gpio.o(.text)
-    GPIO3_Handler                            0x07fc19dd   Thumb Code     4  gpio.o(.text)
-    GPIO4_Handler                            0x07fc19e1   Thumb Code     4  gpio.o(.text)
-    GPIO_EnablePorPin                        0x07fc19e5   Thumb Code    52  gpio.o(.text)
-    GPIO_DisablePorPin                       0x07fc1a19   Thumb Code     8  gpio.o(.text)
-    GPIO_SetPorTime                          0x07fc1a21   Thumb Code    10  gpio.o(.text)
-    GPIO_GetPorTime                          0x07fc1a2b   Thumb Code    10  gpio.o(.text)
-    WKUP_QUADEC_Handler                      0x07fc1ad1   Thumb Code   142  wkupct_quadec.o(.text)
-    wkupct_enable_irq                        0x07fc1b5f   Thumb Code    74  wkupct_quadec.o(.text)
-    wkupct2_enable_irq                       0x07fc1ba9   Thumb Code    76  wkupct_quadec.o(.text)
-    wkupct_disable_irq                       0x07fc1bf5   Thumb Code    16  wkupct_quadec.o(.text)
-    wkupct2_disable_irq                      0x07fc1c05   Thumb Code    18  wkupct_quadec.o(.text)
-    wkupct_register_callback                 0x07fc1c17   Thumb Code     6  wkupct_quadec.o(.text)
-    wkupct2_register_callback                0x07fc1c1d   Thumb Code     6  wkupct_quadec.o(.text)
-    quad_decoder_register_callback           0x07fc1c23   Thumb Code     6  wkupct_quadec.o(.text)
-    quad_decoder_init                        0x07fc1c29   Thumb Code    58  wkupct_quadec.o(.text)
-    quad_decoder_disable_irq                 0x07fc1c63   Thumb Code    12  wkupct_quadec.o(.text)
-    quad_decoder_release                     0x07fc1c6f   Thumb Code    28  wkupct_quadec.o(.text)
-    quad_decoder_enable_irq                  0x07fc1c8b   Thumb Code    42  wkupct_quadec.o(.text)
-    quad_decoder_clear_irq                   0x07fc1cb5   Thumb Code    46  wkupct_quadec.o(.text)
-    adc_temp_sensor_disable                  0x07fc1d19   Thumb Code    14  adc_531.o(.text)
-    adc_temp_sensor_enable                   0x07fc1d27   Thumb Code    22  adc_531.o(.text)
-    adc_set_diff_input                       0x07fc1d3d   Thumb Code    14  adc_531.o(.text)
-    adc_set_se_input                         0x07fc1d4b   Thumb Code    16  adc_531.o(.text)
-    adc_enable                               0x07fc1e57   Thumb Code    12  adc_531.o(.text)
-    adc_init                                 0x07fc1e63   Thumb Code    54  adc_531.o(.text)
-    adc_reset                                0x07fc1e99   Thumb Code    26  adc_531.o(.text)
-    adc_input_shift_enable                   0x07fc1eb3   Thumb Code    20  adc_531.o(.text)
-    adc_input_shift_disable                  0x07fc1ec7   Thumb Code    12  adc_531.o(.text)
-    adc_input_shift_config                   0x07fc1ed3   Thumb Code    34  adc_531.o(.text)
-    adc_register_interrupt                   0x07fc1ef5   Thumb Code    40  adc_531.o(.text)
-    adc_unregister_interrupt                 0x07fc1f1d   Thumb Code    32  adc_531.o(.text)
-    adc_disable                              0x07fc1f3d   Thumb Code    12  adc_531.o(.text)
-    adc_start                                0x07fc1f49   Thumb Code    12  adc_531.o(.text)
-    adc_get_sample                           0x07fc1f55   Thumb Code    24  adc_531.o(.text)
-    adc_offset_calibrate                     0x07fc1f6d   Thumb Code   276  adc_531.o(.text)
-    ADC_Handler                              0x07fc2081   Thumb Code    18  adc_531.o(.text)
-    adc_correct_sample                       0x07fc2093   Thumb Code    36  adc_531.o(.text)
-    adc_get_temp                             0x07fc20b7   Thumb Code   102  adc_531.o(.text)
-    adc_get_temp_async                       0x07fc211d   Thumb Code    76  adc_531.o(.text)
-    init_rand_seed_from_trng                 0x07fc2205   Thumb Code   114  trng.o(.text)
-    systick_register_callback                0x07fc2289   Thumb Code     6  systick.o(.text)
-    SysTick_Handler                          0x07fc228f   Thumb Code    12  systick.o(.text)
-    systick_start                            0x07fc229b   Thumb Code    60  systick.o(.text)
-    systick_stop                             0x07fc22d7   Thumb Code    20  systick.o(.text)
-    systick_wait                             0x07fc22eb   Thumb Code    22  systick.o(.text)
-    systick_value                            0x07fc2301   Thumb Code    10  systick.o(.text)
-    UART2_Handler                            0x07fc2399   Thumb Code    10  uart.o(.text)
-    uart_enable                              0x07fc23a3   Thumb Code    48  uart.o(.text)
-    uart_disable                             0x07fc23d3   Thumb Code    52  uart.o(.text)
-    uart_baudrate_setf                       0x07fc2407   Thumb Code    50  uart.o(.text)
-    uart_register_tx_cb                      0x07fc2439   Thumb Code    22  uart.o(.text)
-    uart_register_rx_cb                      0x07fc244f   Thumb Code    22  uart.o(.text)
-    uart_register_err_cb                     0x07fc2465   Thumb Code    22  uart.o(.text)
-    uart_initialize                          0x07fc247b   Thumb Code   166  uart.o(.text)
-    uart_write_byte                          0x07fc2521   Thumb Code    14  uart.o(.text)
-    uart_write_buffer                        0x07fc252f   Thumb Code    30  uart.o(.text)
-    uart_send                                0x07fc254d   Thumb Code   112  uart.o(.text)
-    uart_wait_tx_finish                      0x07fc25bd   Thumb Code    12  uart.o(.text)
-    uart_read_byte                           0x07fc25c9   Thumb Code    14  uart.o(.text)
-    uart_read_buffer                         0x07fc25d7   Thumb Code    28  uart.o(.text)
-    uart_receive                             0x07fc25f3   Thumb Code   112  uart.o(.text)
-    uart_enable_flow_control                 0x07fc2663   Thumb Code    32  uart.o(.text)
-    uart_disable_flow_control                0x07fc2683   Thumb Code   104  uart.o(.text)
-    hw_otpc_enter_mode                       0x07fc2867   Thumb Code    76  hw_otpc_531.o(.text)
-    hw_otpc_is_dcdc_reserved                 0x07fc28b3   Thumb Code     6  hw_otpc_531.o(.text)
-    hw_otpc_clear_dcdc_reserved              0x07fc28b9   Thumb Code     8  hw_otpc_531.o(.text)
-    hw_otpc_set_speed                        0x07fc28c1   Thumb Code    28  hw_otpc_531.o(.text)
-    hw_otpc_init                             0x07fc28dd   Thumb Code    96  hw_otpc_531.o(.text)
-    hw_otpc_word_prog_and_verify             0x07fc293d   Thumb Code    86  hw_otpc_531.o(.text)
-    hw_otpc_word_read                        0x07fc2993   Thumb Code    44  hw_otpc_531.o(.text)
-    hw_otpc_prog                             0x07fc29bf   Thumb Code    74  hw_otpc_531.o(.text)
-    hw_otpc_prog_and_verify                  0x07fc2a49   Thumb Code    68  hw_otpc_531.o(.text)
-    hw_otpc_read                             0x07fc2a8d   Thumb Code    66  hw_otpc_531.o(.text)
-    hw_otpc_disable                          0x07fc2acf   Thumb Code   110  hw_otpc_531.o(.text)
-    i2c_setup_slave                          0x07fc2b59   Thumb Code    44  i2c.o(.text)
-    i2c_setup_master                         0x07fc2b85   Thumb Code    68  i2c.o(.text)
-    i2c_init                                 0x07fc2bc9   Thumb Code   204  i2c.o(.text)
-    i2c_release                              0x07fc2c95   Thumb Code    34  i2c.o(.text)
-    i2c_master_transmit_buffer_sync          0x07fc2cb7   Thumb Code   114  i2c.o(.text)
-    i2c_master_receive_buffer_sync           0x07fc2d29   Thumb Code   116  i2c.o(.text)
-    i2c_register_int                         0x07fc2d9d   Thumb Code    12  i2c.o(.text)
-    i2c_unregister_int                       0x07fc2da9   Thumb Code    18  i2c.o(.text)
-    i2c_master_transmit_buffer_async         0x07fc2e67   Thumb Code    54  i2c.o(.text)
-    i2c_master_receive_buffer_async          0x07fc2f51   Thumb Code    34  i2c.o(.text)
-    i2c_slave_receive_buffer_sync            0x07fc2f73   Thumb Code    38  i2c.o(.text)
-    i2c_slave_transmit_buffer_sync           0x07fc2f99   Thumb Code    86  i2c.o(.text)
-    i2c_slave_receive_buffer_async           0x07fc3043   Thumb Code    26  i2c.o(.text)
-    i2c_slave_transmit_buffer_async          0x07fc30e1   Thumb Code    32  i2c.o(.text)
-    I2C_Handler                              0x07fc3101   Thumb Code    28  i2c.o(.text)
-    lld_sleep_compensate_func                0x07fc3151   Thumb Code    82  rwble.o(.text)
-    power_up                                 0x07fc31a3   Thumb Code    70  rwble.o(.text)
-    BLE_WAKEUP_LP_Handler                    0x07fc31e9   Thumb Code    58  rwble.o(.text)
-    rwble_isr                                0x07fc3223   Thumb Code   224  rwble.o(.text)
-    patched_ble_regs_push                    0x07fc332d   Thumb Code    16  rwip.o(.text)
-    patched_ble_regs_pop                     0x07fc333d   Thumb Code    16  rwip.o(.text)
-    rwip_sleep                               0x07fc334d   Thumb Code   378  rwip.o(.text)
-    rf_reg_rd                                0x07fc350d   Thumb Code     4  ble_arp.o(.text)
-    rf_reg_wr                                0x07fc3511   Thumb Code     2  ble_arp.o(.text)
-    rf_init_func                             0x07fc35ad   Thumb Code   158  ble_arp.o(.text)
-    rf_reinit_func                           0x07fc364b   Thumb Code    88  ble_arp.o(.text)
-    ble_init_arp_func                        0x07fc36a3   Thumb Code    36  ble_arp.o(.text)
-    rf_recalibration                         0x07fc36c7   Thumb Code    32  ble_arp.o(.text)
-    set_recommended_settings                 0x07fc37dd   Thumb Code   410  rf_531.o(.text)
-    dcoff_calibration                        0x07fc3977   Thumb Code   258  rf_531.o(.text)
-    dis_adpll                                0x07fc3a79   Thumb Code    46  rf_531.o(.text)
-    kdtc_cal_end                             0x07fc3aa7   Thumb Code    74  rf_531.o(.text)
-    dis_kdtc_cal                             0x07fc3af1   Thumb Code    12  rf_531.o(.text)
-    en_hclk                                  0x07fc3afd   Thumb Code     8  rf_531.o(.text)
-    en_adpll_tx                              0x07fc3b05   Thumb Code    58  rf_531.o(.text)
-    dis_hclk                                 0x07fc3b3f   Thumb Code    22  rf_531.o(.text)
-    en_kdtc_cal_mod0                         0x07fc3b55   Thumb Code    22  rf_531.o(.text)
-    en_kdtc_cal_mod1                         0x07fc3b6b   Thumb Code     8  rf_531.o(.text)
-    kdtc_cal_init                            0x07fc3b73   Thumb Code   214  rf_531.o(.text)
-    kdtc_calibration                         0x07fc3c49   Thumb Code   284  rf_531.o(.text)
-    kdco_calibration                         0x07fc3d65   Thumb Code   386  rf_531.o(.text)
-    rf_calibration                           0x07fc3ee7   Thumb Code     2  rf_531.o(.text)
-    rf_power_up                              0x07fc3ee9   Thumb Code     2  rf_531.o(.text)
-    rf_power_down                            0x07fc3eeb   Thumb Code     2  rf_531.o(.text)
-    rf_adplldig_ldo_on                       0x07fc3eed   Thumb Code     8  rf_531.o(.text)
-    rf_adplldig_txmod                        0x07fc3ef5   Thumb Code    12  rf_531.o(.text)
-    kdco_cal_init                            0x07fc3f01   Thumb Code    26  rf_531.o(.text)
-    kdco_cal_end                             0x07fc3f1b   Thumb Code    20  rf_531.o(.text)
-    dis_kdco_cal                             0x07fc3f2f   Thumb Code    22  rf_531.o(.text)
-    rf_ldo_cont_mode_en                      0x07fc3f45   Thumb Code    78  rf_531.o(.text)
-    rf_adplldig_activate                     0x07fc3f93   Thumb Code    38  rf_531.o(.text)
-    rf_adplldig_deactivate                   0x07fc3fb9   Thumb Code    12  rf_531.o(.text)
-    rf_pa_pwr_set                            0x07fc3fc5   Thumb Code     6  rf_531.o(.text)
-    rf_pa_pwr_get                            0x07fc3fcb   Thumb Code     6  rf_531.o(.text)
-    rf_nfm_is_enabled                        0x07fc3fd1   Thumb Code     6  rf_531.o(.text)
-    rf_nfm_enable                            0x07fc3fd7   Thumb Code    24  rf_531.o(.text)
-    rf_nfm_disable                           0x07fc3fef   Thumb Code    18  rf_531.o(.text)
-    prf_init_func                            0x07fc4145   Thumb Code    96  prf.o(.text)
-    prf_create_func                          0x07fc41a5   Thumb Code    54  prf.o(.text)
-    default_advertise_operation              0x07fc41e5   Thumb Code     8  app_default_handlers.o(.text)
-    default_app_on_init                      0x07fc41ed   Thumb Code    18  app_default_handlers.o(.text)
-    default_app_on_connection                0x07fc41ff   Thumb Code    28  app_default_handlers.o(.text)
-    default_app_on_disconnect                0x07fc421b   Thumb Code     8  app_default_handlers.o(.text)
-    default_app_on_set_dev_config_complete   0x07fc4223   Thumb Code    16  app_default_handlers.o(.text)
-    default_app_on_db_init_complete          0x07fc4233   Thumb Code     8  app_default_handlers.o(.text)
-    default_app_on_get_dev_name              0x07fc423b   Thumb Code    18  app_default_handlers.o(.text)
-    default_app_on_get_dev_appearance        0x07fc424d   Thumb Code     8  app_default_handlers.o(.text)
-    default_app_on_get_dev_slv_pref_params   0x07fc4255   Thumb Code    18  app_default_handlers.o(.text)
-    default_app_on_set_dev_info              0x07fc4267   Thumb Code    46  app_default_handlers.o(.text)
-    default_app_update_params_request        0x07fc4295   Thumb Code    12  app_default_handlers.o(.text)
-    default_app_generate_static_random_addr  0x07fc42a1   Thumb Code    48  app_default_handlers.o(.text)
-    default_app_generate_unique_static_random_addr 0x07fc42d1   Thumb Code   126  app_default_handlers.o(.text)
-    default_app_on_pairing_request           0x07fc434f   Thumb Code     8  app_default_handlers.o(.text)
-    default_app_on_tk_exch                   0x07fc4357   Thumb Code    48  app_default_handlers.o(.text)
-    default_app_on_csrk_exch                 0x07fc4387   Thumb Code     8  app_default_handlers.o(.text)
-    default_app_on_ltk_exch                  0x07fc438f   Thumb Code    24  app_default_handlers.o(.text)
-    default_app_on_encrypt_req_ind           0x07fc43a7   Thumb Code    46  app_default_handlers.o(.text)
-    default_app_on_pairing_succeeded         0x07fc43d5   Thumb Code    24  app_default_handlers.o(.text)
-    default_app_on_addr_solved_ind           0x07fc43ed   Thumb Code    48  app_default_handlers.o(.text)
-    default_app_on_addr_resolve_failed       0x07fc441d   Thumb Code     8  app_default_handlers.o(.text)
-    default_app_on_ral_cmp_evt               0x07fc4425   Thumb Code    16  app_default_handlers.o(.text)
-    app_db_init_next                         0x07fc4479   Thumb Code   164  app.o(.text)
-    app_prf_enable                           0x07fc451d   Thumb Code   136  app.o(.text)
-    app_init                                 0x07fc47bb   Thumb Code    72  app.o(.text)
-    app_easy_gap_undirected_advertise_get_active 0x07fc4803   Thumb Code     2  app.o(.text)
-    app_easy_gap_undirected_advertise_start  0x07fc4805   Thumb Code    26  app.o(.text)
-    app_easy_gap_directed_advertise_get_active 0x07fc481f   Thumb Code     2  app.o(.text)
-    app_easy_gap_directed_advertise_start    0x07fc4821   Thumb Code   100  app.o(.text)
-    app_easy_gap_non_connectable_advertise_get_active 0x07fc4885   Thumb Code     2  app.o(.text)
-    app_easy_gap_non_connectable_advertise_start 0x07fc4887   Thumb Code    36  app.o(.text)
-    app_easy_gap_undirected_advertise_with_timeout_start 0x07fc48ab   Thumb Code    40  app.o(.text)
-    app_easy_gap_advertise_with_timeout_stop 0x07fc48d3   Thumb Code    22  app.o(.text)
-    app_easy_gap_param_update_get_active     0x07fc48e9   Thumb Code     2  app.o(.text)
-    app_easy_gap_param_update_start          0x07fc48eb   Thumb Code    24  app.o(.text)
-    app_easy_gap_start_connection_to_get_active 0x07fc4903   Thumb Code     2  app.o(.text)
-    app_easy_gap_start_connection_to_set     0x07fc4905   Thumb Code    38  app.o(.text)
-    app_easy_gap_start_connection_to         0x07fc492b   Thumb Code    18  app.o(.text)
-    app_easy_gap_dev_config_get_active       0x07fc493d   Thumb Code     2  app.o(.text)
-    app_easy_gap_dev_configure               0x07fc493f   Thumb Code    18  app.o(.text)
-    app_easy_gap_get_peer_features           0x07fc4951   Thumb Code    26  app.o(.text)
-    app_gap_process_handler                  0x07fc4b4f   Thumb Code    24  app_task.o(.text)
-    app_sec_gen_tk                           0x07fc4b7d   Thumb Code    18  app_security.o(.text)
-    app_sec_gen_ltk                          0x07fc4b8f   Thumb Code    54  app_security.o(.text)
-    app_sec_gen_csrk                         0x07fc4bc5   Thumb Code    32  app_security.o(.text)
-    app_sec_process_handler                  0x07fc4d01   Thumb Code    24  app_security_task.o(.text)
-    app_dis_init                             0x07fc4d25   Thumb Code     2  app_diss.o(.text)
-    app_diss_create_db                       0x07fc4d27   Thumb Code    54  app_diss.o(.text)
-    app_diss_process_handler                 0x07fc4dd5   Thumb Code    24  app_diss_task.o(.text)
-    app_check_BLE_active                     0x07fc4e41   Thumb Code    36  app_msg_utils.o(.text)
-    app_msg_send_wakeup_ble                  0x07fc4e65   Thumb Code    24  app_msg_utils.o(.text)
-    app_easy_msg_free_callback               0x07fc4e81   Thumb Code    30  app_easy_msg_utils.o(.text)
-    app_easy_msg_set                         0x07fc4e9f   Thumb Code    38  app_easy_msg_utils.o(.text)
-    app_easy_msg_modify                      0x07fc4ec5   Thumb Code    30  app_easy_msg_utils.o(.text)
-    app_easy_wakeup_set                      0x07fc4ee3   Thumb Code    30  app_easy_msg_utils.o(.text)
-    app_easy_wakeup_free                     0x07fc4f01   Thumb Code    18  app_easy_msg_utils.o(.text)
-    app_easy_wakeup                          0x07fc4f13   Thumb Code    22  app_easy_msg_utils.o(.text)
-    app_msg_utils_api_process_handler        0x07fc4f29   Thumb Code    52  app_easy_msg_utils.o(.text)
-    app_easy_security_pairing_rsp_get_active 0x07fc4fb3   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_send_pairing_rsp       0x07fc4fb5   Thumb Code    22  app_easy_security.o(.text)
-    app_easy_security_tk_get_active          0x07fc4ff3   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_tk_exch                0x07fc4ff5   Thumb Code    58  app_easy_security.o(.text)
-    app_easy_security_csrk_get_active        0x07fc5075   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_csrk_exch              0x07fc5077   Thumb Code    24  app_easy_security.o(.text)
-    app_easy_security_ltk_exch_get_active    0x07fc50bb   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_ltk_exch               0x07fc50bd   Thumb Code    24  app_easy_security.o(.text)
-    app_easy_security_set_ltk_exch_from_sec_env 0x07fc50d5   Thumb Code    52  app_easy_security.o(.text)
-    app_easy_security_set_ltk_exch           0x07fc5109   Thumb Code    42  app_easy_security.o(.text)
-    app_easy_security_encrypt_cfm            0x07fc5159   Thumb Code    24  app_easy_security.o(.text)
-    app_easy_security_encrypt_cfm_get_active 0x07fc5171   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_set_encrypt_req_valid  0x07fc5173   Thumb Code    36  app_easy_security.o(.text)
-    app_easy_security_set_encrypt_req_invalid 0x07fc5197   Thumb Code    12  app_easy_security.o(.text)
-    app_easy_security_request_get_active     0x07fc51a3   Thumb Code    46  app_easy_security.o(.text)
-    app_easy_security_request                0x07fc51d1   Thumb Code    24  app_easy_security.o(.text)
-    app_easy_security_accept_encryption      0x07fc51e9   Thumb Code    38  app_easy_security.o(.text)
-    app_easy_security_reject_encryption      0x07fc520f   Thumb Code    22  app_easy_security.o(.text)
-    app_easy_security_bdb_get_stored_irks    0x07fc5225   Thumb Code     4  app_easy_security.o(.text)
-    app_easy_security_bdb_get_number_of_stored_irks 0x07fc5229   Thumb Code     4  app_easy_security.o(.text)
-    app_easy_security_resolve_bdaddr         0x07fc522d   Thumb Code     4  app_easy_security.o(.text)
-    app_easy_security_ral_op                 0x07fc5231   Thumb Code    66  app_easy_security.o(.text)
-    app_easy_security_bdb_init               0x07fc5273   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_bdb_get_size           0x07fc5275   Thumb Code     4  app_easy_security.o(.text)
-    app_easy_security_bdb_add_entry          0x07fc5279   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_bdb_remove_entry       0x07fc527b   Thumb Code     2  app_easy_security.o(.text)
-    app_easy_security_bdb_search_entry       0x07fc527d   Thumb Code     4  app_easy_security.o(.text)
-    app_easy_security_bdb_get_device_info_from_slot 0x07fc5281   Thumb Code     4  app_easy_security.o(.text)
-    app_easy_security_ral_sync_with_bdb      0x07fc5285   Thumb Code     2  app_easy_security.o(.text)
-    app_timer_api_process_handler            0x07fc52d5   Thumb Code   172  app_easy_timer.o(.text)
-    app_easy_timer                           0x07fc5381   Thumb Code    62  app_easy_timer.o(.text)
-    app_easy_timer_cancel                    0x07fc53bf   Thumb Code    70  app_easy_timer.o(.text)
-    app_easy_timer_modify                    0x07fc5405   Thumb Code   100  app_easy_timer.o(.text)
-    app_easy_timer_cancel_all                0x07fc5469   Thumb Code    38  app_easy_timer.o(.text)
-    custs_get_func_callbacks                 0x07fc54f9   Thumb Code    34  app_customs.o(.text)
-    app_custs1_init                          0x07fc551b   Thumb Code     2  app_customs.o(.text)
-    app_custs1_create_db                     0x07fc551d   Thumb Code    54  app_customs.o(.text)
-    app_custs1_process_handler               0x07fc555d   Thumb Code    24  app_customs_task.o(.text)
-    app_get_address_type                     0x07fc5575   Thumb Code    20  app_utils.o(.text)
-    app_fill_random_byte_array               0x07fc5589   Thumb Code    12  app_utils.o(.text)
-    GPIO_reservations                        0x07fc5595   Thumb Code   152  user_periph_setup.o(.text)
-    set_pad_functions                        0x07fc562d   Thumb Code    70  user_periph_setup.o(.text)
-    periph_init                              0x07fc5673   Thumb Code    30  user_periph_setup.o(.text)
-    control_LED                              0x07fc57d9   Thumb Code    26  user_empty_peripheral_template.o(.text)
-    user_on_connection                       0x07fc57f3   Thumb Code    64  user_empty_peripheral_template.o(.text)
-    user_on_disconnect                       0x07fc5833   Thumb Code    18  user_empty_peripheral_template.o(.text)
-    user_get_bdaddr                          0x07fc5845   Thumb Code    20  user_empty_peripheral_template.o(.text)
-    user_advertise_operation                 0x07fc5859   Thumb Code    86  user_empty_peripheral_template.o(.text)
-    user_catch_rest_hndl                     0x07fc58af   Thumb Code   170  user_empty_peripheral_template.o(.text)
-    user_svc1_read_lc_val_handler            0x07fc5991   Thumb Code    80  user_custs1_impl.o(.text)
-    user_svc1_read_lc_base_val_handler       0x07fc59e1   Thumb Code    68  user_custs1_impl.o(.text)
-    user_svc1_read_lc_max_val_handler        0x07fc5a25   Thumb Code    68  user_custs1_impl.o(.text)
-    user_svc1_read_lc_num_vals_handler       0x07fc5a69   Thumb Code    68  user_custs1_impl.o(.text)
-    user_svc1_read_lc_ts_handler             0x07fc5aad   Thumb Code    80  user_custs1_impl.o(.text)
-    new_load_cell                            0x07fc5b1d   Thumb Code    64  user_hx711.o(.text)
-    set_calibrate_lc                         0x07fc5b5d   Thumb Code    12  user_hx711.o(.text)
-    JT_lld_test_mode_rx_func                 0x07fc5b6d   Thumb Code   142  patch.o(.text)
-    JT_l2cc_pdu_unpack_func                  0x07fc5bfb   Thumb Code   786  patch.o(.text)
-    JT_l2cc_pdu_recv_ind_handler_func        0x07fc5f0d   Thumb Code    72  patch.o(.text)
-    PATCHED_llm_con_req_ind                  0x07fc5f55   Thumb Code   816  patch.o(.text)
-    PATCHED_smpc_recv_public_key_exchange_pdu 0x07fc6395   Thumb Code   106  patch.o(.text)
-    PATCHED_llc_data_ind_handler             0x07fc63ff   Thumb Code   176  patch.o(.text)
-    PATCHED_llcp_length_req_handler          0x07fc64af   Thumb Code   118  patch.o(.text)
-    PATCHED_llcp_length_rsp_handler          0x07fc6525   Thumb Code   134  patch.o(.text)
-    JT_llc_le_length_effective_func          0x07fc65ab   Thumb Code   188  patch.o(.text)
-    lld_drop_packet_fix                      0x07fc6667   Thumb Code    64  patch.o(.text)
-    PATCHED_lld_data_ind_handler             0x07fc66a7   Thumb Code    58  patch.o(.text)
-    patch_func                               0x07fc66e1   Thumb Code    44  patch.o(.text)
-    patch_global_vars_init                   0x07fc670d   Thumb Code     2  patch.o(.text)
-    __scatterload                            0x07fc673d   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x07fc673d   Thumb Code     0  init.o(.text)
-    __ARM_common_ll_muluu                    0x07fc6761   Thumb Code    48  arch_system.o(i.__ARM_common_ll_muluu)
-    __scatterload_copy                       0x07fc6791   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x07fc679f   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x07fc67a1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    malloc                                   0x07fc67b1   Thumb Code    92  malloc.o(i.malloc)
-    rom_nvds_cfg                             0x07fc682c   Data           8  nvds.o(.constdata)
-    rom_func_addr_table_var                  0x07fc6834   Data         380  jump_table.o(.constdata)
-    rom_cfg_table_var                        0x07fc69b0   Data         236  jump_table.o(.constdata)
-    my_custom_msg_handlers                   0x07fc6aac   Data          40  arch_rom.o(.constdata)
-    arp_init_table                           0x07fc6b34   Data         112  ble_arp.o(.constdata)
-    rom_cust_prf_cfg                         0x07fc6ba4   Data          16  custs1.o(.constdata)
-    custs1_default_state                     0x07fc6bb4   Data          72  custs1_task.o(.constdata)
-    custs1_default_handler                   0x07fc6bfc   Data           8  custs1_task.o(.constdata)
-    prf_if                                   0x07fc6c04   Data          24  prf.o(.constdata)
-    rom_prf_cfg                              0x07fc6c1c   Data          12  prf.o(.constdata)
-    prf_funcs                                0x07fc6c70   Data          24  app.o(.constdata)
-    app_process_handlers                     0x07fc6de0   Data          28  app_entry_point.o(.constdata)
-    rom_app_task_cfg                         0x07fc6dfc   Data          32  app_entry_point.o(.constdata)
-    cust_prf_funcs                           0x07fc6e24   Data          56  user_custs_config.o(.constdata)
-    custs1_services                          0x07fc6ee4   Data           2  user_custs1_def.o(.constdata)
-    custs1_services_size                     0x07fc6ee6   Data           1  user_custs1_def.o(.constdata)
-    custs1_att_db                            0x07fc6ee8   Data         460  user_custs1_def.o(.constdata)
-    Region$$Table$$Base                      0x07fc7184   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x07fc71a4   Number         0  anon$$obj.o(Region$$Table)
-    SystemCoreClock                          0x07fc71a4   Data           4  system_da14531.o(.data)
-    startup_sleep_delay                      0x07fc71a8   Data           4  arch_system.o(.data)
-    pa_en_dcf_tx_setting                     0x07fc71ac   Data           1  rf_531.o(.data)
-    baseline                                 0x07fc71b0   Data           4  user_empty_peripheral_template.o(.data)
-    __microlib_freelist                      0x07fc71b4   Data           4  mvars.o(.data)
-    __microlib_freelist_initialised          0x07fc71b8   Data           4  mvars.o(.data)
-    otp_hdr_timestamp                        0x07fc71c0   Data           4  arch_system.o(.bss)
-    twirq_set_value                          0x07fc71c4   Data           4  arch_system.o(.bss)
-    twirq_reset_value                        0x07fc71c8   Data           4  arch_system.o(.bss)
-    syscntl_dcdc_state                       0x07fc71d0   Data           2  syscntl.o(.bss)
-    twext_value                              0x07fc7218   Data           4  rwip.o(.bss)
-    calibration_res                          0x07fc7220   Data          42  rf_531.o(.bss)
-    systick_initialized                      0x07fc724c   Data           1  user_empty_peripheral_template.o(.bss)
-    baseline_set                             0x07fc724d   Data           1  user_empty_peripheral_template.o(.bss)
-    val_ready                                0x07fc724e   Data           1  user_empty_peripheral_template.o(.bss)
-    clock_count                              0x07fc7250   Data           4  user_empty_peripheral_template.o(.bss)
-    prep_count                               0x07fc7254   Data           4  user_empty_peripheral_template.o(.bss)
-    wait_count                               0x07fc7258   Data           4  user_empty_peripheral_template.o(.bss)
-    num_reads                                0x07fc725c   Data           4  user_empty_peripheral_template.o(.bss)
-    temp_load                                0x07fc7260   Data           4  user_empty_peripheral_template.o(.bss)
-    load                                     0x07fc7264   Data           4  user_empty_peripheral_template.o(.bss)
-    new_max_val_read_count                   0x07fc7268   Data           4  user_empty_peripheral_template.o(.bss)
-    num_vals_lc                              0x07fc726c   Data           4  user_empty_peripheral_template.o(.bss)
-    num_vals_ts                              0x07fc7270   Data           4  user_empty_peripheral_template.o(.bss)
-    usec_update_counter                      0x07fc7274   Data           4  user_empty_peripheral_template.o(.bss)
-    sec_timestamp_counter                    0x07fc7278   Data           4  user_empty_peripheral_template.o(.bss)
-    sec_timestamp                            0x07fc727c   Data           4  user_empty_peripheral_template.o(.bss)
-    load_cell_2kg_p                          0x07fc7280   Data           4  user_empty_peripheral_template.o(.bss)
-    new_load                                 0x07fc7284   Data           4  user_empty_peripheral_template.o(.bss)
-    new_max_val                              0x07fc7288   Data           4  user_empty_peripheral_template.o(.bss)
-    load_array                               0x07fc728c   Data         200  user_empty_peripheral_template.o(.bss)
-    timestamp_array                          0x07fc7354   Data         200  user_empty_peripheral_template.o(.bss)
-    __heap_base                              0x07fc7420   Data           0  startup_da14531.o(HEAP)
-    __heap_limit                             0x07fc7520   Data           0  startup_da14531.o(HEAP)
-    __initial_sp                             0x07fc7b20   Data           0  startup_da14531.o(STACK)
-    heap_mem_area_not_ret$$Base              0x07fc7b20   Number         0  jump_table.o(heap_mem_area_not_ret)
-    rwip_heap_non_ret                        0x07fc7b20   Data        1036  jump_table.o(heap_mem_area_not_ret)
+    app_use_lower_clocks_check               0x07fc0b21   Thumb Code     4  arch_system.o(.text)
+    lld_sleep_init_func                      0x07fc0b25   Thumb Code    26  arch_system.o(.text)
+    set_xtal32m_trim_value                   0x07fc0b3f   Thumb Code    82  arch_system.o(.text)
+    system_init                              0x07fc0b91   Thumb Code   598  arch_system.o(.text)
+    arch_rom_init                            0x07fc0dfd   Thumb Code   212  arch_rom.o(.text)
+    otp_cs_store                             0x07fc0f59   Thumb Code   524  otp_cs.o(.text)
+    otp_cs_load_pd_rad                       0x07fc1165   Thumb Code    94  otp_cs.o(.text)
+    otp_cs_load_pd_adpll                     0x07fc11c3   Thumb Code    70  otp_cs.o(.text)
+    otp_cs_get_low_power_clock               0x07fc1209   Thumb Code     8  otp_cs.o(.text)
+    otp_cs_get_adc_single_ge                 0x07fc1211   Thumb Code     8  otp_cs.o(.text)
+    otp_cs_get_adc_single_offset             0x07fc1219   Thumb Code     8  otp_cs.o(.text)
+    otp_cs_get_adc_diff_ge                   0x07fc1221   Thumb Code     8  otp_cs.o(.text)
+    otp_cs_get_adc_diff_offset               0x07fc1229   Thumb Code     8  otp_cs.o(.text)
+    otp_cs_get_adc_trim_val                  0x07fc1231   Thumb Code     6  otp_cs.o(.text)
+    otp_cs_get_adc_offsh_ge                  0x07fc1237   Thumb Code     8  otp_cs.o(.text)
+    otp_cs_get_adc_offsh_offset              0x07fc123f   Thumb Code     8  otp_cs.o(.text)
+    otp_cs_get_adc_25_cal                    0x07fc1247   Thumb Code     6  otp_cs.o(.text)
+    otp_cs_get_xtal32m_trim_value            0x07fc124d   Thumb Code     6  otp_cs.o(.text)
+    otp_cs_get_xtal_wait_trim                0x07fc1253   Thumb Code     6  otp_cs.o(.text)
+    otp_hdr_get_bd_address                   0x07fc12a5   Thumb Code    12  otp_hdr.o(.text)
+    syscntl_use_lowest_amba_clocks           0x07fc12b5   Thumb Code    22  syscntl.o(.text)
+    syscntl_use_highest_amba_clocks          0x07fc12cb   Thumb Code    22  syscntl.o(.text)
+    syscntl_cfg_xtal32m_amp_reg              0x07fc12e1   Thumb Code    18  syscntl.o(.text)
+    syscntl_por_vbat_high_cfg                0x07fc12f3   Thumb Code    28  syscntl.o(.text)
+    syscntl_por_vbat_low_cfg                 0x07fc130f   Thumb Code    30  syscntl.o(.text)
+    syscntl_dcdc_get_level                   0x07fc1367   Thumb Code    20  syscntl.o(.text)
+    syscntl_dcdc_set_level                   0x07fc137b   Thumb Code    36  syscntl.o(.text)
+    syscntl_dcdc_turn_off                    0x07fc139f   Thumb Code    74  syscntl.o(.text)
+    syscntl_dcdc_turn_on_in_boost            0x07fc13e9   Thumb Code    86  syscntl.o(.text)
+    syscntl_dcdc_turn_on_in_buck             0x07fc143f   Thumb Code    38  syscntl.o(.text)
+    GPIO_init                                0x07fc1475   Thumb Code   166  gpio.o(.text)
+    GPIO_SetPinFunction                      0x07fc151b   Thumb Code    60  gpio.o(.text)
+    GPIO_SetInactive                         0x07fc1557   Thumb Code    54  gpio.o(.text)
+    GPIO_SetActive                           0x07fc158d   Thumb Code    54  gpio.o(.text)
+    GPIO_ConfigurePin                        0x07fc15c3   Thumb Code    78  gpio.o(.text)
+    GPIO_GetPinStatus                        0x07fc1611   Thumb Code    60  gpio.o(.text)
+    GPIO_ResetIRQ                            0x07fc164d   Thumb Code    32  gpio.o(.text)
+    GPIOn_Handler                            0x07fc166d   Thumb Code    54  gpio.o(.text)
+    GPIO0_Handler                            0x07fc16a3   Thumb Code     4  gpio.o(.text)
+    GPIO1_Handler                            0x07fc16a7   Thumb Code     4  gpio.o(.text)
+    GPIO2_Handler                            0x07fc16ab   Thumb Code     4  gpio.o(.text)
+    GPIO3_Handler                            0x07fc16af   Thumb Code     4  gpio.o(.text)
+    GPIO4_Handler                            0x07fc16b3   Thumb Code     4  gpio.o(.text)
+    WKUP_QUADEC_Handler                      0x07fc1759   Thumb Code   142  wkupct_quadec.o(.text)
+    wkupct_enable_irq                        0x07fc17e7   Thumb Code    74  wkupct_quadec.o(.text)
+    wkupct2_enable_irq                       0x07fc1831   Thumb Code    76  wkupct_quadec.o(.text)
+    wkupct_disable_irq                       0x07fc187d   Thumb Code    16  wkupct_quadec.o(.text)
+    wkupct2_disable_irq                      0x07fc188d   Thumb Code    18  wkupct_quadec.o(.text)
+    wkupct_register_callback                 0x07fc189f   Thumb Code     6  wkupct_quadec.o(.text)
+    wkupct2_register_callback                0x07fc18a5   Thumb Code     6  wkupct_quadec.o(.text)
+    quad_decoder_register_callback           0x07fc18ab   Thumb Code     6  wkupct_quadec.o(.text)
+    quad_decoder_init                        0x07fc18b1   Thumb Code    58  wkupct_quadec.o(.text)
+    quad_decoder_disable_irq                 0x07fc18eb   Thumb Code    12  wkupct_quadec.o(.text)
+    quad_decoder_release                     0x07fc18f7   Thumb Code    28  wkupct_quadec.o(.text)
+    quad_decoder_enable_irq                  0x07fc1913   Thumb Code    42  wkupct_quadec.o(.text)
+    quad_decoder_clear_irq                   0x07fc193d   Thumb Code    46  wkupct_quadec.o(.text)
+    adc_temp_sensor_disable                  0x07fc19a1   Thumb Code    14  adc_531.o(.text)
+    adc_temp_sensor_enable                   0x07fc19af   Thumb Code    22  adc_531.o(.text)
+    adc_set_diff_input                       0x07fc19c5   Thumb Code    14  adc_531.o(.text)
+    adc_set_se_input                         0x07fc19d3   Thumb Code    16  adc_531.o(.text)
+    adc_enable                               0x07fc1adf   Thumb Code    12  adc_531.o(.text)
+    adc_init                                 0x07fc1aeb   Thumb Code    54  adc_531.o(.text)
+    adc_reset                                0x07fc1b21   Thumb Code    26  adc_531.o(.text)
+    adc_input_shift_enable                   0x07fc1b3b   Thumb Code    20  adc_531.o(.text)
+    adc_input_shift_disable                  0x07fc1b4f   Thumb Code    12  adc_531.o(.text)
+    adc_input_shift_config                   0x07fc1b5b   Thumb Code    34  adc_531.o(.text)
+    adc_register_interrupt                   0x07fc1b7d   Thumb Code    40  adc_531.o(.text)
+    adc_unregister_interrupt                 0x07fc1ba5   Thumb Code    32  adc_531.o(.text)
+    adc_disable                              0x07fc1bc5   Thumb Code    12  adc_531.o(.text)
+    adc_start                                0x07fc1bd1   Thumb Code    12  adc_531.o(.text)
+    adc_get_sample                           0x07fc1bdd   Thumb Code    24  adc_531.o(.text)
+    adc_offset_calibrate                     0x07fc1bf5   Thumb Code   276  adc_531.o(.text)
+    ADC_Handler                              0x07fc1d09   Thumb Code    18  adc_531.o(.text)
+    adc_correct_sample                       0x07fc1d1b   Thumb Code    36  adc_531.o(.text)
+    adc_get_temp                             0x07fc1d3f   Thumb Code   102  adc_531.o(.text)
+    adc_get_temp_async                       0x07fc1da5   Thumb Code    76  adc_531.o(.text)
+    init_rand_seed_from_trng                 0x07fc1e8d   Thumb Code   114  trng.o(.text)
+    systick_register_callback                0x07fc1f11   Thumb Code     6  systick.o(.text)
+    SysTick_Handler                          0x07fc1f17   Thumb Code    12  systick.o(.text)
+    systick_start                            0x07fc1f23   Thumb Code    60  systick.o(.text)
+    systick_stop                             0x07fc1f5f   Thumb Code    20  systick.o(.text)
+    systick_wait                             0x07fc1f73   Thumb Code    22  systick.o(.text)
+    systick_value                            0x07fc1f89   Thumb Code    10  systick.o(.text)
+    UART2_Handler                            0x07fc2021   Thumb Code    10  uart.o(.text)
+    uart_enable                              0x07fc202b   Thumb Code    48  uart.o(.text)
+    uart_disable                             0x07fc205b   Thumb Code    52  uart.o(.text)
+    uart_baudrate_setf                       0x07fc208f   Thumb Code    50  uart.o(.text)
+    uart_register_tx_cb                      0x07fc20c1   Thumb Code    22  uart.o(.text)
+    uart_register_rx_cb                      0x07fc20d7   Thumb Code    22  uart.o(.text)
+    uart_register_err_cb                     0x07fc20ed   Thumb Code    22  uart.o(.text)
+    uart_initialize                          0x07fc2103   Thumb Code   166  uart.o(.text)
+    uart_write_byte                          0x07fc21a9   Thumb Code    14  uart.o(.text)
+    uart_write_buffer                        0x07fc21b7   Thumb Code    30  uart.o(.text)
+    uart_send                                0x07fc21d5   Thumb Code   112  uart.o(.text)
+    uart_wait_tx_finish                      0x07fc2245   Thumb Code    12  uart.o(.text)
+    uart_read_byte                           0x07fc2251   Thumb Code    14  uart.o(.text)
+    uart_read_buffer                         0x07fc225f   Thumb Code    28  uart.o(.text)
+    uart_receive                             0x07fc227b   Thumb Code   112  uart.o(.text)
+    uart_enable_flow_control                 0x07fc22eb   Thumb Code    32  uart.o(.text)
+    uart_disable_flow_control                0x07fc230b   Thumb Code   104  uart.o(.text)
+    hw_otpc_enter_mode                       0x07fc24ef   Thumb Code    76  hw_otpc_531.o(.text)
+    hw_otpc_is_dcdc_reserved                 0x07fc253b   Thumb Code     6  hw_otpc_531.o(.text)
+    hw_otpc_clear_dcdc_reserved              0x07fc2541   Thumb Code     8  hw_otpc_531.o(.text)
+    hw_otpc_set_speed                        0x07fc2549   Thumb Code    28  hw_otpc_531.o(.text)
+    hw_otpc_init                             0x07fc2565   Thumb Code    96  hw_otpc_531.o(.text)
+    hw_otpc_word_prog_and_verify             0x07fc25c5   Thumb Code    86  hw_otpc_531.o(.text)
+    hw_otpc_word_read                        0x07fc261b   Thumb Code    44  hw_otpc_531.o(.text)
+    hw_otpc_prog                             0x07fc2647   Thumb Code    74  hw_otpc_531.o(.text)
+    hw_otpc_prog_and_verify                  0x07fc26d1   Thumb Code    68  hw_otpc_531.o(.text)
+    hw_otpc_read                             0x07fc2715   Thumb Code    66  hw_otpc_531.o(.text)
+    hw_otpc_disable                          0x07fc2757   Thumb Code   110  hw_otpc_531.o(.text)
+    i2c_setup_slave                          0x07fc27e1   Thumb Code    44  i2c.o(.text)
+    i2c_setup_master                         0x07fc280d   Thumb Code    68  i2c.o(.text)
+    i2c_init                                 0x07fc2851   Thumb Code   204  i2c.o(.text)
+    i2c_release                              0x07fc291d   Thumb Code    34  i2c.o(.text)
+    i2c_master_transmit_buffer_sync          0x07fc293f   Thumb Code   114  i2c.o(.text)
+    i2c_master_receive_buffer_sync           0x07fc29b1   Thumb Code   116  i2c.o(.text)
+    i2c_register_int                         0x07fc2a25   Thumb Code    12  i2c.o(.text)
+    i2c_unregister_int                       0x07fc2a31   Thumb Code    18  i2c.o(.text)
+    i2c_master_transmit_buffer_async         0x07fc2aef   Thumb Code    54  i2c.o(.text)
+    i2c_master_receive_buffer_async          0x07fc2bd9   Thumb Code    34  i2c.o(.text)
+    i2c_slave_receive_buffer_sync            0x07fc2bfb   Thumb Code    38  i2c.o(.text)
+    i2c_slave_transmit_buffer_sync           0x07fc2c21   Thumb Code    86  i2c.o(.text)
+    i2c_slave_receive_buffer_async           0x07fc2ccb   Thumb Code    26  i2c.o(.text)
+    i2c_slave_transmit_buffer_async          0x07fc2d69   Thumb Code    32  i2c.o(.text)
+    I2C_Handler                              0x07fc2d89   Thumb Code    28  i2c.o(.text)
+    lld_sleep_compensate_func                0x07fc2dd9   Thumb Code    82  rwble.o(.text)
+    power_up                                 0x07fc2e2b   Thumb Code    70  rwble.o(.text)
+    BLE_WAKEUP_LP_Handler                    0x07fc2e71   Thumb Code    58  rwble.o(.text)
+    rwble_isr                                0x07fc2eab   Thumb Code   224  rwble.o(.text)
+    patched_ble_regs_push                    0x07fc2fb5   Thumb Code    16  rwip.o(.text)
+    patched_ble_regs_pop                     0x07fc2fc5   Thumb Code    16  rwip.o(.text)
+    rwip_sleep                               0x07fc2fd5   Thumb Code   378  rwip.o(.text)
+    rf_reg_rd                                0x07fc3195   Thumb Code     4  ble_arp.o(.text)
+    rf_reg_wr                                0x07fc3199   Thumb Code     2  ble_arp.o(.text)
+    rf_init_func                             0x07fc3235   Thumb Code   158  ble_arp.o(.text)
+    rf_reinit_func                           0x07fc32d3   Thumb Code    88  ble_arp.o(.text)
+    ble_init_arp_func                        0x07fc332b   Thumb Code    36  ble_arp.o(.text)
+    rf_recalibration                         0x07fc334f   Thumb Code    32  ble_arp.o(.text)
+    set_recommended_settings                 0x07fc3465   Thumb Code   410  rf_531.o(.text)
+    dcoff_calibration                        0x07fc35ff   Thumb Code   258  rf_531.o(.text)
+    dis_adpll                                0x07fc3701   Thumb Code    46  rf_531.o(.text)
+    kdtc_cal_end                             0x07fc372f   Thumb Code    74  rf_531.o(.text)
+    dis_kdtc_cal                             0x07fc3779   Thumb Code    12  rf_531.o(.text)
+    en_hclk                                  0x07fc3785   Thumb Code     8  rf_531.o(.text)
+    en_adpll_tx                              0x07fc378d   Thumb Code    58  rf_531.o(.text)
+    dis_hclk                                 0x07fc37c7   Thumb Code    22  rf_531.o(.text)
+    en_kdtc_cal_mod0                         0x07fc37dd   Thumb Code    22  rf_531.o(.text)
+    en_kdtc_cal_mod1                         0x07fc37f3   Thumb Code     8  rf_531.o(.text)
+    kdtc_cal_init                            0x07fc37fb   Thumb Code   214  rf_531.o(.text)
+    kdtc_calibration                         0x07fc38d1   Thumb Code   284  rf_531.o(.text)
+    kdco_calibration                         0x07fc39ed   Thumb Code   386  rf_531.o(.text)
+    rf_calibration                           0x07fc3b6f   Thumb Code     2  rf_531.o(.text)
+    rf_power_up                              0x07fc3b71   Thumb Code     2  rf_531.o(.text)
+    rf_power_down                            0x07fc3b73   Thumb Code     2  rf_531.o(.text)
+    rf_adplldig_ldo_on                       0x07fc3b75   Thumb Code     8  rf_531.o(.text)
+    rf_adplldig_txmod                        0x07fc3b7d   Thumb Code    12  rf_531.o(.text)
+    kdco_cal_init                            0x07fc3b89   Thumb Code    26  rf_531.o(.text)
+    kdco_cal_end                             0x07fc3ba3   Thumb Code    20  rf_531.o(.text)
+    dis_kdco_cal                             0x07fc3bb7   Thumb Code    22  rf_531.o(.text)
+    rf_ldo_cont_mode_en                      0x07fc3bcd   Thumb Code    78  rf_531.o(.text)
+    rf_adplldig_activate                     0x07fc3c1b   Thumb Code    38  rf_531.o(.text)
+    rf_adplldig_deactivate                   0x07fc3c41   Thumb Code    12  rf_531.o(.text)
+    rf_pa_pwr_set                            0x07fc3c4d   Thumb Code     6  rf_531.o(.text)
+    rf_pa_pwr_get                            0x07fc3c53   Thumb Code     6  rf_531.o(.text)
+    rf_nfm_is_enabled                        0x07fc3c59   Thumb Code     6  rf_531.o(.text)
+    rf_nfm_enable                            0x07fc3c5f   Thumb Code    24  rf_531.o(.text)
+    rf_nfm_disable                           0x07fc3c77   Thumb Code    18  rf_531.o(.text)
+    prf_init_func                            0x07fc3dcd   Thumb Code    96  prf.o(.text)
+    prf_create_func                          0x07fc3e2d   Thumb Code    54  prf.o(.text)
+    default_app_on_init                      0x07fc3e6d   Thumb Code    18  app_default_handlers.o(.text)
+    default_app_on_connection                0x07fc3e7f   Thumb Code    28  app_default_handlers.o(.text)
+    default_app_on_disconnect                0x07fc3e9b   Thumb Code     8  app_default_handlers.o(.text)
+    default_app_on_set_dev_config_complete   0x07fc3ea3   Thumb Code    16  app_default_handlers.o(.text)
+    default_app_on_db_init_complete          0x07fc3eb3   Thumb Code     8  app_default_handlers.o(.text)
+    default_app_on_get_dev_name              0x07fc3ebb   Thumb Code    18  app_default_handlers.o(.text)
+    default_app_on_get_dev_appearance        0x07fc3ecd   Thumb Code     8  app_default_handlers.o(.text)
+    default_app_on_get_dev_slv_pref_params   0x07fc3ed5   Thumb Code    18  app_default_handlers.o(.text)
+    default_app_on_set_dev_info              0x07fc3ee7   Thumb Code    46  app_default_handlers.o(.text)
+    default_app_update_params_request        0x07fc3f15   Thumb Code    12  app_default_handlers.o(.text)
+    default_app_on_pairing_request           0x07fc3f21   Thumb Code     8  app_default_handlers.o(.text)
+    default_app_on_tk_exch                   0x07fc3f29   Thumb Code    48  app_default_handlers.o(.text)
+    default_app_on_ltk_exch                  0x07fc3f59   Thumb Code    24  app_default_handlers.o(.text)
+    app_db_init_next                         0x07fc3fad   Thumb Code   164  app.o(.text)
+    app_prf_enable                           0x07fc4051   Thumb Code   136  app.o(.text)
+    app_init                                 0x07fc41bf   Thumb Code    72  app.o(.text)
+    app_easy_gap_undirected_advertise_get_active 0x07fc4207   Thumb Code     2  app.o(.text)
+    app_easy_gap_dev_configure               0x07fc4209   Thumb Code    18  app.o(.text)
+    app_gap_process_handler                  0x07fc4437   Thumb Code    24  app_task.o(.text)
+    app_sec_gen_tk                           0x07fc4465   Thumb Code    18  app_security.o(.text)
+    app_sec_gen_ltk                          0x07fc4477   Thumb Code    54  app_security.o(.text)
+    app_sec_gen_csrk                         0x07fc44ad   Thumb Code    32  app_security.o(.text)
+    app_sec_process_handler                  0x07fc45e9   Thumb Code    24  app_security_task.o(.text)
+    app_dis_init                             0x07fc460d   Thumb Code     2  app_diss.o(.text)
+    app_diss_create_db                       0x07fc460f   Thumb Code    54  app_diss.o(.text)
+    app_diss_process_handler                 0x07fc46bd   Thumb Code    24  app_diss_task.o(.text)
+    app_check_BLE_active                     0x07fc4729   Thumb Code    36  app_msg_utils.o(.text)
+    app_msg_send_wakeup_ble                  0x07fc474d   Thumb Code    24  app_msg_utils.o(.text)
+    app_easy_msg_free_callback               0x07fc4769   Thumb Code    30  app_easy_msg_utils.o(.text)
+    app_easy_msg_set                         0x07fc4787   Thumb Code    38  app_easy_msg_utils.o(.text)
+    app_easy_msg_modify                      0x07fc47ad   Thumb Code    30  app_easy_msg_utils.o(.text)
+    app_easy_wakeup_set                      0x07fc47cb   Thumb Code    30  app_easy_msg_utils.o(.text)
+    app_easy_wakeup_free                     0x07fc47e9   Thumb Code    18  app_easy_msg_utils.o(.text)
+    app_easy_wakeup                          0x07fc47fb   Thumb Code    22  app_easy_msg_utils.o(.text)
+    app_msg_utils_api_process_handler        0x07fc4811   Thumb Code    52  app_easy_msg_utils.o(.text)
+    app_easy_security_send_pairing_rsp       0x07fc489b   Thumb Code    22  app_easy_security.o(.text)
+    app_easy_security_tk_exch                0x07fc48d9   Thumb Code    58  app_easy_security.o(.text)
+    app_easy_security_ltk_exch               0x07fc493f   Thumb Code    24  app_easy_security.o(.text)
+    app_easy_security_set_ltk_exch_from_sec_env 0x07fc4957   Thumb Code    52  app_easy_security.o(.text)
+    app_timer_api_process_handler            0x07fc49d9   Thumb Code   172  app_easy_timer.o(.text)
+    app_easy_timer                           0x07fc4a85   Thumb Code    62  app_easy_timer.o(.text)
+    app_easy_timer_cancel                    0x07fc4ac3   Thumb Code    70  app_easy_timer.o(.text)
+    app_easy_timer_modify                    0x07fc4b09   Thumb Code   100  app_easy_timer.o(.text)
+    app_easy_timer_cancel_all                0x07fc4b6d   Thumb Code    38  app_easy_timer.o(.text)
+    custs_get_func_callbacks                 0x07fc4bfd   Thumb Code    34  app_customs.o(.text)
+    app_custs1_init                          0x07fc4c1f   Thumb Code     2  app_customs.o(.text)
+    app_custs1_create_db                     0x07fc4c21   Thumb Code    54  app_customs.o(.text)
+    app_custs1_process_handler               0x07fc4c61   Thumb Code    24  app_customs_task.o(.text)
+    app_get_address_type                     0x07fc4c79   Thumb Code    20  app_utils.o(.text)
+    app_fill_random_byte_array               0x07fc4c8d   Thumb Code    12  app_utils.o(.text)
+    GPIO_reservations                        0x07fc4c99   Thumb Code   152  user_periph_setup.o(.text)
+    set_pad_functions                        0x07fc4d31   Thumb Code    68  user_periph_setup.o(.text)
+    periph_init                              0x07fc4d75   Thumb Code    30  user_periph_setup.o(.text)
+    control_LED                              0x07fc4f0b   Thumb Code    26  user_empty_peripheral_template.o(.text)
+    user_on_connection                       0x07fc4f25   Thumb Code    64  user_empty_peripheral_template.o(.text)
+    user_on_disconnect                       0x07fc4f65   Thumb Code    18  user_empty_peripheral_template.o(.text)
+    user_get_bdaddr                          0x07fc4f77   Thumb Code    20  user_empty_peripheral_template.o(.text)
+    user_advertise_operation                 0x07fc4f8b   Thumb Code    86  user_empty_peripheral_template.o(.text)
+    user_catch_rest_hndl                     0x07fc4fe1   Thumb Code   190  user_empty_peripheral_template.o(.text)
+    user_svc1_read_lc_val_handler            0x07fc50e5   Thumb Code    80  user_custs1_impl.o(.text)
+    user_svc1_read_lc_base_val_handler       0x07fc5135   Thumb Code    68  user_custs1_impl.o(.text)
+    user_svc1_read_lc_max_val_handler        0x07fc5179   Thumb Code    68  user_custs1_impl.o(.text)
+    user_svc1_read_lc_num_vals_handler       0x07fc51bd   Thumb Code    68  user_custs1_impl.o(.text)
+    user_svc1_read_lc_ts_handler             0x07fc5201   Thumb Code    80  user_custs1_impl.o(.text)
+    user_svc1_read_rfid_handler              0x07fc5251   Thumb Code    80  user_custs1_impl.o(.text)
+    new_load_cell                            0x07fc52c9   Thumb Code    64  user_hx711.o(.text)
+    set_calibrate_lc                         0x07fc5309   Thumb Code    12  user_hx711.o(.text)
+    JT_lld_test_mode_rx_func                 0x07fc5319   Thumb Code   142  patch.o(.text)
+    JT_l2cc_pdu_unpack_func                  0x07fc53a7   Thumb Code   786  patch.o(.text)
+    JT_l2cc_pdu_recv_ind_handler_func        0x07fc56b9   Thumb Code    72  patch.o(.text)
+    PATCHED_llm_con_req_ind                  0x07fc5701   Thumb Code   816  patch.o(.text)
+    PATCHED_smpc_recv_public_key_exchange_pdu 0x07fc5b41   Thumb Code   106  patch.o(.text)
+    PATCHED_llc_data_ind_handler             0x07fc5bab   Thumb Code   176  patch.o(.text)
+    PATCHED_llcp_length_req_handler          0x07fc5c5b   Thumb Code   118  patch.o(.text)
+    PATCHED_llcp_length_rsp_handler          0x07fc5cd1   Thumb Code   134  patch.o(.text)
+    JT_llc_le_length_effective_func          0x07fc5d57   Thumb Code   188  patch.o(.text)
+    lld_drop_packet_fix                      0x07fc5e13   Thumb Code    64  patch.o(.text)
+    PATCHED_lld_data_ind_handler             0x07fc5e53   Thumb Code    58  patch.o(.text)
+    patch_func                               0x07fc5e8d   Thumb Code    44  patch.o(.text)
+    patch_global_vars_init                   0x07fc5eb9   Thumb Code     2  patch.o(.text)
+    __scatterload                            0x07fc5ee9   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x07fc5ee9   Thumb Code     0  init.o(.text)
+    __ARM_common_ll_muluu                    0x07fc5f0d   Thumb Code    48  arch_system.o(i.__ARM_common_ll_muluu)
+    __scatterload_copy                       0x07fc5f3d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x07fc5f4b   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x07fc5f4d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    malloc                                   0x07fc5f5d   Thumb Code    92  malloc.o(i.malloc)
+    rom_nvds_cfg                             0x07fc5fd8   Data           8  nvds.o(.constdata)
+    rom_func_addr_table_var                  0x07fc5fe0   Data         380  jump_table.o(.constdata)
+    rom_cfg_table_var                        0x07fc615c   Data         236  jump_table.o(.constdata)
+    my_custom_msg_handlers                   0x07fc6258   Data          40  arch_rom.o(.constdata)
+    arp_init_table                           0x07fc62e0   Data         112  ble_arp.o(.constdata)
+    rom_cust_prf_cfg                         0x07fc6350   Data          16  custs1.o(.constdata)
+    custs1_default_state                     0x07fc6360   Data          72  custs1_task.o(.constdata)
+    custs1_default_handler                   0x07fc63a8   Data           8  custs1_task.o(.constdata)
+    prf_if                                   0x07fc63b0   Data          24  prf.o(.constdata)
+    rom_prf_cfg                              0x07fc63c8   Data          12  prf.o(.constdata)
+    prf_funcs                                0x07fc641c   Data          24  app.o(.constdata)
+    app_process_handlers                     0x07fc658c   Data          28  app_entry_point.o(.constdata)
+    rom_app_task_cfg                         0x07fc65a8   Data          32  app_entry_point.o(.constdata)
+    cust_prf_funcs                           0x07fc65d0   Data          56  user_custs_config.o(.constdata)
+    custs1_services                          0x07fc66a0   Data           2  user_custs1_def.o(.constdata)
+    custs1_services_size                     0x07fc66a2   Data           1  user_custs1_def.o(.constdata)
+    custs1_att_db                            0x07fc66a4   Data         520  user_custs1_def.o(.constdata)
+    Region$$Table$$Base                      0x07fc6994   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x07fc69b4   Number         0  anon$$obj.o(Region$$Table)
+    SystemCoreClock                          0x07fc69b4   Data           4  system_da14531.o(.data)
+    pa_en_dcf_tx_setting                     0x07fc69b8   Data           1  rf_531.o(.data)
+    baseline                                 0x07fc69bc   Data           4  user_empty_peripheral_template.o(.data)
+    __microlib_freelist                      0x07fc69c0   Data           4  mvars.o(.data)
+    __microlib_freelist_initialised          0x07fc69c4   Data           4  mvars.o(.data)
+    otp_hdr_timestamp                        0x07fc69c8   Data           4  arch_system.o(.bss)
+    twirq_set_value                          0x07fc69cc   Data           4  arch_system.o(.bss)
+    twirq_reset_value                        0x07fc69d0   Data           4  arch_system.o(.bss)
+    syscntl_dcdc_state                       0x07fc69d8   Data           2  syscntl.o(.bss)
+    twext_value                              0x07fc6a20   Data           4  rwip.o(.bss)
+    calibration_res                          0x07fc6a28   Data          42  rf_531.o(.bss)
+    systick_initialized                      0x07fc6a54   Data           1  user_empty_peripheral_template.o(.bss)
+    baseline_set                             0x07fc6a55   Data           1  user_empty_peripheral_template.o(.bss)
+    val_ready                                0x07fc6a56   Data           1  user_empty_peripheral_template.o(.bss)
+    clock_count                              0x07fc6a58   Data           4  user_empty_peripheral_template.o(.bss)
+    prep_count                               0x07fc6a5c   Data           4  user_empty_peripheral_template.o(.bss)
+    wait_count                               0x07fc6a60   Data           4  user_empty_peripheral_template.o(.bss)
+    num_reads                                0x07fc6a64   Data           4  user_empty_peripheral_template.o(.bss)
+    temp_load                                0x07fc6a68   Data           4  user_empty_peripheral_template.o(.bss)
+    load                                     0x07fc6a6c   Data           4  user_empty_peripheral_template.o(.bss)
+    new_max_val_read_count                   0x07fc6a70   Data           4  user_empty_peripheral_template.o(.bss)
+    num_vals_lc                              0x07fc6a74   Data           4  user_empty_peripheral_template.o(.bss)
+    num_vals_ts                              0x07fc6a78   Data           4  user_empty_peripheral_template.o(.bss)
+    num_vals_rfid                            0x07fc6a7c   Data           4  user_empty_peripheral_template.o(.bss)
+    usec_update_counter                      0x07fc6a80   Data           4  user_empty_peripheral_template.o(.bss)
+    sec_timestamp_counter                    0x07fc6a84   Data           4  user_empty_peripheral_template.o(.bss)
+    sec_timestamp                            0x07fc6a88   Data           4  user_empty_peripheral_template.o(.bss)
+    load_cell_2kg_p                          0x07fc6a8c   Data           4  user_empty_peripheral_template.o(.bss)
+    new_load                                 0x07fc6a90   Data           4  user_empty_peripheral_template.o(.bss)
+    new_max_val                              0x07fc6a94   Data           4  user_empty_peripheral_template.o(.bss)
+    load_array                               0x07fc6a98   Data         200  user_empty_peripheral_template.o(.bss)
+    timestamp_array                          0x07fc6b60   Data         200  user_empty_peripheral_template.o(.bss)
+    rfid_array                               0x07fc6c28   Data         200  user_empty_peripheral_template.o(.bss)
+    __heap_base                              0x07fc6cf0   Data           0  startup_da14531.o(HEAP)
+    __heap_limit                             0x07fc6df0   Data           0  startup_da14531.o(HEAP)
+    __initial_sp                             0x07fc73f0   Data           0  startup_da14531.o(STACK)
+    heap_mem_area_not_ret$$Base              0x07fc73f0   Number         0  jump_table.o(heap_mem_area_not_ret)
+    rwip_heap_non_ret                        0x07fc73f0   Data        1036  jump_table.o(heap_mem_area_not_ret)
     Image$$RET_DATA_UNINIT$$Base             0x07fc8bc0   Number         0  anon$$obj.o ABSOLUTE
     sys_startup_flag                         0x07fc8bd0   Data           1  arch_system.o(retention_mem_area0)
     last_temp                                0x07fc8bd1   Data           1  arch_system.o(retention_mem_area0)
@@ -2332,7 +2432,7 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x07fc0000   0x07fc0000   0x000000a0   Data   RO          275    RESET               startup_da14531.o
-    0x07fc00a0   0x07fc00a0   0x00000008   Data   RW          821    otp_cs_booter       otp_cs.o
+    0x07fc00a0   0x07fc00a0   0x00000008   Data   RW          856    otp_cs_booter       otp_cs.o
 
 
 
@@ -2346,22 +2446,22 @@ Memory Map of the image
 
 
 
-  Load Region LR_IROM3 (Base: 0x07fc0110, Size: 0x000070ac, Max: 0x00008ab0, ABSOLUTE)
+  Load Region LR_IROM3 (Base: 0x07fc0110, Size: 0x000068b8, Max: 0x00008ab0, ABSOLUTE)
 
-    Execution Region ER_IROM3 (Exec base: 0x07fc0110, Load base: 0x07fc0110, Size: 0x000070ac, Max: 0x00008ab0, ABSOLUTE)
+    Execution Region ER_IROM3 (Exec base: 0x07fc0110, Load base: 0x07fc0110, Size: 0x000068b8, Max: 0x00008ab0, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x07fc0110   0x07fc0110   0x00000000   Code   RO         2372  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
-    0x07fc0110   0x07fc0110   0x00000004   Code   RO         2401    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
-    0x07fc0114   0x07fc0114   0x00000004   Code   RO         2404    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
-    0x07fc0118   0x07fc0118   0x00000000   Code   RO         2406    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
-    0x07fc0118   0x07fc0118   0x00000000   Code   RO         2408    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
-    0x07fc0118   0x07fc0118   0x00000008   Code   RO         2409    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
-    0x07fc0120   0x07fc0120   0x00000004   Code   RO         2416    .ARM.Collect$$$$0000000E  mc_p.l(entry12b.o)
-    0x07fc0124   0x07fc0124   0x00000000   Code   RO         2411    .ARM.Collect$$$$0000000F  mc_p.l(entry10a.o)
-    0x07fc0124   0x07fc0124   0x00000000   Code   RO         2413    .ARM.Collect$$$$00000011  mc_p.l(entry11a.o)
-    0x07fc0124   0x07fc0124   0x00000004   Code   RO         2402    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x07fc0110   0x07fc0110   0x00000000   Code   RO         2838  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x07fc0110   0x07fc0110   0x00000004   Code   RO         2867    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x07fc0114   0x07fc0114   0x00000004   Code   RO         2870    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x07fc0118   0x07fc0118   0x00000000   Code   RO         2872    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x07fc0118   0x07fc0118   0x00000000   Code   RO         2874    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x07fc0118   0x07fc0118   0x00000008   Code   RO         2875    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x07fc0120   0x07fc0120   0x00000004   Code   RO         2882    .ARM.Collect$$$$0000000E  mc_p.l(entry12b.o)
+    0x07fc0124   0x07fc0124   0x00000000   Code   RO         2877    .ARM.Collect$$$$0000000F  mc_p.l(entry10a.o)
+    0x07fc0124   0x07fc0124   0x00000000   Code   RO         2879    .ARM.Collect$$$$00000011  mc_p.l(entry11a.o)
+    0x07fc0124   0x07fc0124   0x00000004   Code   RO         2868    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
     0x07fc0128   0x07fc0128   0x000000a4   Code   RO            2    .text               system_da14531.o
     0x07fc01cc   0x07fc01cc   0x00000050   Code   RO          276    .text               startup_da14531.o
     0x07fc021c   0x07fc021c   0x00000098   Code   RO          281    .text               hardfault_handler.o
@@ -2369,141 +2469,139 @@ Memory Map of the image
     0x07fc0374   0x07fc0374   0x00000300   Code   RO          356    .text               arch_main.o
     0x07fc0674   0x07fc0674   0x00000054   Code   RO          565    .text               jump_table.o
     0x07fc06c8   0x07fc06c8   0x0000024c   Code   RO          634    .text               arch_sleep.o
-    0x07fc0914   0x07fc0914   0x00000574   Code   RO          649    .text               arch_system.o
-    0x07fc0e88   0x07fc0e88   0x0000015c   Code   RO          777    .text               arch_rom.o
-    0x07fc0fe4   0x07fc0fe4   0x0000004c   Code   RO          804    .text               hash.o
-    0x07fc1030   0x07fc1030   0x0000034c   Code   RO          819    .text               otp_cs.o
-    0x07fc137c   0x07fc137c   0x00000010   Code   RO          841    .text               otp_hdr.o
-    0x07fc138c   0x07fc138c   0x000001c0   Code   RO          856    .text               syscntl.o
-    0x07fc154c   0x07fc154c   0x00000518   Code   RO          875    .text               gpio.o
-    0x07fc1a64   0x07fc1a64   0x000002b4   Code   RO          901    .text               wkupct_quadec.o
-    0x07fc1d18   0x07fc1d18   0x000004ec   Code   RO          940    .text               adc_531.o
-    0x07fc2204   0x07fc2204   0x00000084   Code   RO          965    .text               trng.o
-    0x07fc2288   0x07fc2288   0x0000008c   Code   RO         1054    .text               systick.o
-    0x07fc2314   0x07fc2314   0x00000524   Code   RO         1073    .text               uart.o
-    0x07fc2838   0x07fc2838   0x00000320   Code   RO         1094    .text               hw_otpc_531.o
-    0x07fc2b58   0x07fc2b58   0x000005f8   Code   RO         1119    .text               i2c.o
-    0x07fc3150   0x07fc3150   0x000001dc   Code   RO         1140    .text               rwble.o
-    0x07fc332c   0x07fc332c   0x000001e0   Code   RO         1189    .text               rwip.o
-    0x07fc350c   0x07fc350c   0x000002d0   Code   RO         1218    .text               ble_arp.o
-    0x07fc37dc   0x07fc37dc   0x0000083c   Code   RO         1246    .text               rf_531.o
-    0x07fc4018   0x07fc4018   0x0000012c   Code   RO         1736    .text               custs1_task.o
-    0x07fc4144   0x07fc4144   0x000000a0   Code   RO         1772    .text               prf.o
-    0x07fc41e4   0x07fc41e4   0x00000274   Code   RO         1808    .text               app_default_handlers.o
-    0x07fc4458   0x07fc4458   0x00000520   Code   RO         1846    .text               app.o
-    0x07fc4978   0x07fc4978   0x00000204   Code   RO         1891    .text               app_task.o
-    0x07fc4b7c   0x07fc4b7c   0x00000074   Code   RO         1924    .text               app_security.o
-    0x07fc4bf0   0x07fc4bf0   0x00000134   Code   RO         1951    .text               app_security_task.o
-    0x07fc4d24   0x07fc4d24   0x0000003c   Code   RO         2002    .text               app_diss.o
-    0x07fc4d60   0x07fc4d60   0x000000e0   Code   RO         2014    .text               app_diss_task.o
-    0x07fc4e40   0x07fc4e40   0x00000040   Code   RO         2066    .text               app_msg_utils.o
-    0x07fc4e80   0x07fc4e80   0x000000fc   Code   RO         2079    .text               app_easy_msg_utils.o
-    0x07fc4f7c   0x07fc4f7c   0x0000031c   Code   RO         2094    .text               app_easy_security.o
-    0x07fc5298   0x07fc5298   0x00000260   Code   RO         2120    .text               app_easy_timer.o
-    0x07fc54f8   0x07fc54f8   0x00000064   Code   RO         2134    .text               app_customs.o
-    0x07fc555c   0x07fc555c   0x00000018   Code   RO         2150    .text               app_customs_task.o
-    0x07fc5574   0x07fc5574   0x00000020   Code   RO         2188    .text               app_utils.o
-    0x07fc5594   0x07fc5594   0x00000108   Code   RO         2253    .text               user_periph_setup.o
-    0x07fc569c   0x07fc569c   0x000002f4   Code   RO         2269    .text               user_empty_peripheral_template.o
-    0x07fc5990   0x07fc5990   0x0000018c   Code   RO         2323    .text               user_custs1_impl.o
-    0x07fc5b1c   0x07fc5b1c   0x00000050   Code   RO         2344    .text               user_hx711.o
-    0x07fc5b6c   0x07fc5b6c   0x00000bd0   Code   RO         2368    .text               da14531.lib(patch.o)
-    0x07fc673c   0x07fc673c   0x00000024   Code   RO         2419    .text               mc_p.l(init.o)
-    0x07fc6760   0x07fc6760   0x00000030   Code   RO          672    i.__ARM_common_ll_muluu  arch_system.o
-    0x07fc6790   0x07fc6790   0x0000000e   Code   RO         2423    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x07fc679e   0x07fc679e   0x00000002   Code   RO         2424    i.__scatterload_null  mc_p.l(handlers.o)
-    0x07fc67a0   0x07fc67a0   0x0000000e   Code   RO         2425    i.__scatterload_zeroinit  mc_p.l(handlers.o)
-    0x07fc67ae   0x07fc67ae   0x00000002   PAD
-    0x07fc67b0   0x07fc67b0   0x0000006c   Code   RO         2374    i.malloc            mc_p.l(malloc.o)
-    0x07fc681c   0x07fc681c   0x0000000e   Data   RO          333    .constdata          nvds.o
-    0x07fc682a   0x07fc682a   0x00000002   PAD
-    0x07fc682c   0x07fc682c   0x00000008   Data   RO          334    .constdata          nvds.o
-    0x07fc6834   0x07fc6834   0x0000017c   Data   RO          566    .constdata          jump_table.o
-    0x07fc69b0   0x07fc69b0   0x000000ec   Data   RO          567    .constdata          jump_table.o
-    0x07fc6a9c   0x07fc6a9c   0x00000008   Data   RO          652    .constdata          arch_system.o
-    0x07fc6aa4   0x07fc6aa4   0x00000070   Data   RO          778    .constdata          arch_rom.o
-    0x07fc6b14   0x07fc6b14   0x00000002   Data   RO          876    .constdata          gpio.o
-    0x07fc6b16   0x07fc6b16   0x00000002   PAD
-    0x07fc6b18   0x07fc6b18   0x0000001c   Data   RO         1095    .constdata          hw_otpc_531.o
-    0x07fc6b34   0x07fc6b34   0x00000070   Data   RO         1220    .constdata          ble_arp.o
-    0x07fc6ba4   0x07fc6ba4   0x00000010   Data   RO         1720    .constdata          custs1.o
-    0x07fc6bb4   0x07fc6bb4   0x00000048   Data   RO         1737    .constdata          custs1_task.o
-    0x07fc6bfc   0x07fc6bfc   0x00000008   Data   RO         1738    .constdata          custs1_task.o
-    0x07fc6c04   0x07fc6c04   0x00000018   Data   RO         1773    .constdata          prf.o
-    0x07fc6c1c   0x07fc6c1c   0x0000000c   Data   RO         1774    .constdata          prf.o
-    0x07fc6c28   0x07fc6c28   0x0000007c   Data   RO         1847    .constdata          app.o
-    0x07fc6ca4   0x07fc6ca4   0x00000070   Data   RO         1893    .constdata          app_task.o
-    0x07fc6d14   0x07fc6d14   0x00000038   Data   RO         1953    .constdata          app_security_task.o
-    0x07fc6d4c   0x07fc6d4c   0x00000008   Data   RO         2015    .constdata          app_diss_task.o
-    0x07fc6d54   0x07fc6d54   0x0000008c   Data   RO         2043    .constdata          app_entry_point.o
-    0x07fc6de0   0x07fc6de0   0x0000001c   Data   RO         2044    .constdata          app_entry_point.o
-    0x07fc6dfc   0x07fc6dfc   0x00000020   Data   RO         2045    .constdata          app_entry_point.o
-    0x07fc6e1c   0x07fc6e1c   0x00000007   Data   RO         2095    .constdata          app_easy_security.o
-    0x07fc6e23   0x07fc6e23   0x00000001   PAD
-    0x07fc6e24   0x07fc6e24   0x00000038   Data   RO         2215    .constdata          user_custs_config.o
-    0x07fc6e5c   0x07fc6e5c   0x00000010   Data   RO         2228    .constdata          user_custs1_def.o
-    0x07fc6e6c   0x07fc6e6c   0x00000010   Data   RO         2229    .constdata          user_custs1_def.o
-    0x07fc6e7c   0x07fc6e7c   0x00000010   Data   RO         2230    .constdata          user_custs1_def.o
-    0x07fc6e8c   0x07fc6e8c   0x00000010   Data   RO         2231    .constdata          user_custs1_def.o
-    0x07fc6e9c   0x07fc6e9c   0x00000010   Data   RO         2232    .constdata          user_custs1_def.o
-    0x07fc6eac   0x07fc6eac   0x00000010   Data   RO         2233    .constdata          user_custs1_def.o
-    0x07fc6ebc   0x07fc6ebc   0x00000010   Data   RO         2234    .constdata          user_custs1_def.o
-    0x07fc6ecc   0x07fc6ecc   0x00000010   Data   RO         2235    .constdata          user_custs1_def.o
-    0x07fc6edc   0x07fc6edc   0x00000002   Data   RO         2236    .constdata          user_custs1_def.o
-    0x07fc6ede   0x07fc6ede   0x00000002   Data   RO         2237    .constdata          user_custs1_def.o
-    0x07fc6ee0   0x07fc6ee0   0x00000002   Data   RO         2238    .constdata          user_custs1_def.o
-    0x07fc6ee2   0x07fc6ee2   0x00000002   Data   RO         2239    .constdata          user_custs1_def.o
-    0x07fc6ee4   0x07fc6ee4   0x00000002   Data   RO         2240    .constdata          user_custs1_def.o
-    0x07fc6ee6   0x07fc6ee6   0x00000001   Data   RO         2241    .constdata          user_custs1_def.o
-    0x07fc6ee7   0x07fc6ee7   0x00000001   PAD
-    0x07fc6ee8   0x07fc6ee8   0x000001cc   Data   RO         2243    .constdata          user_custs1_def.o
-    0x07fc70b4   0x07fc70b4   0x00000006   Data   RO         2275    .constdata          user_empty_peripheral_template.o
-    0x07fc70ba   0x07fc70ba   0x00000002   PAD
-    0x07fc70bc   0x07fc70bc   0x00000024   Data   RO         2369    .constdata          da14531.lib(patch.o)
-    0x07fc70e0   0x07fc70e0   0x000000a2   Data   RO         2244    .conststring        user_custs1_def.o
-    0x07fc7182   0x07fc7182   0x00000002   PAD
-    0x07fc7184   0x07fc7184   0x00000020   Data   RO         2421    Region$$Table       anon$$obj.o
-    0x07fc71a4   0x07fc71a4   0x00000004   Data   RW            3    .data               system_da14531.o
-    0x07fc71a8   0x07fc71a8   0x00000004   Data   RW          653    .data               arch_system.o
-    0x07fc71ac   0x07fc71ac   0x00000001   Data   RW         1248    .data               rf_531.o
-    0x07fc71ad   0x07fc71ad   0x00000003   PAD
-    0x07fc71b0   0x07fc71b0   0x00000004   Data   RW         2276    .data               user_empty_peripheral_template.o
-    0x07fc71b4   0x07fc71b4   0x00000004   Data   RW         2417    .data               mc_p.l(mvars.o)
-    0x07fc71b8   0x07fc71b8   0x00000004   Data   RW         2418    .data               mc_p.l(mvars.o)
+    0x07fc0914   0x07fc0914   0x000004e8   Code   RO          649    .text               arch_system.o
+    0x07fc0dfc   0x07fc0dfc   0x0000015c   Code   RO          812    .text               arch_rom.o
+    0x07fc0f58   0x07fc0f58   0x0000034c   Code   RO          854    .text               otp_cs.o
+    0x07fc12a4   0x07fc12a4   0x00000010   Code   RO          876    .text               otp_hdr.o
+    0x07fc12b4   0x07fc12b4   0x000001c0   Code   RO          891    .text               syscntl.o
+    0x07fc1474   0x07fc1474   0x00000278   Code   RO          910    .text               gpio.o
+    0x07fc16ec   0x07fc16ec   0x000002b4   Code   RO         1002    .text               wkupct_quadec.o
+    0x07fc19a0   0x07fc19a0   0x000004ec   Code   RO         1041    .text               adc_531.o
+    0x07fc1e8c   0x07fc1e8c   0x00000084   Code   RO         1066    .text               trng.o
+    0x07fc1f10   0x07fc1f10   0x0000008c   Code   RO         1155    .text               systick.o
+    0x07fc1f9c   0x07fc1f9c   0x00000524   Code   RO         1174    .text               uart.o
+    0x07fc24c0   0x07fc24c0   0x00000320   Code   RO         1195    .text               hw_otpc_531.o
+    0x07fc27e0   0x07fc27e0   0x000005f8   Code   RO         1220    .text               i2c.o
+    0x07fc2dd8   0x07fc2dd8   0x000001dc   Code   RO         1241    .text               rwble.o
+    0x07fc2fb4   0x07fc2fb4   0x000001e0   Code   RO         1290    .text               rwip.o
+    0x07fc3194   0x07fc3194   0x000002d0   Code   RO         1319    .text               ble_arp.o
+    0x07fc3464   0x07fc3464   0x0000083c   Code   RO         1347    .text               rf_531.o
+    0x07fc3ca0   0x07fc3ca0   0x0000012c   Code   RO         1837    .text               custs1_task.o
+    0x07fc3dcc   0x07fc3dcc   0x000000a0   Code   RO         1873    .text               prf.o
+    0x07fc3e6c   0x07fc3e6c   0x00000120   Code   RO         1910    .text               app_default_handlers.o
+    0x07fc3f8c   0x07fc3f8c   0x000002d4   Code   RO         2001    .text               app.o
+    0x07fc4260   0x07fc4260   0x00000204   Code   RO         2154    .text               app_task.o
+    0x07fc4464   0x07fc4464   0x00000074   Code   RO         2187    .text               app_security.o
+    0x07fc44d8   0x07fc44d8   0x00000134   Code   RO         2214    .text               app_security_task.o
+    0x07fc460c   0x07fc460c   0x0000003c   Code   RO         2265    .text               app_diss.o
+    0x07fc4648   0x07fc4648   0x000000e0   Code   RO         2277    .text               app_diss_task.o
+    0x07fc4728   0x07fc4728   0x00000040   Code   RO         2329    .text               app_msg_utils.o
+    0x07fc4768   0x07fc4768   0x000000fc   Code   RO         2342    .text               app_easy_msg_utils.o
+    0x07fc4864   0x07fc4864   0x00000138   Code   RO         2357    .text               app_easy_security.o
+    0x07fc499c   0x07fc499c   0x00000260   Code   RO         2538    .text               app_easy_timer.o
+    0x07fc4bfc   0x07fc4bfc   0x00000064   Code   RO         2552    .text               app_customs.o
+    0x07fc4c60   0x07fc4c60   0x00000018   Code   RO         2568    .text               app_customs_task.o
+    0x07fc4c78   0x07fc4c78   0x00000020   Code   RO         2653    .text               app_utils.o
+    0x07fc4c98   0x07fc4c98   0x00000108   Code   RO         2719    .text               user_periph_setup.o
+    0x07fc4da0   0x07fc4da0   0x00000344   Code   RO         2735    .text               user_empty_peripheral_template.o
+    0x07fc50e4   0x07fc50e4   0x000001e4   Code   RO         2789    .text               user_custs1_impl.o
+    0x07fc52c8   0x07fc52c8   0x00000050   Code   RO         2810    .text               user_hx711.o
+    0x07fc5318   0x07fc5318   0x00000bd0   Code   RO         2834    .text               da14531.lib(patch.o)
+    0x07fc5ee8   0x07fc5ee8   0x00000024   Code   RO         2885    .text               mc_p.l(init.o)
+    0x07fc5f0c   0x07fc5f0c   0x00000030   Code   RO          690    i.__ARM_common_ll_muluu  arch_system.o
+    0x07fc5f3c   0x07fc5f3c   0x0000000e   Code   RO         2889    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x07fc5f4a   0x07fc5f4a   0x00000002   Code   RO         2890    i.__scatterload_null  mc_p.l(handlers.o)
+    0x07fc5f4c   0x07fc5f4c   0x0000000e   Code   RO         2891    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x07fc5f5a   0x07fc5f5a   0x00000002   PAD
+    0x07fc5f5c   0x07fc5f5c   0x0000006c   Code   RO         2840    i.malloc            mc_p.l(malloc.o)
+    0x07fc5fc8   0x07fc5fc8   0x0000000e   Data   RO          333    .constdata          nvds.o
+    0x07fc5fd6   0x07fc5fd6   0x00000002   PAD
+    0x07fc5fd8   0x07fc5fd8   0x00000008   Data   RO          334    .constdata          nvds.o
+    0x07fc5fe0   0x07fc5fe0   0x0000017c   Data   RO          566    .constdata          jump_table.o
+    0x07fc615c   0x07fc615c   0x000000ec   Data   RO          567    .constdata          jump_table.o
+    0x07fc6248   0x07fc6248   0x00000008   Data   RO          655    .constdata          arch_system.o
+    0x07fc6250   0x07fc6250   0x00000070   Data   RO          813    .constdata          arch_rom.o
+    0x07fc62c0   0x07fc62c0   0x00000002   Data   RO          922    .constdata          gpio.o
+    0x07fc62c2   0x07fc62c2   0x00000002   PAD
+    0x07fc62c4   0x07fc62c4   0x0000001c   Data   RO         1196    .constdata          hw_otpc_531.o
+    0x07fc62e0   0x07fc62e0   0x00000070   Data   RO         1321    .constdata          ble_arp.o
+    0x07fc6350   0x07fc6350   0x00000010   Data   RO         1821    .constdata          custs1.o
+    0x07fc6360   0x07fc6360   0x00000048   Data   RO         1838    .constdata          custs1_task.o
+    0x07fc63a8   0x07fc63a8   0x00000008   Data   RO         1839    .constdata          custs1_task.o
+    0x07fc63b0   0x07fc63b0   0x00000018   Data   RO         1874    .constdata          prf.o
+    0x07fc63c8   0x07fc63c8   0x0000000c   Data   RO         1875    .constdata          prf.o
+    0x07fc63d4   0x07fc63d4   0x0000007c   Data   RO         2021    .constdata          app.o
+    0x07fc6450   0x07fc6450   0x00000070   Data   RO         2156    .constdata          app_task.o
+    0x07fc64c0   0x07fc64c0   0x00000038   Data   RO         2216    .constdata          app_security_task.o
+    0x07fc64f8   0x07fc64f8   0x00000008   Data   RO         2278    .constdata          app_diss_task.o
+    0x07fc6500   0x07fc6500   0x0000008c   Data   RO         2306    .constdata          app_entry_point.o
+    0x07fc658c   0x07fc658c   0x0000001c   Data   RO         2307    .constdata          app_entry_point.o
+    0x07fc65a8   0x07fc65a8   0x00000020   Data   RO         2308    .constdata          app_entry_point.o
+    0x07fc65c8   0x07fc65c8   0x00000007   Data   RO         2385    .constdata          app_easy_security.o
+    0x07fc65cf   0x07fc65cf   0x00000001   PAD
+    0x07fc65d0   0x07fc65d0   0x00000038   Data   RO         2680    .constdata          user_custs_config.o
+    0x07fc6608   0x07fc6608   0x00000010   Data   RO         2693    .constdata          user_custs1_def.o
+    0x07fc6618   0x07fc6618   0x00000010   Data   RO         2694    .constdata          user_custs1_def.o
+    0x07fc6628   0x07fc6628   0x00000010   Data   RO         2695    .constdata          user_custs1_def.o
+    0x07fc6638   0x07fc6638   0x00000010   Data   RO         2696    .constdata          user_custs1_def.o
+    0x07fc6648   0x07fc6648   0x00000010   Data   RO         2697    .constdata          user_custs1_def.o
+    0x07fc6658   0x07fc6658   0x00000010   Data   RO         2698    .constdata          user_custs1_def.o
+    0x07fc6668   0x07fc6668   0x00000010   Data   RO         2699    .constdata          user_custs1_def.o
+    0x07fc6678   0x07fc6678   0x00000010   Data   RO         2700    .constdata          user_custs1_def.o
+    0x07fc6688   0x07fc6688   0x00000010   Data   RO         2701    .constdata          user_custs1_def.o
+    0x07fc6698   0x07fc6698   0x00000002   Data   RO         2702    .constdata          user_custs1_def.o
+    0x07fc669a   0x07fc669a   0x00000002   Data   RO         2703    .constdata          user_custs1_def.o
+    0x07fc669c   0x07fc669c   0x00000002   Data   RO         2704    .constdata          user_custs1_def.o
+    0x07fc669e   0x07fc669e   0x00000002   Data   RO         2705    .constdata          user_custs1_def.o
+    0x07fc66a0   0x07fc66a0   0x00000002   Data   RO         2706    .constdata          user_custs1_def.o
+    0x07fc66a2   0x07fc66a2   0x00000001   Data   RO         2707    .constdata          user_custs1_def.o
+    0x07fc66a3   0x07fc66a3   0x00000001   PAD
+    0x07fc66a4   0x07fc66a4   0x00000208   Data   RO         2709    .constdata          user_custs1_def.o
+    0x07fc68ac   0x07fc68ac   0x00000006   Data   RO         2741    .constdata          user_empty_peripheral_template.o
+    0x07fc68b2   0x07fc68b2   0x00000002   PAD
+    0x07fc68b4   0x07fc68b4   0x00000024   Data   RO         2835    .constdata          da14531.lib(patch.o)
+    0x07fc68d8   0x07fc68d8   0x000000ba   Data   RO         2710    .conststring        user_custs1_def.o
+    0x07fc6992   0x07fc6992   0x00000002   PAD
+    0x07fc6994   0x07fc6994   0x00000020   Data   RO         2887    Region$$Table       anon$$obj.o
+    0x07fc69b4   0x07fc69b4   0x00000004   Data   RW            3    .data               system_da14531.o
+    0x07fc69b8   0x07fc69b8   0x00000001   Data   RW         1349    .data               rf_531.o
+    0x07fc69b9   0x07fc69b9   0x00000003   PAD
+    0x07fc69bc   0x07fc69bc   0x00000004   Data   RW         2742    .data               user_empty_peripheral_template.o
+    0x07fc69c0   0x07fc69c0   0x00000004   Data   RW         2883    .data               mc_p.l(mvars.o)
+    0x07fc69c4   0x07fc69c4   0x00000004   Data   RW         2884    .data               mc_p.l(mvars.o)
 
 
-    Execution Region ER_PRODTEST (Exec base: 0x07fc71c0, Load base: 0x07fc71bc, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE, UNINIT)
+    Execution Region ER_PRODTEST (Exec base: 0x07fc69c8, Load base: 0x07fc69c8, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE, UNINIT)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x07fc71c0, Load base: 0x07fc71bc, Size: 0x00000960, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x07fc69c8, Load base: 0x07fc69c8, Size: 0x00000a28, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x07fc71c0        -       0x0000000c   Zero   RW          650    .bss                arch_system.o
-    0x07fc71cc        -       0x00000004   Zero   RW          820    .bss                otp_cs.o
-    0x07fc71d0        -       0x00000002   Zero   RW          857    .bss                syscntl.o
-    0x07fc71d2        -       0x00000002   Zero   RW          941    .bss                adc_531.o
-    0x07fc71d4        -       0x00000014   Zero   RW          966    .bss                trng.o
-    0x07fc71e8        -       0x00000030   Zero   RW         1120    .bss                i2c.o
-    0x07fc7218        -       0x00000004   Zero   RW         1190    .bss                rwip.o
-    0x07fc721c        -       0x0000002e   Zero   RW         1247    .bss                rf_531.o
-    0x07fc724a   0x07fc71bc   0x00000002   PAD
-    0x07fc724c        -       0x000001d0   Zero   RW         2272    .bss                user_empty_peripheral_template.o
-    0x07fc741c   0x07fc71bc   0x00000004   PAD
-    0x07fc7420        -       0x00000100   Zero   RW          274    HEAP                startup_da14531.o
-    0x07fc7520        -       0x00000600   Zero   RW          273    STACK               startup_da14531.o
+    0x07fc69c8        -       0x0000000c   Zero   RW          653    .bss                arch_system.o
+    0x07fc69d4        -       0x00000004   Zero   RW          855    .bss                otp_cs.o
+    0x07fc69d8        -       0x00000002   Zero   RW          892    .bss                syscntl.o
+    0x07fc69da        -       0x00000002   Zero   RW         1042    .bss                adc_531.o
+    0x07fc69dc        -       0x00000014   Zero   RW         1067    .bss                trng.o
+    0x07fc69f0        -       0x00000030   Zero   RW         1221    .bss                i2c.o
+    0x07fc6a20        -       0x00000004   Zero   RW         1291    .bss                rwip.o
+    0x07fc6a24        -       0x0000002e   Zero   RW         1348    .bss                rf_531.o
+    0x07fc6a52   0x07fc69c8   0x00000002   PAD
+    0x07fc6a54        -       0x0000029c   Zero   RW         2738    .bss                user_empty_peripheral_template.o
+    0x07fc6cf0        -       0x00000100   Zero   RW          274    HEAP                startup_da14531.o
+    0x07fc6df0        -       0x00000600   Zero   RW          273    STACK               startup_da14531.o
 
 
-    Execution Region ER_NZI (Exec base: 0x07fc7b20, Load base: 0x07fc71bc, Size: 0x0000040c, Max: 0xffffffff, ABSOLUTE, UNINIT)
+    Execution Region ER_NZI (Exec base: 0x07fc73f0, Load base: 0x07fc69c8, Size: 0x0000040c, Max: 0xffffffff, ABSOLUTE, UNINIT)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x07fc7b20        -       0x0000040c   Zero   RW          570    heap_mem_area_not_ret  jump_table.o
+    0x07fc73f0        -       0x0000040c   Zero   RW          570    heap_mem_area_not_ret  jump_table.o
 
 
-    Execution Region ER_STATEFUL_HIBERNATION (Exec base: 0x07fc7f2c, Load base: 0x07fc71bc, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE, UNINIT)
+    Execution Region ER_STATEFUL_HIBERNATION (Exec base: 0x07fc77fc, Load base: 0x07fc69c8, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE, UNINIT)
 
     **** No section assigned to this execution region ****
 
@@ -2523,32 +2621,32 @@ Memory Map of the image
     0x07fc8bc0        -       0x00000008   Zero   RW          358    retention_mem_area0  arch_main.o
     0x07fc8bc8        -       0x00000004   Zero   RW          635    retention_mem_area0  arch_sleep.o
     0x07fc8bcc   0x07fc8bc0   0x00000004   PAD
-    0x07fc8bd0        -       0x00000030   Zero   RW          654    retention_mem_area0  arch_system.o
-    0x07fc8c00        -       0x00000002   Zero   RW          779    retention_mem_area0  arch_rom.o
+    0x07fc8bd0        -       0x00000030   Zero   RW          657    retention_mem_area0  arch_system.o
+    0x07fc8c00        -       0x00000002   Zero   RW          814    retention_mem_area0  arch_rom.o
     0x07fc8c02   0x07fc8bc0   0x00000002   PAD
-    0x07fc8c04        -       0x0000005c   Zero   RW          822    retention_mem_area0  otp_cs.o
-    0x07fc8c60        -       0x0000004c   Zero   RW          877    retention_mem_area0  gpio.o
-    0x07fc8cac        -       0x0000000c   Zero   RW          902    retention_mem_area0  wkupct_quadec.o
-    0x07fc8cb8        -       0x00000004   Zero   RW          942    retention_mem_area0  adc_531.o
-    0x07fc8cbc        -       0x00000004   Zero   RW         1055    retention_mem_area0  systick.o
-    0x07fc8cc0        -       0x00000040   Zero   RW         1074    retention_mem_area0  uart.o
-    0x07fc8d00        -       0x00000001   Zero   RW         1096    retention_mem_area0  hw_otpc_531.o
+    0x07fc8c04        -       0x0000005c   Zero   RW          857    retention_mem_area0  otp_cs.o
+    0x07fc8c60        -       0x0000004c   Zero   RW          923    retention_mem_area0  gpio.o
+    0x07fc8cac        -       0x0000000c   Zero   RW         1003    retention_mem_area0  wkupct_quadec.o
+    0x07fc8cb8        -       0x00000004   Zero   RW         1043    retention_mem_area0  adc_531.o
+    0x07fc8cbc        -       0x00000004   Zero   RW         1156    retention_mem_area0  systick.o
+    0x07fc8cc0        -       0x00000040   Zero   RW         1175    retention_mem_area0  uart.o
+    0x07fc8d00        -       0x00000001   Zero   RW         1197    retention_mem_area0  hw_otpc_531.o
     0x07fc8d01   0x07fc8bc0   0x00000003   PAD
-    0x07fc8d04        -       0x00000008   Zero   RW         1141    retention_mem_area0  rwble.o
-    0x07fc8d0c        -       0x00000008   Zero   RW         1191    retention_mem_area0  rwip.o
-    0x07fc8d14        -       0x00000004   Zero   RW         1192    retention_mem_area0  rwip.o
-    0x07fc8d18        -       0x00000008   Zero   RW         1249    retention_mem_area0  rf_531.o
-    0x07fc8d20        -       0x00000030   Zero   RW         1775    retention_mem_area0  prf.o
-    0x07fc8d50        -       0x0000004e   Zero   RW         1851    retention_mem_area0  app.o
-    0x07fc8d9e        -       0x00000014   Zero   RW         1852    retention_mem_area0  app.o
-    0x07fc8db2        -       0x00000001   Zero   RW         1894    retention_mem_area0  app_task.o
+    0x07fc8d04        -       0x00000008   Zero   RW         1242    retention_mem_area0  rwble.o
+    0x07fc8d0c        -       0x00000008   Zero   RW         1292    retention_mem_area0  rwip.o
+    0x07fc8d14        -       0x00000004   Zero   RW         1293    retention_mem_area0  rwip.o
+    0x07fc8d18        -       0x00000008   Zero   RW         1350    retention_mem_area0  rf_531.o
+    0x07fc8d20        -       0x00000030   Zero   RW         1876    retention_mem_area0  prf.o
+    0x07fc8d50        -       0x0000004e   Zero   RW         2025    retention_mem_area0  app.o
+    0x07fc8d9e        -       0x00000014   Zero   RW         2026    retention_mem_area0  app.o
+    0x07fc8db2        -       0x00000001   Zero   RW         2157    retention_mem_area0  app_task.o
     0x07fc8db3   0x07fc8bc0   0x00000001   PAD
-    0x07fc8db4        -       0x0000007a   Zero   RW         1925    retention_mem_area0  app_security.o
+    0x07fc8db4        -       0x0000007a   Zero   RW         2188    retention_mem_area0  app_security.o
     0x07fc8e2e   0x07fc8bc0   0x00000002   PAD
-    0x07fc8e30        -       0x00000018   Zero   RW         2080    retention_mem_area0  app_easy_msg_utils.o
-    0x07fc8e48        -       0x00000018   Zero   RW         2097    retention_mem_area0  app_easy_security.o
-    0x07fc8e60        -       0x00000050   Zero   RW         2121    retention_mem_area0  app_easy_timer.o
-    0x07fc8eb0        -       0x00000003   Zero   RW         2370    retention_mem_area0  da14531.lib(patch.o)
+    0x07fc8e30        -       0x00000018   Zero   RW         2343    retention_mem_area0  app_easy_msg_utils.o
+    0x07fc8e48        -       0x00000018   Zero   RW         2387    retention_mem_area0  app_easy_security.o
+    0x07fc8e60        -       0x00000050   Zero   RW         2539    retention_mem_area0  app_easy_timer.o
+    0x07fc8eb0        -       0x00000003   Zero   RW         2836    retention_mem_area0  da14531.lib(patch.o)
 
 
     Execution Region RET_HEAP (Exec base: 0x07fc8eb4, Load base: 0x07fc8bc0, Size: 0x00000c40, Max: 0x00000c40, ABSOLUTE, UNINIT)
@@ -2575,7 +2673,7 @@ Memory Map of the image
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x07fcb89c        -       0x00000004   Zero   RW          967    trng_state          trng.o
+    0x07fcb89c        -       0x00000004   Zero   RW         1068    trng_state          trng.o
 
 
 ==============================================================================
@@ -2586,14 +2684,14 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
       1260         62          0          0          6      19524   adc_531.o
-      1312         88        124          0         98      23933   app.o
+       724         70        124          0         98      19114   app.o
        100         10          0          0          0       2040   app_customs.o
         24          0          0          0          0       1485   app_customs_task.o
-       628         36          0          0          0      11789   app_default_handlers.o
+       288         28          0          0          0       6054   app_default_handlers.o
         60          4          0          0          0       1434   app_diss.o
        224         96          8          0          0       2479   app_diss_task.o
        252         12          0          0         24       4159   app_easy_msg_utils.o
-       796         18          7          0         24      17980   app_easy_security.o
+       312         18          7          0         24      11978   app_easy_security.o
        608         24          0          0         80       5813   app_easy_timer.o
          0          0        200          0          0       2848   app_entry_point.o
         64          4          0          0          0       1721   app_msg_utils.o
@@ -2604,13 +2702,12 @@ Image component sizes
        768         82          0          0          8      28383   arch_main.o
        348        136        112          0          2       2768   arch_rom.o
        588         40          0          0          4       4511   arch_sleep.o
-      1444        112          8          4         60      96531   arch_system.o
+      1304        104          8          0         60      95515   arch_system.o
        720         62        112          0          0      76928   ble_arp.o
          0          0         16          0          0       3730   custs1.o
        300         12         80          0          0       7250   custs1_task.o
-      1304         54          2          0         76      18348   gpio.o
+       632         22          2          0         76      15133   gpio.o
        152         18          0          0          0       4017   hardfault_handler.o
-        76         26          0          0          0        539   hash.o
        800         36         28          0          1       7247   hw_otpc_531.o
       1528         58          0          0         48      17746   i2c.o
         84          6        616          0       4172      11629   jump_table.o
@@ -2624,22 +2721,22 @@ Image component sizes
        480         62          0          0         16      74654   rwip.o
         80         16        160          0       1792        784   startup_da14531.o
        448         16          0          0          2       6250   syscntl.o
-       164         30          0          4          0     288821   system_da14531.o
+       164         30          0          4          0     286650   system_da14531.o
        140         10          0          0          4       2844   systick.o
        132         18          0          0         24       2376   trng.o
       1316         32          0          0         64      26047   uart.o
-         0          0        761          0          0       1595   user_custs1_def.o
-       396         32          0          0          0       3066   user_custs1_impl.o
+         0          0        861          0          0       1631   user_custs1_def.o
+       484         40          0          0          0       3455   user_custs1_impl.o
          0          0         56          0          0        869   user_custs_config.o
-       756         56          6          4        464      12695   user_empty_peripheral_template.o
+       836         70          6          4        668      12940   user_empty_peripheral_template.o
         80          4          0          0          0       1221   user_hx711.o
-       264         12          0          0          0       3209   user_periph_setup.o
+       264         14          0          0          0       3205   user_periph_setup.o
        692         34          0          0         12      15645   wkupct_quadec.o
 
     ----------------------------------------------------------------------
-     23156       1664       2564         24       7408     947186   Object Totals
+     21024       1596       2664         20       7608     924355   Object Totals
          0          0         32          0         80          0   (incl. Generated)
-         0          0         10          3         18          0   (incl. Padding)
+         0          0         10          3         14          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2681,15 +2778,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     26380       1822       2600         32       7412     943822   Grand Totals
-     26380       1822       2600         32       7412     943822   ELF Image Totals
-     26380       1822       2600         32          0          0   ROM Totals
+     24248       1754       2700         28       7612     921431   Grand Totals
+     24248       1754       2700         28       7612     921431   ELF Image Totals
+     24248       1754       2700         28          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                28980 (  28.30kB)
-    Total RW  Size (RW Data + ZI Data)              7444 (   7.27kB)
-    Total ROM Size (Code + RO Data + RW Data)      29012 (  28.33kB)
+    Total RO  Size (Code + RO Data)                26948 (  26.32kB)
+    Total RW  Size (RW Data + ZI Data)              7640 (   7.46kB)
+    Total ROM Size (Code + RO Data + RW Data)      26976 (  26.34kB)
 
 ==============================================================================
 
