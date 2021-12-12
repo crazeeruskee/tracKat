@@ -31,10 +31,14 @@
  ****************************************************************************************
  */
 
-//Using USB Dev Board if CUSTOM_TAG !defined, changes GPIO accordingly
-//#undef CUSTOM_TAG
-#define CUSTOM_TAG
+//Using USB Dev Board if CUSTOM_TAG1 !defined, changes GPIO accordingly
+#undef CUSTOM_TAG1
+//#define CUSTOM_TAG1
 
+//#undef CUSTOM_TAG2
+#if !defined(CUSTOM_TAG1)
+#define CUSTOM_TAG2
+#endif
 /*
  ****************************************************************************************
  *

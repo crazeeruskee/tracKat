@@ -30,7 +30,7 @@
  ****************************************************************************************
  */
 #if defined (__DA14531__)
-	#if defined (CUSTOM_TAG)
+	#if defined (CUSTOM_TAG1)
 		#define LC_DO_PORT              GPIO_PORT_0
     #define LC_DO_PIN               GPIO_PIN_11
 		
@@ -59,8 +59,13 @@
 		#define LED_PORT                GPIO_PORT_0
     #define LED_PIN                 GPIO_PIN_9
 	
-		#define BTN_PORT                GPIO_PORT_0
-    #define BTN_PIN                 GPIO_PIN_11
+		#if CUSTOM_TAG2
+			#define BTN_PORT                GPIO_PORT_0
+			#define BTN_PIN                 GPIO_PIN_5
+		#else
+			#define BTN_PORT                GPIO_PORT_0
+			#define BTN_PIN                 GPIO_PIN_11
+		#endif
 	#endif
 #endif
 
