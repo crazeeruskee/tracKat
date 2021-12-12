@@ -39,7 +39,7 @@
 
 #define SYSTICK_PERIOD_US   			20       // period for systick timer in us, so 1000000ticks = 1second
 #define SYSTICK_EXCEPTION   			1        // generate systick exceptions
-
+#define USEC_DIVISOR							50000
 
 #define WEIGHT_LED_THRESHOLD 	    1750000  //16777100 //3500000
 
@@ -52,92 +52,109 @@ load_cell* load_cell_2kg_p;
 
 int clock_count = 0;
 int prep_count = 0;
+int calibration_count = 0;
 int wait_count = 0;
 int num_reads = 0;
 int temp_load = 0;
 //uint32_t* load_p;
 int load = 0;
 int new_load;
-int load_array[100];
+
+int load_array[50];
+uint32_t timestamp_array[50];
+
+int baseline = 3158440; //0x003031A8
+bool baseline_set = false;
 int num_vals = 0;
 bool val_ready = false;
 bool btn_released = true;
 
-
-int usec_timestamp_counter = 0;
-int usec_timestamp = 0;
+uint32_t usec_update_counter = 0;
+uint32_t sec_timestamp_counter = 0;
+uint32_t sec_timestamp = 0;
 
 static void systick_isr(void)
 {
-		/*if(prep_count < PREP_READ_TICKS){
+		if(prep_count < PREP_READ_TICKS){
 			GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
 			prep_count++;
-		} else{	*/
-
-		usec_timestamp_counter++;
-		if(usec_timestamp_counter >= 2000000000) usec_timestamp_counter = 0;
-		
-		if(!btn_released && !GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
-			btn_released = true;
-		}
-			
-		if(btn_released && GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
-			new_load = new_load + 5;
-			usec_timestamp = usec_timestamp_counter;
-			usec_timestamp_counter = 0;
-			num_vals++;
-			btn_released = false;
-		}
-	
-		if(!val_ready && !GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN)) val_ready = true;
-		if(val_ready){
-			if(num_reads < MAX_READS){
-				if (clock_count < 50) {
-					if(clock_count % 2 == 0){
-						GPIO_SetActive(LC_CLK_PORT,LC_CLK_PIN);
-						if(clock_count < 47) temp_load = temp_load << 1;
-					} else{
-						GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
-						if(clock_count < 49) temp_load += GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN);
-					}
-					clock_count++;
-				} else {
-					//(*load_p) = (uint32_t)temp_load;
-					load = temp_load;//0xDEADBEEF;//
-
-					if(num_vals >= 99){
-						//clear_array((uint32_t *)load_array, LOAD_VALS_ARR_SIZE);
-						num_vals = 0;
-					}
-
-					if((abs((uint32_t)load - (uint32_t)load_array[num_vals])) > WEIGHT_UPDATE_THRESHOLD){
-						load_array[num_vals + 1] = load;
-						new_load = load;
-						usec_timestamp = usec_timestamp_counter;
-						usec_timestamp_counter = 0;
-						num_vals++;
-					}
-
-					//app_lc_val_handler(&load);
-					temp_load = 0;
-					clock_count = 0;
-				//	if(/*(uint32_t)(*load_p)*/ load > WEIGHT_LED_THRESHOLD) control_LED(true);
-					//else control_LED(false);
-					num_reads++;
-				}	
-			} else {
-				if(wait_count < WAIT_TICKS){
-					GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
-					wait_count++;
-				} else {
-					val_ready = false;
-					wait_count = 0;
-					num_reads = 0;
-					prep_count = 0;
-				}
+		} else{
+			usec_update_counter += SYSTICK_PERIOD_US;
+			if(usec_update_counter >= USEC_DIVISOR) { // 50000*20usec = 1 second
+				sec_timestamp_counter++;
+				usec_update_counter = 0;
 			}
-		}
-//	}
+			if(sec_timestamp_counter >= 1000000000) sec_timestamp_counter = 0;
+			
+			if(!btn_released && !GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
+				btn_released = true;
+			}
+				
+			if(btn_released && GPIO_GetPinStatus(BTN_PORT, BTN_PIN)){
+				new_load = load;
+				sec_timestamp = sec_timestamp_counter;
+				//sec_timestamp_counter = 0;
+				num_vals++;
+				btn_released = false;
+			}
+		
+			if(!val_ready && !GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN)) val_ready = true;
+				if(val_ready){
+					if(num_reads < MAX_READS){
+						if (clock_count < 50) {
+							if(clock_count % 2 == 0){
+								GPIO_SetActive(LC_CLK_PORT,LC_CLK_PIN);
+								if(clock_count < 47) temp_load = temp_load << 1;
+							} else{
+								GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
+								if(clock_count < 49) temp_load += GPIO_GetPinStatus(LC_DO_PORT, LC_DO_PIN);
+							}
+							clock_count++;
+						} else {
+							//(*load_p) = (uint32_t)temp_load;
+							load = temp_load;//0xDEADBEEF;//
+
+							if(num_vals >= 48){
+								//clear_array((uint32_t *)load_array, LOAD_VALS_ARR_SIZE);
+								num_vals = 0;
+							}
+
+							if((abs((uint32_t)load - (uint32_t)load_array[num_vals] /*(uint32_t)new_load*/)) > WEIGHT_UPDATE_THRESHOLD){
+								if(!baseline_set){
+									baseline = load;
+									baseline_set = true;
+								} else {
+									new_load = load;
+									sec_timestamp = sec_timestamp_counter;
+								//	sec_timestamp_counter = 0;
+								
+									load_array[num_vals + 1] = load;
+									timestamp_array[num_vals + 1] = sec_timestamp;
+								
+									num_vals++;
+								}
+							}
+
+							//app_lc_val_handler(&load);
+							temp_load = 0;
+							clock_count = 0;
+						//	if(/*(uint32_t)(*load_p)*/ load > WEIGHT_LED_THRESHOLD) control_LED(true);
+							//else control_LED(false);
+							num_reads++;
+						}	
+					} else {
+						if(wait_count < WAIT_TICKS){
+							GPIO_SetInactive(LC_CLK_PORT,LC_CLK_PIN);
+							wait_count++;
+						} else {
+							val_ready = false;
+							wait_count = 0;
+							num_reads = 0;
+							prep_count = 0;
+						}
+					}
+				}
+	}
 }
 
 //========================
@@ -183,7 +200,7 @@ void my_timer_cb()
  * @brief SysTick ISR routine
  ****************************************************************************************
  */
-uint32_t load_array_test[100];
+//uint32_t load_array_test[100];
 
 static void systick_isr_new(void)
 {
@@ -274,13 +291,13 @@ void user_on_connection(uint8_t connection_idx, struct gapc_connection_req_ind c
 			set_calibrate_lc(load_cell_2kg_p, CALIBRATION_READS);
 		}
 		
-		//if(!systick_initialized){
+		if(!systick_initialized){
 			systick_register_callback(systick_isr);
-	//		systick_initialized = true;
-//		}
+			systick_start(SYSTICK_PERIOD_US, SYSTICK_EXCEPTION);
+			systick_initialized = true;
+		}
 		
-		systick_start(SYSTICK_PERIOD_US, SYSTICK_EXCEPTION);
-		
+
     default_app_on_connection(connection_idx, param);
 }
 
@@ -290,7 +307,7 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
 			control_LED(false);
 		#endif 
 		//free(load_cell_2kg_p);
-		systick_stop();
+	//	systick_stop();
 		default_app_on_disconnect(param);
 }
 
@@ -358,6 +375,11 @@ void user_catch_rest_hndl(ke_msg_id_t const msgid,
 								case SVC1_IDX_LC_VAL_VAL:
                 {
 									user_svc1_read_lc_val_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
+                } break;
+								
+								case SVC1_IDX_LC_BASE_VAL:
+                {
+									user_svc1_read_lc_base_val_handler(load_cell_2kg_p, msgid, msg_param, dest_id, src_id);
                 } break;
 								
 								case SVC1_IDX_LC_NUM_VALS_VAL:

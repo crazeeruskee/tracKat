@@ -42,6 +42,7 @@
 static const att_svc_desc128_t custs1_svc1                      = DEF_SVC1_UUID_128;
 
 static const uint8_t SVC1_LC_VAL_UUID_128[ATT_UUID_128_LEN]           = DEF_SVC1_LC_VAL_UUID_128;
+static const uint8_t SVC1_LC_BASE_UUID_128[ATT_UUID_128_LEN]          = DEF_SVC1_LC_BASE_UUID_128;
 static const uint8_t SVC1_LC_NUM_VALS_UUID_128[ATT_UUID_128_LEN]      = DEF_SVC1_LC_NUM_VALS_UUID_128;
 static const uint8_t SVC1_LC_TS_UUID_128[ATT_UUID_128_LEN]      		  = DEF_SVC1_LC_TS_UUID_128;
 static const uint8_t SVC1_CTRL_POINT_UUID_128[ATT_UUID_128_LEN]       = DEF_SVC1_CTRL_POINT_UUID_128;
@@ -85,7 +86,20 @@ const struct attm_desc_128 custs1_att_db[CUSTS1_IDX_NB] =
 		// Load Cell Value Characteristic User Description
     [SVC1_IDX_LC_VAL_USER_DESC]   	   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
                                             sizeof(DEF_SVC1_LC_VAL_USER_DESC) - 1, sizeof(DEF_SVC1_LC_VAL_USER_DESC) - 1,
-                                            (uint8_t *) DEF_SVC1_LC_VAL_USER_DESC},		
+                                            (uint8_t *) DEF_SVC1_LC_VAL_USER_DESC},	
+
+		// Load Cell Baseline Value Characteristic Declaration
+    [SVC1_IDX_LC_BASE_CHAR]          	 = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            0, 0, NULL},
+
+    // Load Cell Baseline Value Characteristic Value
+    [SVC1_IDX_LC_BASE_VAL]          		 = {SVC1_LC_BASE_UUID_128, ATT_UUID_128_LEN, PERM(RD, ENABLE), 
+																					(PERM(RI, ENABLE) | DEF_SVC1_LC_BASE_CHAR_LEN), 0, NULL},
+					
+		// Load Cell Baseline Value Characteristic User Description
+    [SVC1_IDX_LC_BASE_USER_DESC]   	   = {(uint8_t*)&att_desc_user_desc, ATT_UUID_16_LEN, PERM(RD, ENABLE),
+                                            sizeof(DEF_SVC1_LC_BASE_USER_DESC) - 1, sizeof(DEF_SVC1_LC_BASE_USER_DESC) - 1,
+                                            (uint8_t *) DEF_SVC1_LC_BASE_USER_DESC},																							
 
 		// Load Cell Timestamp Characteristic Declaration
     [SVC1_IDX_LC_TS_CHAR]          		 = {(uint8_t*)&att_decl_char, ATT_UUID_16_LEN, PERM(RD, ENABLE),
