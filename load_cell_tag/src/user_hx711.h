@@ -30,11 +30,12 @@
 
 #define PREP_READ_TICKS						20
 #define MAX_READS 								1
+#define NEW_MAX_VAL_READS					247 //new value held for ~< 10 seconds
 #define WAIT_TICKS								2000
 #define CALIBRATION_READS					20
 
 #define MAX_RAW_LOAD_VAL					16277215 //HX711's 24 Bit ADC (2^24 - 1) 
-#define WEIGHT_UPDATE_THRESHOLD 	5000 /*50000*/    //Minimum difference between load values to add value to weights array
+#define WEIGHT_UPDATE_THRESHOLD 	1000 /*50000*/    //Minimum difference between load values to add value to weights array
 
 #define LOAD_VALS_ARR_SIZE    		50			 //Currently arbitrary but should be based on sampling number vs. memory availability
 

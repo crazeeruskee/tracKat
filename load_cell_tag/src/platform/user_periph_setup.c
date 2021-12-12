@@ -38,7 +38,7 @@ void GPIO_reservations(void)
     i.e. to reserve P0_1 as Generic Purpose I/O:
     RESERVE_GPIO(DESCRIPTIVE_NAME, GPIO_PORT_0, GPIO_PIN_1, PID_GPIO);
 */
-#if defined(CUSTOM_TAG)
+#if defined(CUSTOM_TAG1)
 	RESERVE_GPIO(LOAD_CELL_DATA, LC_DO_PORT, LC_DO_PIN, PID_GPIO);
 	RESERVE_GPIO(LOAD_CELL_CLK, LC_CLK_PORT, LC_CLK_PIN, PID_GPIO);
 	
@@ -69,7 +69,7 @@ void set_pad_functions(void)
     i.e. to set P0_1 as Generic purpose Output:
     GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);
 */
-#if defined(CUSTOM_TAG)
+#if defined(CUSTOM_TAG1)
 		GPIO_ConfigurePin(LC_DO_PORT, LC_DO_PIN, INPUT_PULLUP, PID_GPIO, false);
 		GPIO_ConfigurePin(LC_CLK_PORT, LC_CLK_PIN, OUTPUT, PID_GPIO, false);
 	

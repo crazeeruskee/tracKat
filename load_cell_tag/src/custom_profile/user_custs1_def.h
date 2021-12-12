@@ -43,6 +43,7 @@
 
 #define DEF_SVC1_LC_VAL_UUID_128         {0xAB, 0xEE, 0xFF, 0xC0, 0xEE, 0xFF, 0xC0, 0xEE, 0xFF, 0xC0, 0xEE, 0xFF, 0xC0, 0xEE, 0xFF, 0xC0}
 #define DEF_SVC1_LC_BASE_UUID_128        {0xAB, 0xCD, 0xEF, 0xFE, 0xDC, 0xBA, 0xAB, 0xCD, 0xEF, 0xFE, 0xDC, 0xBA, 0xAB, 0xCD, 0xEF, 0xFE}
+#define DEF_SVC1_LC_MAX_VAL_UUID_128     {0x12, 0x34, 0x56, 0x78, 0x90, 0x09, 0x87, 0x65, 0x43, 0x21, 0x00, 0x12, 0x34, 0x56, 0x78, 0x90}
 #define DEF_SVC1_LC_NUM_VALS_UUID_128    {0xAD, 0xDE, 0xFE, 0xCA, 0xFE, 0xCA, 0xFE, 0xCA, 0xFE, 0xCA, 0xFE, 0xCA, 0xFE, 0xCA, 0xFE, 0xCA}
 #define DEF_SVC1_LC_TS_UUID_128     		 {0xBE, 0xBA, 0xDD, 0xBA, 0xBE, 0xBA, 0xDD, 0xBA, 0xBE, 0xBA, 0xDD, 0xBA, 0xBE, 0xBA, 0xDD, 0xBA}
 
@@ -51,6 +52,7 @@
 
 #define DEF_SVC1_LC_VAL_CHAR_LEN         4
 #define DEF_SVC1_LC_BASE_CHAR_LEN        4
+#define DEF_SVC1_LC_MAX_VAL_CHAR_LEN     4
 #define DEF_SVC1_LC_NUM_VALS_CHAR_LEN    4
 #define DEF_SVC1_LC_TS_CHAR_LEN     		 4
 #define DEF_SVC1_CTRL_POINT_CHAR_LEN     1
@@ -58,6 +60,7 @@
 
 #define DEF_SVC1_LC_VAL_USER_DESC            "Load Cell Value"
 #define DEF_SVC1_LC_BASE_USER_DESC           "Load Cell Baseline Value"
+#define DEF_SVC1_LC_MAX_VAL_USER_DESC        "Load Cell New Maximum Value"
 #define DEF_SVC1_LC_NUM_VALS_USER_DESC       "Number of Load Cell Values Read"
 #define DEF_SVC1_LC_TS_USER_DESC        		 "Load Cell Timestamp Value"
 #define DEF_SVC1_CONTROL_POINT_USER_DESC     "Control Point"
@@ -76,6 +79,10 @@ enum
 		SVC1_IDX_LC_BASE_CHAR,
     SVC1_IDX_LC_BASE_VAL,
     SVC1_IDX_LC_BASE_USER_DESC,
+	
+		SVC1_IDX_LC_MAX_VAL_CHAR,
+    SVC1_IDX_LC_MAX_VAL_VAL,
+    SVC1_IDX_LC_MAX_VAL_USER_DESC,
 	
 		SVC1_IDX_LC_NUM_VALS_CHAR,
     SVC1_IDX_LC_NUM_VALS_VAL,

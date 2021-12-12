@@ -59,7 +59,7 @@
 		#define LED_PORT                GPIO_PORT_0
     #define LED_PIN                 GPIO_PIN_9
 	
-		#if CUSTOM_TAG2
+		#if defined (CUSTOM_TAG2)
 			#define BTN_PORT                GPIO_PORT_0
 			#define BTN_PIN                 GPIO_PIN_5
 		#else
