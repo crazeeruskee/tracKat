@@ -49,12 +49,16 @@ extern uint32_t new_max_val;
 extern uint32_t num_vals_lc;
 extern uint32_t num_vals_ts;
 extern uint32_t num_vals_rfid;
+extern bool baseline_set;
+
 
 extern uint32_t sec_timestamp;
 extern uint32_t load_array[LOAD_VALS_ARR_SIZE];
 extern uint32_t timestamp_array[LOAD_VALS_ARR_SIZE];
 extern uint32_t rfid_array[LOAD_VALS_ARR_SIZE];
 
+
+uint32_t zero_baseline = 0;
 
 
 //extern uint32_t load_array_test[100];
@@ -98,7 +102,7 @@ void user_svc1_read_lc_val_handler(load_cell *lc_p,
     //memcpy(&rsp->value, &(load_array[num_vals]), /*rsp->length*/ num_vals * DEF_SVC1_LC_VAL_CHAR_LEN);
 		//memcpy(&rsp->value, &new_load, DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
     memcpy(&rsp->value, &load_array, /*rsp->length*/ num_vals_lc * DEF_SVC1_LC_VAL_CHAR_LEN);
-		num_vals_lc = 1;
+		num_vals_lc = 0;
    // memcpy(&(rsp->value), (void *)(&(load_array[num_vals])), num_vals * DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
     // Send message
     ke_msg_send(rsp);
@@ -107,8 +111,8 @@ void user_svc1_read_lc_val_handler(load_cell *lc_p,
 void user_svc1_read_lc_base_val_handler(load_cell *lc_p,
 																			ke_msg_id_t const msgid,
 																			struct custs1_value_req_ind const *param,
-																	ke_task_id_t const dest_id,
-																	ke_task_id_t const src_id)
+																			ke_task_id_t const dest_id,
+																			ke_task_id_t const src_id)
 {
 	
     struct custs1_value_req_rsp *rsp = KE_MSG_ALLOC_DYN(CUSTS1_VALUE_REQ_RSP,
@@ -129,8 +133,9 @@ void user_svc1_read_lc_base_val_handler(load_cell *lc_p,
 
 		// memcpy(&rsp->value, &(lc_p->sec_timestamp), DEF_SVC1_LC_VAL_CHAR_LEN/*rsp->length*/);
 		//memcpy(&rsp->value, &sec_timestamp, DEF_SVC1_LC_TS_CHAR_LEN/*rsp->length*/);
-		memcpy(&rsp->value, &(baseline), DEF_SVC1_LC_BASE_CHAR_LEN/*rsp->length*/);
-
+		
+		if(baseline_set) memcpy(&rsp->value, &(baseline), DEF_SVC1_LC_BASE_CHAR_LEN/*rsp->length*/);
+		else memcpy(&rsp->value, &(zero_baseline), DEF_SVC1_LC_BASE_CHAR_LEN/*rsp->length*/);
     // Send message
     ke_msg_send(rsp);
 }
@@ -223,7 +228,7 @@ void user_svc1_read_lc_ts_handler(load_cell *lc_p,
 		//memcpy(&rsp->value, &sec_timestamp, DEF_SVC1_LC_TS_CHAR_LEN/*rsp->length*/);
 		//memcpy(&rsp->value, &(timestamp_array[num_vals]), /*num_vals * */ DEF_SVC1_LC_TS_CHAR_LEN/*rsp->length*/);
 		memcpy(&rsp->value, &timestamp_array, num_vals_ts *  DEF_SVC1_LC_TS_CHAR_LEN/*rsp->length*/);
-		num_vals_ts = 1;
+		num_vals_ts = 0;
     // Send message
     ke_msg_send(rsp);
 }
@@ -255,7 +260,7 @@ void user_svc1_read_rfid_handler(load_cell *lc_p,
 		//memcpy(&rsp->value, &sec_timestamp, DEF_SVC1_LC_TS_CHAR_LEN/*rsp->length*/);
 		memcpy(&rsp->value, &(rfid_array), num_vals_rfid * DEF_SVC1_LC_BASE_CHAR_LEN/*rsp->length*/);
 
-		num_vals_rfid = 1;
+		num_vals_rfid = 0;
 
     // Send message
     ke_msg_send(rsp);

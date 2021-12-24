@@ -44,8 +44,8 @@
 #define WEIGHT_LED_THRESHOLD 	    1750000  //16777100 //3500000
 
 
-#define CAT1_RFID									0xDEAD
-#define CAT2_RFID									0xBEEF
+#define CAT1_RFID									57005 //0xDEAD
+#define CAT2_RFID									48879 //0xBEEF
 
 bool systick_initialized = false;
 load_cell* load_cell_2kg_p;
@@ -60,7 +60,7 @@ uint32_t num_reads = 0;
 uint32_t temp_load = 0;
 //uint32_t* load_p;
 uint32_t load = 0;
-uint32_t new_load;
+uint32_t new_load;// = 0x00FFFFFF;
 
 uint32_t new_max_val;
 uint32_t new_max_val_read_count = 0;
@@ -73,7 +73,7 @@ uint32_t num_vals_lc = 0;
 uint32_t num_vals_ts = 0;
 uint32_t num_vals_rfid = 0;
 
-uint32_t baseline = 3158440; //0x003031A8
+uint32_t baseline = 0x00FFFFFF; //3158440; //0x003031A8
 bool baseline_set = false;
 
 bool val_ready = false;
@@ -142,32 +142,44 @@ static void systick_isr(void)
 								new_max_val = baseline;
 								new_load = baseline;
 								baseline_set = true;
-							} 
-							
-							//if((abs((uint32_t)load - (uint32_t)load_array[num_vals] /*(uint32_t)new_load*/)) > WEIGHT_UPDATE_THRESHOLD){
-							if(load < new_max_val && (load < new_load) && (new_load - load) > WEIGHT_UPDATE_THRESHOLD){
-								new_load = load;
-								sec_timestamp = sec_timestamp_counter;
-								//	sec_timestamp_counter = 0;
 								
-								num_vals_lc++;
-								num_vals_ts++;
-								num_vals_rfid++;
-								
-								load_array[num_vals_lc] = load;
-								timestamp_array[num_vals_ts] = sec_timestamp;
-								if(GPIO_GetPinStatus(BTN_PORT, BTN_PIN)) rfid_array[num_vals_rfid] = CAT1_RFID;
-								else rfid_array[num_vals_rfid] = CAT2_RFID;
-								
-							} else if (load >= new_max_val){
-								new_max_val_read_count++;
-								if(new_max_val_read_count >= NEW_MAX_VAL_READS){
-									new_max_val = load;
-									new_load = load;
-									new_max_val_read_count = 0;
-								}
-							}
+//								calibration_count++;
 
+//								if(load != 0 && load < baseline/* && (new_load - load) > WEIGHT_UPDATE_THRESHOLD*/){
+//									baseline = load;
+//									//new_load = baseline;
+//								}
+//								if(calibration_count >= CALIBRATION_READS) {
+//									 new_max_val = baseline;
+//									 baseline_set = true;
+//								 }
+							 }
+				//			} else{
+								//if((abs((uint32_t)load - (uint32_t)load_array[num_vals] /*(uint32_t)new_load*/)) > WEIGHT_UPDATE_THRESHOLD){
+								if(load != 0 && load < new_max_val && (load < new_load) && (new_load - load) > WEIGHT_UPDATE_THRESHOLD){
+									new_load = load;
+									sec_timestamp = sec_timestamp_counter;
+									//	sec_timestamp_counter = 0;
+									
+									load_array[num_vals_lc] = load;
+									timestamp_array[num_vals_ts] = sec_timestamp;
+									if(GPIO_GetPinStatus(BTN_PORT, BTN_PIN)) rfid_array[num_vals_rfid] = CAT1_RFID;
+									else rfid_array[num_vals_rfid] = CAT2_RFID;
+									
+									num_vals_lc++;
+									num_vals_ts++;
+									num_vals_rfid++;
+									
+									new_max_val_read_count = 0;
+								} else if (load >= new_max_val){
+									new_max_val_read_count++;
+									if(new_max_val_read_count >= NEW_MAX_VAL_READS){
+										new_max_val = load;
+										new_load = load;
+										new_max_val_read_count = 0;
+									}
+								}
+				//			}
 							//app_lc_val_handler(&load);
 							temp_load = 0;
 							clock_count = 0;
@@ -345,7 +357,8 @@ void user_on_disconnect( struct gapc_disconnect_ind const *param )
 }
 
 void user_get_bdaddr(struct bd_addr* address){
-		struct bd_addr tempAddr = {0xEE, 0xFF, 0xC0, 0xEE, 0xFF, 0xC0};
+	//	struct bd_addr tempAddr = {0xEE, 0xFF, 0xC0, 0xEE, 0xFF, 0xC0};
+		struct bd_addr tempAddr = {0xFE, 0xCA, 0xFE, 0xCA, 0xFE, 0xCA};
 		memcpy(address, &tempAddr, 6);
 }
 
@@ -361,8 +374,9 @@ void user_advertise_operation(void){
     memcpy(cmd, adv_cmd, sizeof(struct gapm_start_advertise_cmd));
 
     // Specify the advertise data (we are just changing the BD name)
-    // Adv. data segment with length of 0x05, type is BD name and name is a Smiling Cat emoji
-    uint8_t adv_data[] = {0x05, GAP_AD_TYPE_COMPLETE_NAME, 0xF0, 0x9F, 0x98, 0xBA};
+    // Adv. data segment with length of 0x05, type is BD name and name is a Smiling Cat 0xF0, 0x9F, 0x98, 0xBA or Weary Cat emoji \xF0\x9F\x99\x80
+ //   uint8_t adv_data[] = {0x05, GAP_AD_TYPE_COMPLETE_NAME, 0xF0, 0x9F, 0x98, 0xBA};
+    uint8_t adv_data[] = {0x05, GAP_AD_TYPE_COMPLETE_NAME, 0xF0, 0x9F, 0x99, 0x80};
     cmd->info.host.adv_data_len = sizeof(adv_data);
     memcpy(&cmd->info.host.adv_data, &adv_data, sizeof(adv_data));
 

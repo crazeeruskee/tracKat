@@ -187,7 +187,8 @@ static const struct advertise_configuration user_adv_conf = {
  ****************************************************************************************
  */
 /// Device name
-#define USER_DEVICE_NAME        "\xF0\x9F\x98\xBA TracKat-BLE-Load_Cell_Demo"
+//#define USER_DEVICE_NAME        "\xF0\x9F\x98\xBA TracKat-BLE-Load_Cell_Demo1"
+#define USER_DEVICE_NAME        "\xF0\x9F\x99\x80 TracKat-BLE-Load_Cell_Demo2"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN    (sizeof(USER_DEVICE_NAME)-1)
